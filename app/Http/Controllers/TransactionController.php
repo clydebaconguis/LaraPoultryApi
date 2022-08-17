@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
-use App\Models\Orders;
+use App\Models\Order;
 use App\Models\Transaction;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -49,7 +49,7 @@ class TransactionController extends Controller
                 'qty' => $item['qty'],
             ];
 
-            Orders::create($prod);
+            Order::create($prod);
         }
         Cart::where('user_id', $formfields['user_id'])->delete();
         if ($prod) {
