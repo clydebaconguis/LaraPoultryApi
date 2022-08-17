@@ -14,4 +14,9 @@ class Order extends Model
         'size',
         'qty',
     ];
+
+    public function transactions()
+    {
+        return $this->belongsTo(Transaction::class, 'transaction_id');
+    }
 }
