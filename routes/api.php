@@ -3,6 +3,7 @@
 use App\Models\Cart;
 use App\Models\Size;
 use App\Models\Orders;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Models\ProductCategory;
 use Illuminate\Support\Facades\Route;
@@ -10,11 +11,10 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\OrdersController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PricingController;
-use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\TransactionController;
-use App\Models\Transaction;
+use App\Http\Controllers\ProductCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,10 +40,10 @@ Route::apiResource('product_categories', ProductCategoryController::class);
 Route::apiResource('pricings', PricingController::class);
 
 // Carts
-Route::Resource('carts', CartController::class);
+Route::apiResource('carts', CartController::class);
 
 // Orders routes
-// Route::apiResource('orders', OrdersController::class);
+Route::apiResource('orders', OrderController::class);
 
 // Transaction routes
 Route::apiResource('transactions', TransactionController::class);
