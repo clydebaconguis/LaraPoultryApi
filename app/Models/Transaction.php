@@ -17,6 +17,8 @@ class Transaction extends Model
         'status',
     ];
 
+    protected $table = 'CreateTransactionsTable.transactions';
+
     // public function orders()
     // {
     //     return $this->hasMany(Orders::class, 'transaction_id');
