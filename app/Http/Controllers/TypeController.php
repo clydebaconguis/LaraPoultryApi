@@ -37,9 +37,10 @@ class TypeController extends Controller
 
         $id = Type::create($formfields)->id;
 
-        $json_params = json_decode($request['units'], true);
+        $params = $request['units'];
+        $tags = explode(',', $params);
         $units = array();
-        foreach ($json_params as $item) {
+        foreach ($tags as $item) {
             $units = array();
             $units = [
                 'type_id' => $id,
