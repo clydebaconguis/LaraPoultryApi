@@ -13,16 +13,16 @@ class CreateTransactionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('transactions', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('trans_code');
-            $table->string('user_add');
-            $table->decimal('total_payment', 8, 2);
-            $table->string('payment_opt');
-            $table->string('status')->nullable()->default('Approval');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->timestamps();
-        });
+        // Schema::create('transactions', function (Blueprint $table) {
+        //     $table->increments('id');
+        //     $table->string('trans_code');
+        //     $table->string('user_add');
+        //     $table->decimal('total_payment', 8, 2);
+        //     $table->string('payment_opt');
+        //     $table->string('status')->nullable()->default('Approval');
+        //     $table->foreignId('user_id')->constrained()->onDelete('cascade');
+        //     $table->timestamps();
+        // });
     }
 
     /**
