@@ -20,7 +20,7 @@ class CreateTransactionsTable extends Migration
             $table->decimal('total_payment', 8, 2);
             $table->string('payment_opt');
             $table->string('status')->nullable()->default('Approval');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }
