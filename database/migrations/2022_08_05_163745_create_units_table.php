@@ -16,7 +16,7 @@ class CreateUnitsTable extends Migration
         Schema::create('units', function (Blueprint $table) {
             $table->increments('id');
             $table->string('unit');
-            $table->foreignId('type_id');
+            $table->foreignId('type_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
