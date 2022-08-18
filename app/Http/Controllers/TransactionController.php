@@ -42,6 +42,7 @@ class TransactionController extends Controller
         $products = json_decode($request['products'], true);
         $prod = array();
         foreach ($products as $item) {
+            $prod = array();
             $prod = [
                 'product_category_id' => $item['product_category_id'],
                 'transaction_id' => $trans_id,
@@ -51,10 +52,10 @@ class TransactionController extends Controller
 
             Order::create($prod);
         }
-        Cart::where('user_id', $formfields['user_id'])->delete();
-        if ($prod) {
-            return response(['message' => 'Success!'], 201);
-        }
+        // Cart::where('user_id', $formfields['user_id'])->delete();
+        // if ($prod) {
+        //     return response(['message' => 'Success!'], 201);
+        // }
     }
 
     /**
