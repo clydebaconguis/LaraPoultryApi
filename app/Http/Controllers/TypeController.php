@@ -31,7 +31,26 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
-        Type::create($request->all());
+        $formfields = $request->validate([
+            'name' => 'required|string',
+        ]);
+
+        $id = Type::create($formfields)->id;
+
+        $json_params = json_decode($request['units'], true);
+        $units = array();
+        foreach ($json_params as $item) {
+            $units = array();
+            $units = [
+                'type_id' => $id,
+                'unit' => $item['unit'],
+            ];
+
+            Unit::create($units);
+        }
+        if ($units) {
+            return response(['message' => 'Success!'], 201);
+        }
     }
 
     /**
@@ -63,8 +82,8 @@ class TypeController extends Controller
      * @param  \App\Models\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Type $type)
+    public function destroy($id)
     {
-        //
+        return Type::where('id', $id)->delete();
     }
 }

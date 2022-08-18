@@ -46,6 +46,7 @@ class ProductCategoryController extends Controller
         $json_params = json_decode($request['prices'], true);
         $price = array();
         foreach ($json_params as $item) {
+            $price = array();
             $price = [
                 'product_category_id' => $id,
                 'type' => $item['type'],
