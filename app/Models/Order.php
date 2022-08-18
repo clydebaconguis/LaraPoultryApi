@@ -15,8 +15,8 @@ class Order extends Model
         'qty',
     ];
 
-    public function transactions()
-    {
-        return $this->belongsTo(Transaction::class, 'transaction_id');
-    }
+    // public function transactions()
+    // {
+    //     return $this->belongsTo(Transaction::class, 'transaction_id');
+    // }
 }
