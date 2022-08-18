@@ -14,7 +14,7 @@ class CreateCartsTable extends Migration
     public function up()
     {
         Schema::create('carts', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('product_category_id')->constrained()->onDelete('cascade');
             $table->string('size')->nullable();

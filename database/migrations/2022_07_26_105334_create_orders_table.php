@@ -14,7 +14,7 @@ class CreateOrdersTable extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->foreignId('transaction_id')->constrained()->onDelete('cascade');
             $table->foreignId('product_category_id');
             $table->string('size');

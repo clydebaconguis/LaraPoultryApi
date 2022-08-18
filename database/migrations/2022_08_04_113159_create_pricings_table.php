@@ -14,7 +14,7 @@ class CreatePricingsTable extends Migration
     public function up()
     {
         Schema::create('pricings', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('unit');
             $table->string('type');
             $table->decimal('value', 5, 2);
