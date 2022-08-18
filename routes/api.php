@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\TypeController;
+use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PricingController;
@@ -50,6 +51,9 @@ Route::apiResource('transactions', TransactionController::class);
 
 // Types
 Route::apiResource('types', TypeController::class);
+
+// Units
+Route::apiResource('units', UnitController::class);
 
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
