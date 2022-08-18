@@ -46,7 +46,7 @@ Route::Resource('carts', CartController::class);
 // Route::apiResource('orders', OrdersController::class);
 
 // Transaction routes
-// Route::apiResource('transactions', TransactionController::class);
+Route::apiResource('transactions', TransactionController::class);
 
 // Types
 Route::apiResource('types', TypeController::class);
