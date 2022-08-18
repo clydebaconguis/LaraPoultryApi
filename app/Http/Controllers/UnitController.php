@@ -59,6 +59,6 @@ class UnitController extends Controller
      */
     public function destroy(Unit $unit)
     {
-        //
+        return $unit->delete();
     }
 }
