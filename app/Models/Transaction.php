@@ -17,7 +17,7 @@ class Transaction extends Model
         'status',
     ];
 
-    protected $table = 'CreateTransactionsTable.transactions';
+    protected $table = 'transactions';
 
     // public function orders()
     // {
