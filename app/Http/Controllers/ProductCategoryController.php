@@ -39,7 +39,7 @@ class ProductCategoryController extends Controller
 
         if ($request->hasFile('image')) {
             $filename = Str::random(10);
-            $path = Storage::disk('google')->put($filename, $products['image']);
+            $path = Storage::disk('google')->put("", $products['image']);
             if ($path) {
                 $products['image'] = "https://drive.google.com/uc?export=view&id=" . $path;
                 $id = ProductCategory::create($products)->id;
