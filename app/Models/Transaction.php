@@ -19,8 +19,8 @@ class Transaction extends Model
 
     protected $table = 'transactions';
 
-    // public function orders()
-    // {
-    //     return $this->hasMany(Orders::class, 'transaction_id');
-    // }
+    public function orders()
+    {
+        return $this->hasMany(Orders::class, 'transaction_id');
+    }
 }

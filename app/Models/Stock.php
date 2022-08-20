@@ -10,9 +10,8 @@ class Stock extends Model
     use HasFactory;
     protected $fillable = [
         'product_category_id',
-        'sm_stock',
-        'md_stock',
-        'lg_stock',
-        'xl_stock',
+        'type',
+        'unit',
+        'qty',
     ];
 }
