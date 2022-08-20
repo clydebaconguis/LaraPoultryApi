@@ -37,13 +37,14 @@ class ProductCategoryController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            // $path = Storage::disk('google')->put('test.txt', 'Hello World');
-
-            $path = $request->file('image')->store('images', 'google');
-
-            $products['image'] = $path;
+            $filename = Str::random(10);
+            $path = Storage::disk('google')->put($filename, $products['image']);
+            if ($path) {
+                $products['image'] = "https://drive.google.com/uc?export=view&id=" . $path;
+                $id = ProductCategory::create($products)->id;
+            }
+            // $path = $request->file('image')->store('images', 'google');
         }
-        $id = ProductCategory::create($products)->id;
 
         // $json_params = json_decode($request['prices'], true);
         // $price = array();
