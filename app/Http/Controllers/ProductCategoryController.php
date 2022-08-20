@@ -58,7 +58,7 @@ class ProductCategoryController extends Controller
                 $files = Storage::disk('google')->allFiles();
                 $data = array();
                 foreach ($files as $file) {
-                    $data = Storage::disk('google')->getMetadata($file);
+                    json_decode($data = Storage::disk('google')->getMetadata($file), true);
                 }
                 if (count($data) > 0) {
                     foreach ($data as $item) {
