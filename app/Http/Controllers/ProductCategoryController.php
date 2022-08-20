@@ -37,7 +37,9 @@ class ProductCategoryController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('images', 'google');
+            $path = Storage::disk('google')->put('test.txt', 'Hello World');
+
+            // $path = $request->file('image')->store('images', 'google');
 
             $products['image'] = $path;
         }
