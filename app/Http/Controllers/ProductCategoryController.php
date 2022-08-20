@@ -37,7 +37,7 @@ class ProductCategoryController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('images');
+            $path = $request->file('image')->store('images', 'google');
 
             $products['image'] = $path;
         }
