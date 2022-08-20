@@ -52,7 +52,7 @@ class ProductCategoryController extends Controller
 
         if ($request->hasFile('image')) {
             // $filename = Str::random(10);
-            $path = Storage::disk('google')->getMetadata('', $products['image']);
+            $path = Storage::disk('google')->url("", $products['image']);
             // $path = $request->file('image')->store('', 'google');
             // if ($path) {
             //     $products['image'] = $path;
