@@ -42,7 +42,7 @@ class ProductCategoryController extends Controller
             $request->file('image')->storeAs('', $filename, 'google');
             $path = Storage::disk('google')->getMetadata($filename);
             // $fileId['url'] = json_decode($path, true);
-            return response($path, 200);
+            return response($path['path'], 200);
             // $products['image'] = "https://drive.google.com/uc?export=view&id=" . $fileId;
             // return ProductCategory::create($products)->image;
         }
