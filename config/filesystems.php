@@ -27,6 +27,7 @@ return [
     | Supported Drivers: "local", "ftp", "sftp", "s3"
     |
     */
+    'cloud' => 'google',
 
     'disks' => [
 
