@@ -74,7 +74,7 @@ class ProductCategoryController extends Controller
             //     $products['image'] = "https://drive.google.com/uc?export=view&id=" . $fileId;
             //     $url = ProductCategory::create($products)->image;
             // }
-            return response(['url' => $data]);
+            return response(['url' => $files]);
         }
 
         // $json_params = json_decode($request['prices'], true);
