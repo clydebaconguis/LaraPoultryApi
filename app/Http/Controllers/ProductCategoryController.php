@@ -53,7 +53,8 @@ class ProductCategoryController extends Controller
         if ($request->hasFile('image')) {
             $fileId = "";
             $filename = Str::random(10);
-            $path = $request->file('image')->storeAs('', $filename, 'google');
+            $path = [];
+            $path['name'] = $request->file('image')->storeAs('', $filename, 'google');
             if ($path) {
                 $files = Storage::disk('google')->allFiles();
                 $data = array();
@@ -62,7 +63,7 @@ class ProductCategoryController extends Controller
                 }
                 if (count($data) > 0) {
                     foreach ($data as $item) {
-                        if ($item['filename'] == $path) {
+                        if ($item['filename'] == $path['name']) {
                             $fileId = $item['path'];
                         }
                     }
