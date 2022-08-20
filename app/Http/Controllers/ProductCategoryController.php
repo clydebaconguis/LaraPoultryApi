@@ -53,28 +53,28 @@ class ProductCategoryController extends Controller
         if ($request->hasFile('image')) {
             $fileId = "";
             $filename = Str::random(10);
-            $path = [];
-            $path['name'] = $request->file('image')->storeAs('', $filename, 'google');
-            if ($path) {
-                $files = Storage::disk('google')->allFiles();
-                $data = array();
-                foreach ($files as $file) {
-                    $data = Storage::disk('google')->getMetadata($file);
-                }
-                // if (count($data) > 0) {
-                //     foreach ($data as $item) {
-                //         $fn = $item['filename'];
-                //         if ( $fn === $path['name']) {
-                //             $fileId = $item['path'];
-                //         }
-                //     }
-                // }
-            }
+            $request->file('image')->storeAs('', $filename, 'google');
+            $path  = Storage::disk('google')->getMetadata($filename);
+            // if ($path) {
+            //     $files = Storage::disk('google')->allFiles();
+            //     $data = array();
+            //     foreach ($files as $file) {
+            //         $data = Storage::disk('google')->getMetadata($file);
+            //     }
+            //     // if (count($data) > 0) {
+            //     //     foreach ($data as $item) {
+            //     //         $fn = $item['filename'];
+            //     //         if ( $fn === $path['name']) {
+            //     //             $fileId = $item['path'];
+            //     //         }
+            //     //     }
+            //     // }
+            // }
             // if ($fileId) {
             //     $products['image'] = "https://drive.google.com/uc?export=view&id=" . $fileId;
             //     $url = ProductCategory::create($products)->image;
             // }
-            return response(['url' => $files]);
+            return response(['url' => $path]);
         }
 
         // $json_params = json_decode($request['prices'], true);
