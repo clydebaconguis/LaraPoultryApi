@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Size;
 use App\Models\Stock;
+use App\Models\Pricing;
 use App\Models\Product;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\ProductCategory;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\ProductCategoryResource;
-use App\Models\Pricing;
 
 class ProductCategoryController extends Controller
 {
