@@ -37,44 +37,16 @@ class ProductCategoryController extends Controller
             'image' => 'image|mimes:jpg,jpeg,png',
         ]);
 
-        // $filename = Str::random(10);
-        // $fileMetadata = new \Google_Service_Drive_DriveFile(array(
-        //     'name' => $filename,
-        //     'parents' => array(env('GOOGLE_DRIVE_FOLDER_ID')),
-
-        // ));
-        // $fileId = $service->files->create($fileMetadata, array(
-        //     'data' => $products['image'],
-        //     'mimeType' => 'image/jpeg',
-        //     'uploadType' => 'multipart',
-        //     'fields' => 'id',
-        // ));
-
         if ($request->hasFile('image')) {
-            $fileId = "";
             $filename = Str::random(10);
             $request->file('image')->storeAs('', $filename, 'google');
-            $path  = Storage::disk('google')->getMetadata($filename);
-            // if ($path) {
-            //     $files = Storage::disk('google')->allFiles();
-            //     $data = array();
-            //     foreach ($files as $file) {
-            //         $data = Storage::disk('google')->getMetadata($file);
-            //     }
-            //     // if (count($data) > 0) {
-            //     //     foreach ($data as $item) {
-            //     //         $fn = $item['filename'];
-            //     //         if ( $fn === $path['name']) {
-            //     //             $fileId = $item['path'];
-            //     //         }
-            //     //     }
-            //     // }
-            // }
-            // if ($fileId) {
-            //     $products['image'] = "https://drive.google.com/uc?export=view&id=" . $fileId;
-            //     $url = ProductCategory::create($products)->image;
-            // }
-            return response(['url' => $path]);
+            $path = json_decode(Storage::disk('google')->getMetadata($filename), true);
+            $fileId = $path['path'];
+
+            if ($fileId) {
+                $products['image'] = "https://drive.google.com/uc?export=view&id=" . $fileId;
+                return ProductCategory::create($products)->image;
+            }
         }
 
         // $json_params = json_decode($request['prices'], true);
