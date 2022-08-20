@@ -61,19 +61,20 @@ class ProductCategoryController extends Controller
                 foreach ($files as $file) {
                     $data = Storage::disk('google')->getMetadata($file);
                 }
-                if (count($data) > 0) {
-                    foreach ($data as $item) {
-                        if ($item['filename'] == $path['name']) {
-                            $fileId = $item['path'];
-                        }
-                    }
-                }
+                // if (count($data) > 0) {
+                //     foreach ($data as $item) {
+                //         $fn = $item['filename'];
+                //         if ( $fn === $path['name']) {
+                //             $fileId = $item['path'];
+                //         }
+                //     }
+                // }
             }
-            if ($fileId) {
-                $products['image'] = "https://drive.google.com/uc?export=view&id=" . $fileId;
-                $url = ProductCategory::create($products)->image;
-            }
-            return response(['url' => $url]);
+            // if ($fileId) {
+            //     $products['image'] = "https://drive.google.com/uc?export=view&id=" . $fileId;
+            //     $url = ProductCategory::create($products)->image;
+            // }
+            return response(['url' => $data]);
         }
 
         // $json_params = json_decode($request['prices'], true);
