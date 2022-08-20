@@ -37,14 +37,27 @@ class ProductCategoryController extends Controller
             'image' => 'image|mimes:jpg,jpeg,png',
         ]);
 
+        // $filename = Str::random(10);
+        // $fileMetadata = new \Google_Service_Drive_DriveFile(array(
+        //     'name' => $filename,
+        //     'parents' => array(env('GOOGLE_DRIVE_FOLDER_ID')),
+
+        // ));
+        // $fileId = $service->files->create($fileMetadata, array(
+        //     'data' => $products['image'],
+        //     'mimeType' => 'image/jpeg',
+        //     'uploadType' => 'multipart',
+        //     'fields' => 'id',
+        // ));
+
         if ($request->hasFile('image')) {
             // $filename = Str::random(10);
-            // $path = Storage::disk('google')->put("", $products['image']);
-            $path = $request->file('image')->store('', 'google');
-            if ($path) {
-                $products['image'] = $path;
-                $id = ProductCategory::create($products)->id;
-            }
+            $path = Storage::disk('google')->getMetadata($products['image']);
+            // $path = $request->file('image')->store('', 'google');
+            // if ($path) {
+            //     $products['image'] = $path;
+            //     $id = ProductCategory::create($products)->id;
+            // }
             return response(['path' => $path]);
         }
 
