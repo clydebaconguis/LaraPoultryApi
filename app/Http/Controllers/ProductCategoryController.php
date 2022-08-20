@@ -51,9 +51,12 @@ class ProductCategoryController extends Controller
         // ));
 
         if ($request->hasFile('image')) {
-            // $filename = Str::random(10);
-            $path = Storage::disk('google')->url(put("", $products['image']));
-            // $path = $request->file('image')->store('', 'google');
+            $filename = Str::random(10);
+            $path = $request->file('image')->storeAs('', $filename, 'google');
+            // $files = Storage::disk('google')->allFiles();
+            // foreach($files as $file){
+
+            // }
             // if ($path) {
             //     $products['image'] = $path;
             //     $id = ProductCategory::create($products)->id;
