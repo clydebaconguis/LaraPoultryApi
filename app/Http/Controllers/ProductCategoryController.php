@@ -43,22 +43,22 @@ class ProductCategoryController extends Controller
         }
         $id = ProductCategory::create($products)->id;
 
-        $json_params = json_decode($request['prices'], true);
-        $price = array();
-        foreach ($json_params as $item) {
-            $price = array();
-            $price = [
-                'product_category_id' => $id,
-                'type' => $item['type'],
-                'unit' => $item['unit'],
-                'value' => $item['value'],
-            ];
+        // $json_params = json_decode($request['prices'], true);
+        // $price = array();
+        // foreach ($json_params as $item) {
+        //     $price = array();
+        //     $price = [
+        //         'product_category_id' => $id,
+        //         'type' => $item['type'],
+        //         'unit' => $item['unit'],
+        //         'value' => $item['value'],
+        //     ];
 
-            Pricing::create($price);
-        }
-        if ($price) {
-            return response(['message' => 'Success!'], 201);
-        }
+        //     Pricing::create($price);
+        // }
+        // if ($price) {
+        //     return response(['message' => 'Success!'], 201);
+        // }
     }
 
     /**
