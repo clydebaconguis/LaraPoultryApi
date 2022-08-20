@@ -101,8 +101,9 @@ class ProductCategoryController extends Controller
     {
         $path = $productCategory['image'];
         $productCategory->delete();
-        if (Storage::exists($path)) {
-            Storage::delete($path);
+        $isExist = Storage::disk('google')->getMetadata($path);
+        if ($isExist) {
+            Storage::disk('google')->delete($path);
             return response(['message' => 'Success!']);
         }
         return 'File does not exists';
