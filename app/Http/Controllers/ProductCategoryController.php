@@ -36,8 +36,7 @@ class ProductCategoryController extends Controller
             'name' => 'required|string',
             'image' => 'image|mimes:jpg,jpeg,png',
         ]);
-        $id = 0;
-        $name = ProductCategory::where('name', $request['name'])->first();
+        $name = ProductCategory::where('name', trim($products['name']));
         if ($request->hasFile('image') && !$name) {
             $filename = Str::random(10);
             $request->file('image')->storeAs('', $filename, 'google');
@@ -45,23 +44,24 @@ class ProductCategoryController extends Controller
             $products['image'] = '';
             $products['image'] = $path['path'];
             $id = ProductCategory::create($products)->id;
-        }
-
-        $json_params = json_decode($request['prices'], true);
-        $price = array();
-        foreach ($json_params as $item) {
+            $json_params = json_decode($request['prices'], true);
             $price = array();
-            $price = [
-                'product_category_id' => $id,
-                'type' => $item['type'],
-                'unit' => $item['unit'],
-                'value' => $item['value'],
-            ];
+            foreach ($json_params as $item) {
+                $price = array();
+                $price = [
+                    'product_category_id' => $id,
+                    'type' => $item['type'],
+                    'unit' => $item['unit'],
+                    'value' => $item['value'],
+                ];
 
-            Pricing::create($price);
-        }
-        if ($price) {
-            return response(['message' => 'Success!'], 201);
+                Pricing::create($price);
+            }
+            if ($price) {
+                return response(['message' => 'Success!'], 201);
+            }
+        } else {
+            return response(['message' => 'Product name already exist!'], 201);
         }
     }
 
