@@ -43,7 +43,7 @@ class ProductCategoryController extends Controller
             $path = Storage::disk('google')->getMetadata($filename);
             $products['image'] = '';
             $products['image'] = $path['path'];
-            $id = ProductCategory::create($products)->id;
+            return ProductCategory::create($products)->id;
             // $json_params = json_decode($request['prices'], true);
             // $price = array();
             // foreach ($json_params as $item) {
