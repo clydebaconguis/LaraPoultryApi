@@ -44,18 +44,18 @@ class ProductCategoryController extends Controller
             $products['image'] = '';
             $products['image'] = $path['path'];
             $id = ProductCategory::create($products)->id;
-            $json_params = json_decode($request['prices'], true);
-            $price = array();
-            foreach ($json_params as $item) {
-                $price = array();
-                $price = [
-                    'product_category_id' => $id,
-                    'type' => $item['type'],
-                    'unit' => $item['unit'],
-                    'value' => $item['value'],
-                ];
-                Pricing::create($price);
-            }
+            // $json_params = json_decode($request['prices'], true);
+            // $price = array();
+            // foreach ($json_params as $item) {
+            //     $price = array();
+            //     $price = [
+            //         'product_category_id' => $id,
+            //         'type' => $item['type'],
+            //         'unit' => $item['unit'],
+            //         'value' => $item['value'],
+            //     ];
+            //     Pricing::create($price);
+            // }
         }
     }
 
