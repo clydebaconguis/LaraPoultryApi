@@ -54,14 +54,8 @@ class ProductCategoryController extends Controller
                     'unit' => $item['unit'],
                     'value' => $item['value'],
                 ];
-
                 Pricing::create($price);
             }
-            if ($price) {
-                return response(['message' => 'Success!'], 201);
-            }
-        } else {
-            return response(['message' => 'Product name already exist!'], 201);
         }
     }
 
