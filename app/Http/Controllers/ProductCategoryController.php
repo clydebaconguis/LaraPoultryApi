@@ -36,8 +36,8 @@ class ProductCategoryController extends Controller
             'name' => 'required|string',
             'image' => 'image|mimes:jpg,jpeg,png',
         ]);
-        $name = ProductCategory::where('name', $request['name'])->get();
-        if ($request->hasFile('image') && !$name) {
+        // $name = ProductCategory::where('name', $request['name'])->get();
+        if ($request->hasFile('image')) {
             $filename = Str::random(10);
             $request->file('image')->storeAs('', $filename, 'google');
             $path = Storage::disk('google')->getMetadata($filename);
