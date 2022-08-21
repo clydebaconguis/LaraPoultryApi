@@ -36,7 +36,7 @@ class ProductCategoryController extends Controller
             'name' => 'required|string',
             'image' => 'image|mimes:jpg,jpeg,png',
         ]);
-        $name = ProductCategory::where('name', trim($products['name']));
+        $name = ProductCategory::where('name', $products['name']);
         if ($request->hasFile('image') && !$name) {
             $filename = Str::random(10);
             $request->file('image')->storeAs('', $filename, 'google');
