@@ -37,10 +37,12 @@ class ProductCategoryController extends Controller
             'image' => 'image|mimes:jpg,jpeg,png',
         ]);
         $id = 0;
-        if ($request->hasFile('image')) {
+        $name = ProductCategory::where('name', $request['name'])->first();
+        if ($request->hasFile('image') && !$name) {
             $filename = Str::random(10);
             $request->file('image')->storeAs('', $filename, 'google');
             $path = Storage::disk('google')->getMetadata($filename);
+            $products['image'] = '';
             $products['image'] = $path['path'];
             $id = ProductCategory::create($products)->id;
         }
