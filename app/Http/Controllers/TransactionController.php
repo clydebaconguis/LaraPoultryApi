@@ -37,25 +37,22 @@ class TransactionController extends Controller
         ]);
 
         $formfields['trans_code'] = Str::random(10);
-        $trans_id = Transaction::create($formfields)->id;
+        $transaction = Transaction::create($formfields);
 
         $products = json_decode($request['products'], true);
-        $prod = array();
         foreach ($products as $item) {
-            $prod = array();
             $prod = [
                 'product_category_id' => $item['product_category_id'],
-                'transaction_id' => $trans_id,
+                'transaction_id' => $transaction['id'],
                 'size' => $item['size'],
                 'qty' => $item['qty'],
             ];
-
             Order::create($prod);
+            $prod = array();
         }
         Cart::where('user_id', $formfields['user_id'])->delete();
-        if ($prod) {
-            return response(['message' => 'Success!'], 201);
-        }
+        $transaction['message'] = 'Success';
+        return response($transaction, 201);
     }
 
     /**

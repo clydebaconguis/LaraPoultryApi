@@ -32,7 +32,6 @@ use App\Http\Controllers\ProductCategoryController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-// Route::post('/logout', [UserController::class, 'logout']);
 
 // Categories routes
 Route::apiResource('product_categories', ProductCategoryController::class);
@@ -54,6 +53,10 @@ Route::apiResource('types', TypeController::class);
 
 // Units
 Route::apiResource('units', UnitController::class);
+
+Route::post('/logout', [AuthController::class, 'logout']);
+Route::group(['middleware' => ['auth:sanctum']], function () {
+});
 
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
