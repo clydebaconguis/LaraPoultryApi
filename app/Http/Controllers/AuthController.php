@@ -16,12 +16,11 @@ class AuthController extends Controller
 
     public function verify(Request $request)
     {
-        $fields = $request->validate([
-            'id' => 'required',
-        ]);
-        $user = User::find($request->id);
-        $newStat = $user->update(['status', 1]);
-        return $newStat;
+        // $fields = $request->validate([
+        //     'status' => 'required',
+        // ]);
+        return User::find($request->id);
+        // $newStat = $user->update(['status', $fields['status']]);
     }
 
     public function register(Request $request)
