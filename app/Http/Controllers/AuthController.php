@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    public function getUsers()
+    {
+        return User::where('status', 0)->get();
+    }
     public function register(Request $request)
     {
         $taken = User::where('email', $request['email'])->first();
