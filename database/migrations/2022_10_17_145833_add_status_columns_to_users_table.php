@@ -14,7 +14,7 @@ class AddStatusColumnsToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('status')->default(0);
+            $table->integer('status')->default(0);
         });
     }
 
