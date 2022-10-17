@@ -13,6 +13,13 @@ class AuthController extends Controller
     {
         return User::where('status', 0)->get();
     }
+
+    public function verify($id)
+    {
+        $user = User::find($id);
+        $user->update(['status', 1]);
+    }
+
     public function register(Request $request)
     {
         $taken = User::where('email', $request['email'])->first();
@@ -33,15 +40,16 @@ class AuthController extends Controller
             'email' => $fields['email'],
             'phone' => $fields['phone'],
             'address' => $fields['address'],
-            'password' => bcrypt($fields['password'])
+            'password' => bcrypt($fields['password']),
+            'status' => 0
         ]);
 
-        $token = $user->createToken('myapptoken')->plainTextToken;
+        // $token = $user->createToken('myapptoken')->plainTextToken;
 
         $response = [
             'message' => 'success',
             'user' => $user,
-            'token' => $token
+            // 'token' => $token
         ];
 
         return response($response, 201);
