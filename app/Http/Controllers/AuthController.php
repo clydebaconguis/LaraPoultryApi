@@ -16,7 +16,7 @@ class AuthController extends Controller
 
     public function verify($id)
     {
-        return User::where('id', $id)->update(['status', "1"]);
+        return User::where('id', $id)->update(['status' => 1]);
     }
 
     public function register(Request $request)
