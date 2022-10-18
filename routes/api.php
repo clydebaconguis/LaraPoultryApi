@@ -30,10 +30,10 @@ use App\Http\Controllers\ProductCategoryController;
 
 // Public routes
 
+Route::put('/verify', [AuthController::class, 'verify']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/getUsers', [AuthController::class, 'getUsers']);
-Route::post('/verify', [AuthController::class, 'verify']);
 
 // Categories routes
 Route::apiResource('product_categories', ProductCategoryController::class);
