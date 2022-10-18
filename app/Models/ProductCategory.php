@@ -12,6 +12,7 @@ class ProductCategory extends Model
         'name',
         'status',
         'image',
+        'stock',
     ];
 
     // Relationships with Stock

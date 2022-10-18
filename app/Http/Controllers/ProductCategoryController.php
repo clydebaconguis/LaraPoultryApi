@@ -21,7 +21,7 @@ class ProductCategoryController extends Controller
      */
     public function index()
     {
-        return ProductCategory::all();
+        return ProductCategory::where('status', 1)->get();
     }
 
     /**
@@ -65,14 +65,9 @@ class ProductCategoryController extends Controller
      * @param  \App\Models\ProductCategory  $productCategory
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(ProductCategory $productCategory)
     {
-
-        // $data = [
-        //     'stocks' =>  Stock::where('product_category_id', $id)->get(),
-        // ];
-
-        // return response($data, 201);
+        return $productCategory;
     }
 
     /**
@@ -84,7 +79,7 @@ class ProductCategoryController extends Controller
      */
     public function update(Request $request, ProductCategory $productCategory)
     {
-        //
+        $productCategory->update(['status' => 0]);
     }
 
     /**
