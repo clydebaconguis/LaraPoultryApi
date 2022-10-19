@@ -21,7 +21,7 @@ class ProductCategoryController extends Controller
      */
     public function index()
     {
-        return ProductCategory::where('status', 1)->get();
+        return ProductCategory::all();
     }
 
     /**
