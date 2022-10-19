@@ -66,7 +66,7 @@ class TransactionController extends Controller
         return DB::table('orders')
             ->join('transactions', 'orders.transaction_id', "=", 'transactions.id')
             ->join('product_categories', 'orders.product_category_id', "=", 'product_categories.id')
-            ->select('orders.*', 'transactions.*', 'product_categories.image')
+            ->select('orders.*', 'transactions.*', 'product_categories.image', 'product_categories.name')
             ->where('user_id', $id)->get();
     }
 
