@@ -70,7 +70,7 @@ class TransactionController extends Controller
         foreach ($transac as $item) {
 
             $order = DB::table('orders')
-                ->join('product_categories', 'orders.product_category_id', "=", 'product_categries.id')
+                ->join('product_categories', 'orders.product_category_id', "=", 'product_categories.id')
                 ->select('orders.*', 'product_categories.name', 'product_categories.image')
                 ->where('transaction_id', $item['id'])->get();
 
