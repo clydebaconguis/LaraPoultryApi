@@ -38,6 +38,8 @@ class ProductCategoryController extends Controller
             $products = $request->validate([
                 'name' => 'required|string',
                 'image' => 'image|mimes:jpg,jpeg,png',
+                'stock' => 'required',
+                'status' => 'required',
             ]);
             if ($request->hasFile('image')) {
                 $filename = Str::random(10);
