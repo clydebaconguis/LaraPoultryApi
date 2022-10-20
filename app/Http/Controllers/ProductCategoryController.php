@@ -91,31 +91,15 @@ class ProductCategoryController extends Controller
             'stock' => 'required',
             'status' => 'required',
         ]);
+
         if ($request->hasFile('image')) {
             $filename = Str::random(10);
             $request->file('image')->storeAs('', $filename, 'google');
             $path = Storage::disk('google')->getMetadata($filename);
             $formfields['image'] = '';
             $formfields['image'] = $path['path'];
-            // $products['stock'] = $request['stock'];
-            // $products['status'] = $request['status'];
-
-
-            // $id = ProductCategory::create($products)->id;
-            // $json_params = json_decode($request['prices'], true);
-            // $price = array();
-            // foreach ($json_params as $item) {
-            //     $price = array();
-            //     $price = [
-            //         'product_category_id' => $id,
-            //         'type' => $item['type'],
-            //         'unit' => $item['unit'],
-            //         'value' => $item['value'],
-            //     ];
-            //     Pricing::create($price);
-            // }
-
         }
+
         return $productCategory->update($formfields);
     }
 
