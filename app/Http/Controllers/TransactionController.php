@@ -63,11 +63,18 @@ class TransactionController extends Controller
      */
     public function show($id)
     {
+        $transac = Transaction::where('user_id', $id)->id;
+
         return DB::table('orders')
-            ->join('transactions', 'orders.transaction_id', "=", 'transactions.id')
-            ->join('product_categories', 'orders.product_category_id', "=", 'product_categories.id')
-            ->select('orders.*', 'transactions.*', 'product_categories.image', 'product_categories.name')
-            ->where('user_id', $id)->get();
+            ->join('product_categories', 'orders.product_category_id', "=", 'product_categries.id')
+            ->select('orders.*', 'product_categories.name', 'product_categories.image')
+            ->where('transaction_id', $transac)->get();
+
+        // return DB::table('orders')
+        //     ->join('transactions', 'orders.transaction_id', "=", 'transactions.id')
+        //     ->join('product_categories', 'orders.product_category_id', "=", 'product_categories.id')
+        //     ->select('orders.*', 'transactions.*', 'product_categories.image', 'product_categories.name')
+        //     ->where('user_id', $id)->get();
     }
 
     /**
