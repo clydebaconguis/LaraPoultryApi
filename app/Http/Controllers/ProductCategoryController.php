@@ -93,8 +93,8 @@ class ProductCategoryController extends Controller
             $path = Storage::disk('google')->getMetadata($filename);
             $products['image'] = '';
             $products['image'] = $path['path'];
-            $products['stock'] = $request['stock'];
-            $products['status'] = $request['status'];
+            // $products['stock'] = $request['stock'];
+            // $products['status'] = $request['status'];
 
             return $productCategory->update($products);
 
