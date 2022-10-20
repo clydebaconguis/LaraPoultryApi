@@ -83,7 +83,7 @@ class ProductCategoryController extends Controller
     public function update(Request $request, ProductCategory $productCategory)
     {
 
-        $products = $request->validate([
+        $formfields = $request->validate([
             'name' => 'required|string',
             'image' => 'image|mimes:jpg,jpeg,png',
             'stock' => 'required',
@@ -93,8 +93,8 @@ class ProductCategoryController extends Controller
             $filename = Str::random(10);
             $request->file('image')->storeAs('', $filename, 'google');
             $path = Storage::disk('google')->getMetadata($filename);
-            $products['image'] = '';
-            $products['image'] = $path['path'];
+            $formfields['image'] = '';
+            $formfields['image'] = $path['path'];
             // $products['stock'] = $request['stock'];
             // $products['status'] = $request['status'];
 
@@ -114,7 +114,7 @@ class ProductCategoryController extends Controller
             // }
 
         }
-        return $productCategory->update($products);
+        return $productCategory->update($formfields);
     }
 
     /**
