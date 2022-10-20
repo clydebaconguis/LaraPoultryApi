@@ -18,7 +18,11 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        return Transaction::all();
+        // return Transaction::all();
+
+        return DB::table('transactions')
+            ->join('users', 'transactions.user_id', "=", 'users.id')
+            ->select('transactions.*', 'users.name')->get();
     }
 
     /**
