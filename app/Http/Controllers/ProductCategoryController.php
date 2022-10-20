@@ -96,7 +96,6 @@ class ProductCategoryController extends Controller
             // $products['stock'] = $request['stock'];
             // $products['status'] = $request['status'];
 
-            return $productCategory->update($products);
 
             // $id = ProductCategory::create($products)->id;
             // $json_params = json_decode($request['prices'], true);
@@ -112,8 +111,8 @@ class ProductCategoryController extends Controller
             //     Pricing::create($price);
             // }
 
-
         }
+        return $productCategory->update($products);
     }
 
     /**
