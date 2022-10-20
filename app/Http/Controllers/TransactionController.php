@@ -64,7 +64,7 @@ class TransactionController extends Controller
      */
     public function show($id)
     {
-        $transac = Transaction::where('user_id', $id)->get();
+        $transac = Transaction::where('user_id', $id)->id->get();
 
         return DB::table('orders')
             ->join('product_categories', 'orders.product_category_id', "=", 'product_categries.id')
