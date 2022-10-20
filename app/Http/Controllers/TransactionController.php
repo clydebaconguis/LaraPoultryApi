@@ -62,9 +62,9 @@ class TransactionController extends Controller
      * @param  \App\Models\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($user_id)
     {
-        return Transaction::where('user_id', 1)->get();
+        return Transaction::where('user_id', $user_id)->get();
 
         // return DB::table('orders')
         //     ->join('product_categories', 'orders.product_category_id', "=", 'product_categries.id')
