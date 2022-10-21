@@ -110,7 +110,11 @@ class ProductCategoryController extends Controller
                 'unit' => $item['unit'],
                 'value' => $item['value'],
             ];
-            Pricing::where('product_category_id', $price['product_category_id'])->update($price);
+            if ($item['id'] != 0) {
+                Pricing::where('id', $item['id'])->update($price);
+            } else {
+                Pricing::create($price);
+            }
         }
 
         return $productCategory->update($formfields);

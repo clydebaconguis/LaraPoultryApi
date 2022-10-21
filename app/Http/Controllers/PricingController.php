@@ -38,7 +38,7 @@ class PricingController extends Controller
     public function show($id)
     {
         $data = [
-            'prices' =>  Pricing::select('unit', 'type', 'value')
+            'prices' =>  Pricing::select('id', 'unit', 'type', 'value')
                 ->where('product_category_id', $id)->get(),
             'products' => ProductCategory::all(),
         ];
