@@ -100,6 +100,19 @@ class ProductCategoryController extends Controller
             $formfields['image'] = $path['path'];
         }
 
+        $json_params = json_decode($request['prices'], true);
+        $price = array();
+        foreach ($json_params as $item) {
+            $price = array();
+            $price = [
+                'product_category_id' => $productCategory['id'],
+                'type' => $item['type'],
+                'unit' => $item['unit'],
+                'value' => $item['value'],
+            ];
+            Pricing::where('product_category_id', $price['product_category_id'])->update($price);
+        }
+
         return $productCategory->update($formfields);
     }
 

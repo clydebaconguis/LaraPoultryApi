@@ -62,7 +62,7 @@ class TypeController extends Controller
      */
     public function show(Type $type)
     {
-        //
+        return Unit::where('type_id', $type['id'])->get();
     }
 
     /**
