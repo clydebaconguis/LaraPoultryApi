@@ -11,7 +11,7 @@ class AuthController extends Controller
 {
     public function getUsers()
     {
-        return User::orderBy('created_at', 'ASC')->get();
+        return User::where('status', 0)->orderBy('created_at', 'ASC')->get();
     }
 
     public function verify($id)
