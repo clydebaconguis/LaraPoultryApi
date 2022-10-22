@@ -32,35 +32,71 @@ class ProductCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $isTaken = ProductCategory::where('name', $request->name)->first();
-        if (!$isTaken) {
+        if ($request['purpose'] == "add") {
+            $isTaken = ProductCategory::where('name', $request->name)->first();
+            if (!$isTaken) {
+                $products = $request->validate([
+                    'name' => 'required|string',
+                    'image' => 'image|mimes:jpg,jpeg,png',
+                    'stock' => 'required',
+                    'status' => 'required',
+                ]);
+                if ($request->hasFile('image')) {
+                    $filename = Str::random(10);
+                    $request->file('image')->storeAs('', $filename, 'google');
+                    $path = Storage::disk('google')->getMetadata($filename);
+                    $products['image'] = '';
+                    $products['image'] = $path['path'];
+                    $id = ProductCategory::create($products)->id;
+                    $json_params = json_decode($request['prices'], true);
+                    $price = array();
+                    foreach ($json_params as $item) {
+                        $price = array();
+                        $price = [
+                            'product_category_id' => $id,
+                            'type' => $item['type'],
+                            'unit' => $item['unit'],
+                            'value' => $item['value'],
+                        ];
+                        Pricing::create($price);
+                    }
+                }
+            }
+        } else {
 
-            $products = $request->validate([
+            $formfields = $request->validate([
                 'name' => 'required|string',
                 'image' => 'image|mimes:jpg,jpeg,png',
                 'stock' => 'required',
                 'status' => 'required',
             ]);
+
             if ($request->hasFile('image')) {
                 $filename = Str::random(10);
                 $request->file('image')->storeAs('', $filename, 'google');
                 $path = Storage::disk('google')->getMetadata($filename);
-                $products['image'] = '';
-                $products['image'] = $path['path'];
-                $id = ProductCategory::create($products)->id;
-                $json_params = json_decode($request['prices'], true);
+                $formfields['image'] = '';
+                $formfields['image'] = $path['path'];
+            }
+
+            $json_params = json_decode($request['prices'], true);
+            $price = array();
+            foreach ($json_params as $item) {
                 $price = array();
-                foreach ($json_params as $item) {
-                    $price = array();
-                    $price = [
-                        'product_category_id' => $id,
-                        'type' => $item['type'],
-                        'unit' => $item['unit'],
-                        'value' => $item['value'],
-                    ];
+                $price = [
+                    'product_category_id' => $request['id'],
+                    'type' => $item['type'],
+                    'unit' => $item['unit'],
+                    'value' => $item['value'],
+                ];
+                if ($item['id'] != 0) {
+                    Pricing::where('id', $item['id'])->update($price);
+                } else {
                     Pricing::create($price);
                 }
             }
+
+            return ProductCategory::where('id', $request['id'])->update($formfields);
         }
     }
 
@@ -84,7 +120,6 @@ class ProductCategoryController extends Controller
      */
     public function update(Request $request, ProductCategory $productCategory)
     {
-
         $formfields = $request->validate([
             'name' => 'required|string',
             'image' => 'image|mimes:jpg,jpeg,png',
