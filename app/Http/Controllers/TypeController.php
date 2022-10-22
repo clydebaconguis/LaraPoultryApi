@@ -42,12 +42,13 @@ class TypeController extends Controller
         $units = array();
         foreach ($tags as $item) {
             $units = array();
-            $units = [
-                'type_id' => $id,
-                'unit' => $item,
-            ];
-
-            Unit::create($units);
+            if ($item != "" || $item != null) {
+                $units = [
+                    'type_id' => $id,
+                    'unit' => $item,
+                ];
+                Unit::create($units);
+            }
         }
         if ($units) {
             return response(['message' => 'Success!'], 201);
