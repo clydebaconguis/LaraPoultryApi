@@ -31,6 +31,11 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
+        $isTaken = Type::where('name', $request['name'])->first();
+        if ($isTaken) {
+            return response(['message' => 'Redundant Category!'], 200);
+        }
+
         $formfields = $request->validate([
             'name' => 'required|string',
         ]);
@@ -75,7 +80,28 @@ class TypeController extends Controller
      */
     public function update(Request $request, Type $type)
     {
-        //
+        $formfields = $request->validate([
+            'name' => 'required|string',
+        ]);
+        $type->update(['name' => $formfields['name']]);
+        Unit::where('type_id', $type['id'])->delete();
+
+        $params = $request['units'];
+        $tags = explode(',', $params);
+        $units = array();
+        foreach ($tags as $item) {
+            if ($item != "" || $item != null) {
+                $units = array();
+                $units = [
+                    'type_id' => $type['id'],
+                    'unit' => trim($item),
+                ];
+                Unit::create($units);
+            }
+        }
+        if ($units) {
+            return response(['message' => 'Success!'], 201);
+        }
     }
 
     /**
