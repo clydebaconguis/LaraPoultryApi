@@ -41,8 +41,8 @@ class TypeController extends Controller
         $tags = explode(',', $params);
         $units = array();
         foreach ($tags as $item) {
-            $units = array();
             if ($item != "" || $item != null) {
+                $units = array();
                 $units = [
                     'type_id' => $id,
                     'unit' => $item,
