@@ -68,7 +68,8 @@ class TransactionController extends Controller
      */
     public function show($user_id)
     {
-        return Transaction::where('user_id', $user_id)->get();
+        return Transaction::where('user_id', $user_id)
+            ->orderBy('created_at', 'DESC')->get();
 
         // foreach ($transac as $item) {
 
