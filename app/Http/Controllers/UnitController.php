@@ -34,9 +34,9 @@ class UnitController extends Controller
      * @param  \App\Models\Unit  $unit
      * @return \Illuminate\Http\Response
      */
-    public function show(Unit $unit)
+    public function show($id)
     {
-        //
+        return Unit::where('type_id', $id)->get();
     }
 
     /**
