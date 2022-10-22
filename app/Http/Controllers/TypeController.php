@@ -45,7 +45,7 @@ class TypeController extends Controller
                 $units = array();
                 $units = [
                     'type_id' => $id,
-                    'unit' => $item,
+                    'unit' => trim($item),
                 ];
                 Unit::create($units);
             }
