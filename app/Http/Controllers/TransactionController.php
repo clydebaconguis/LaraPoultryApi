@@ -24,7 +24,6 @@ class TransactionController extends Controller
         return DB::table('transactions')
             ->join('users', 'transactions.user_id', "=", 'users.id')
             ->select('transactions.*', 'users.name')
-            ->where('transactions.status', 'for approval')
             ->orderBy('created_at', 'DESC')->get();
     }
 
