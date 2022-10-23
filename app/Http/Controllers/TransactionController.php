@@ -106,7 +106,7 @@ class TransactionController extends Controller
             foreach ($orders as $ord) {
                 $stock = "";
                 $stock = ProductCategory::find($ord['product_category_id']);
-                return $stock->stock;
+                return $diff = $stock->stock - $ord->qty;
                 // $stock->update(['stock' => $diff]);
             }
             // return $transaction->update(['status' => $request['status']]);
