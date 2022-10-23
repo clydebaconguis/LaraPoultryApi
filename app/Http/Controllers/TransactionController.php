@@ -101,14 +101,19 @@ class TransactionController extends Controller
      */
     public function update(Request $request, Transaction $transaction)
     {
-        $orders = Order::where('transaction_id', $transaction['id'])->get();
-        foreach ($orders as $ord) {
-            $stock = ProductCategory::select('stock')->where('id', $ord['product_category_id'])->get();
-            $diff = $stock - $ord['qty'];
-            ProductCategory::where('id', $ord['product_category_id'])->update(['stock' => $diff]);
-        }
+        if ($request['purpose'] == "confirm") {
 
-        return $transaction->update(['status' => $request['status']]);
+            $orders = Order::where('transaction_id', $transaction['id'])->get();
+            foreach ($orders as $ord) {
+                $stock = ProductCategory::select('stock')->where('id', $ord['product_category_id'])->get();
+                $diff = ($stock['stock'] - $ord['qty']);
+                ProductCategory::where('id', $ord['product_category_id'])->update(['stock' => $diff]);
+            }
+
+            return $transaction->update(['status' => $request['status']]);
+        } else {
+            return $transaction->update(['status' => $request['status']]);
+        }
     }
 
     /**
