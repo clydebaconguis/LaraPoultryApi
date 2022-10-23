@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\ProductCategory;
 use App\Models\Transaction;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -101,6 +102,13 @@ class TransactionController extends Controller
      */
     public function update(Request $request, Transaction $transaction)
     {
+        $orders = Order::where('transaction_id', $transaction['id'])->get();
+        foreach ($orders as $ord) {
+            $stock = ProductCategory::select('stock')->where('id', $ord['product_category_id'])->get();
+            $diff = $stock - $ord['qty'];
+            ProductCategory::where('id', $ord['product_category_id'])->update(['stock' => $diff]);
+        }
+
         return $transaction->update(['status' => $request['status']]);
     }
 
