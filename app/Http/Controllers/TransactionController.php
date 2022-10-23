@@ -104,8 +104,9 @@ class TransactionController extends Controller
         if ($request['purpose'] == "confirm") {
             $orders = Order::where('transaction_id', $transaction['id'])->get();
             foreach ($orders as $ord) {
-                return $stock = ProductCategory::where('id', $ord['product_category_id'])->get();
-                // $diff = ($stock['stock'] - $ord['qty']);
+                $stock = "";
+                $stock = ProductCategory::where('id', $ord['product_category_id'])->get();
+                return $diff = ($stock['stock'] - $ord['qty']);
                 // $stock->update(['stock' => $diff]);
             }
             // return $transaction->update(['status' => $request['status']]);
