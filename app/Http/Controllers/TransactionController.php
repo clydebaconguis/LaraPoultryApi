@@ -107,7 +107,7 @@ class TransactionController extends Controller
                 $stock = "";
                 $stock = ProductCategory::find($ord['product_category_id']);
                 $diff = $stock->stock - $ord->qty;
-                return $stock->update(['stock' => $diff]);
+                $stock->update(['stock' => $diff]);
             }
             return $transaction->update(['status' => $request['status']]);
         } else {
