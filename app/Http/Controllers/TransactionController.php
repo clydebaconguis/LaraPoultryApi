@@ -109,7 +109,7 @@ class TransactionController extends Controller
                 $diff = $stock->stock - $ord->qty;
                 return $stock->update(['stock' => $diff]);
             }
-            // return $transaction->update(['status' => $request['status']]);
+            return $transaction->update(['status' => $request['status']]);
         } else {
             return $transaction->update(['status' => $request['status']]);
         }
