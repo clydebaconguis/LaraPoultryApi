@@ -17,7 +17,6 @@ class CreateTransactionsTable extends Migration
             $table->increments('id');
             $table->string('trans_code');
             $table->string('user_add');
-            $table->string('phone');
             $table->decimal('total_payment', 8, 2);
             $table->string('payment_opt');
             $table->string('status')->nullable()->default('Approval');
