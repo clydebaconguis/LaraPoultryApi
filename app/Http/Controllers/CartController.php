@@ -59,6 +59,7 @@ class CartController extends Controller
      */
     public function update(Request $request, Cart $cart)
     {
+        $cart->update(['tray' => $request['tray'], 'total' => $request['total']]);
     }
 
     /**
