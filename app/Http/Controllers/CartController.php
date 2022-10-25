@@ -46,7 +46,9 @@ class CartController extends Controller
     {
         return DB::table('carts')
             ->join('product_categories', 'carts.product_category_id', "=", 'product_categories.id')
-            ->select('carts.*', 'product_categories.name', 'product_categories.image')
+            ->join('pricings', 'carts.product_category_id', "=", 'pricings.product_category_id')
+            ->select('carts.*', 'product_categories.name', 'product_categories.image', 'product_categories.stock', 'pricings.value', 'pricings.unit')
+            ->where('pricings.unit', 'carts.size')
             ->where('user_id', $id)->get();
     }
 
@@ -59,7 +61,6 @@ class CartController extends Controller
      */
     public function update(Request $request, Cart $cart)
     {
-        //
     }
 
     /**
