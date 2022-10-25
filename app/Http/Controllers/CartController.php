@@ -46,8 +46,7 @@ class CartController extends Controller
     {
         return DB::table('carts')
             ->join('product_categories', 'carts.product_category_id', "=", 'product_categories.id')
-            ->join('pricings', 'carts.product_category_id', "=", 'pricings.product_category_id')
-            ->select('carts.*', 'product_categories.name', 'product_categories.image', 'product_categories.stock', 'pricings.value', 'pricings.unit')
+            ->select('carts.*', 'product_categories.name', 'product_categories.image', 'product_categories.stock')
             ->where('user_id', $id)->get();
     }
 
