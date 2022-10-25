@@ -37,7 +37,6 @@ class TransactionController extends Controller
     {
         $formfields = $request->validate([
             'user_add' => 'required|string',
-            'phone' => 'required|string',
             'total_payment' => 'required',
             'payment_opt' => 'required|string',
             'user_id' => 'required',
