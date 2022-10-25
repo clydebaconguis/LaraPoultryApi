@@ -55,7 +55,7 @@ class PricingController extends Controller
      */
     public function update(Request $request, Pricing $pricing)
     {
-        //
+        return $pricing->update(['tray' => $request['tray'], 'total' => $request['total']]);
     }
 
     /**
