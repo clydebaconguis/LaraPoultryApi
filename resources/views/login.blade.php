@@ -1,4 +1,4 @@
-@extends('layout.blade.php')
+@extends('layout')
 
 @section('content')
     <!-- Outer Row -->
