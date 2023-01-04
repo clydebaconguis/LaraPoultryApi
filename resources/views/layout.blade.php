@@ -9,6 +9,8 @@
 
     <title>SB Admin 2 - Dashboard</title>
 
+    @production
+        
     <!-- Custom fonts for this template-->
     <link href="{{asset('admin/vendor/fontawesome-free/css/all.min.css')}}" type="text/css" rel="stylesheet">
     <link
@@ -17,6 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{asset('admin/css/sb-admin-2.min.css')}}" rel="stylesheet">
+    @endproduction
 
 </head>
 <body class="bg-gradient-primary">
@@ -24,7 +27,7 @@
     <div class="container">
         @yield('content')
     </div>
-    
+    @production
      <!-- Bootstrap core JavaScript-->
      <script src="{{asset('admin/vendor/jquery/jquery.min.js')}}"></script>
      <script src="{{asset('admin/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
@@ -34,5 +37,6 @@
  
      <!-- Custom scripts for all pages-->
      <script src="{{asset('admin/js/sb-admin-2.min.js')}}"></script>
+     @endproduction
 </body>
 </html>
