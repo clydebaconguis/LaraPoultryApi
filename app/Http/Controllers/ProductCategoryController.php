@@ -27,7 +27,7 @@ class ProductCategoryController extends Controller
     public function windex()
     {
         return view('content.products', [
-            // 'products' => ProductCategory::latest()->paginate(6)
+            'products' => ProductCategory::all();
         ]);
     }
 

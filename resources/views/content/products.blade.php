@@ -45,6 +45,7 @@
                                         <td>{{$product->name}}</td>
                                     </tr>
                                 @endforeach
+                         
                             @endunless
                         </tbody>
                     </table>
