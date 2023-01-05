@@ -12,7 +12,7 @@
         
     <!-- Custom fonts for this template-->
     @production
-    <link type="text/css" rel="stylesheet" href="{{ asset('admin/vendor/fontawesome-free/css/all.min.css')}}">
+    <link type="text/css" rel="stylesheet" href="{{ asset('public/admin/vendor/fontawesome-free/css/all.min.css')}}">
     @endproduction
 
     <link
@@ -20,7 +20,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link rel="stylesheet" href="{{ asset('admin/css/sb-admin-2.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('public/admin/css/sb-admin-2.min.css')}}">
 
 </head>
 <body class="bg-gradient-primary">
@@ -29,13 +29,13 @@
         @yield('content')
     </div>
      <!-- Bootstrap core JavaScript-->
-     <script src="{{ asset('https://larapoultry.herokuapp.com/admin/vendor/jquery/jquery.min.js')}}"></script>
-     <script src="{{ asset('https://larapoultry.herokuapp.com/admin/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+     <script src="{{ asset('public/admin/vendor/jquery/jquery.min.js')}}"></script>
+     <script src="{{ asset('public/admin/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
  
      <!-- Core plugin JavaScript-->
-     <script src="{{ asset('https://larapoultry.herokuapp.com/admin/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+     <script src="{{ asset('public/admin/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
  
      <!-- Custom scripts for all pages-->
-     <script src="{{ asset('https://larapoultry.herokuapp.com/admin/js/sb-admin-2.min.js')}}"></script>
+     <script src="{{ asset('public/admin/js/sb-admin-2.min.js')}}"></script>
 </body>
 </html>
