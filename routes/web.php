@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Model\ProductCategory;
+use App\Model\ProductCategory;
 use App\Http\Controllers\ProductCategoryController;
 
 /*
@@ -23,6 +23,6 @@ Route::get('/', function () {
     return view('content.dashboard');
 });
 
-Route::get('/products', function (){
-    return view('content.products', ['products' => ProductCategory::all()]);
+Route::get('/products', function () {
+    return view('content.products', [ 'products' => ProductCategory::all() ] );
 } );
