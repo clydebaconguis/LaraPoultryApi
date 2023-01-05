@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="{{asset('css/assets/css/sb-admin-2.min.css')}}">
 
 </head>
-<body class="bg-gradient-primary">
+<body class="bg-gradient-primary" id="page-top">
 
     <div class="container">
         @yield('content')
