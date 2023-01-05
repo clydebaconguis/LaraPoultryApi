@@ -37,7 +37,7 @@
                              @unless (count($products) == 0)           
                                 @foreach ($products as $product)
                                     <tr>
-                                        <td> <image class="w-25 h-25" src="https://drive.google.com/uc?export=view&id={{$product->image}}" /></td>
+                                        <td> <image class="h-25" src="https://drive.google.com/uc?export=view&id={{$product->image}}" /></td>
                                         <td>{{$product->name}}</td>
                                         <td>{{$product->status}}</td>
                                         <td>{{$product->stock}}</td>
