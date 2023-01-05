@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login', function () {
-    return view('login');
-});
+// Route::get('/login', function () {
+//     return view('login');
+// });
 
 Route::get('/', function () {
-    return view('dash');
+    return view('content.dashboard');
 });
+
+Route::get('/products', [ ProductCategoryController::class, 'windex']);

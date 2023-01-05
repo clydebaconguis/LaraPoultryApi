@@ -24,6 +24,13 @@ class ProductCategoryController extends Controller
         return ProductCategory::all();
     }
 
+    public function windex()
+    {
+        return view('content.products', [
+            // 'products' => ProductCategory::latest()->paginate(6)
+        ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
