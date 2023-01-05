@@ -37,13 +37,14 @@
                              @unless (count($products) == 0)           
                                 @foreach ($products as $product)
                                     <tr>
-                                        <td> <image class="rounded-circle mx-auto align-middle" style="width: 75px; height: 75px; border: 2px solid gray" src="https://drive.google.com/uc?export=view&id={{$product->image}}" /></td>
+                                        <td> <image class="rounded-circle justify-content-center" style="width: 75px; height: 75px; border: 2px solid gray" src="https://drive.google.com/uc?export=view&id={{$product->image}}" /></td>
                                         <td>{{$product->name}}</td>
                                         <td>{{$product->status}}</td>
                                         <td>{{$product->stock}}</td>
                                         <td>0</td>
                                         <td>N/A</td>
                                     </tr>
+                                
                                 @endforeach
                          
                             @endunless
