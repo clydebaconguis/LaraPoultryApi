@@ -22,4 +22,6 @@ Route::get('/', function () {
     return view('content.dashboard');
 });
 
-Route::get('/product_categories', [ ProductCategoryController::class, 'windex']);
+Route::get('/products', function (){
+    return view('content.products', ['products' => ProductCategory::all()]);
+} );

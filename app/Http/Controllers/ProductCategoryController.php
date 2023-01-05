@@ -24,12 +24,12 @@ class ProductCategoryController extends Controller
         return ProductCategory::all();
     }
 
-    public function windex()
-    {
-        return view('content.products', [
-            'products' => ProductCategory::get();
-        ]);
-    }
+    // public function windex()
+    // {
+    //     return view('content.products', [
+    //         'products' => ProductCategory::get();
+    //     ]);
+    // }
 
     /**
      * Store a newly created resource in storage.
