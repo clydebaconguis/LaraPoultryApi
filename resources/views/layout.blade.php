@@ -9,7 +9,6 @@
 
     <title>SB Admin 2 - Dashboard</title>
 
-        
     <!-- Custom fonts for this template-->
     @production
     <link type="text/css" rel="stylesheet" href="{{ asset('public/admin/vendor/fontawesome-free/css/all.min.css')}}">
@@ -20,7 +19,9 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
+    @production
     <link rel="stylesheet" href="{{ asset('public/admin/css/sb-admin-2.min.css')}}">
+    @endproduction
 
 </head>
 <body class="bg-gradient-primary">
@@ -28,14 +29,17 @@
     <div class="container">
         @yield('content')
     </div>
-     <!-- Bootstrap core JavaScript-->
-     <script src="{{ asset('public/admin/vendor/jquery/jquery.min.js')}}"></script>
-     <script src="{{ asset('public/admin/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
- 
-     <!-- Core plugin JavaScript-->
-     <script src="{{ asset('public/admin/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
- 
-     <!-- Custom scripts for all pages-->
-     <script src="{{ asset('public/admin/js/sb-admin-2.min.js')}}"></script>
+
+    @production
+        <!-- Bootstrap core JavaScript-->
+        <script src="{{ asset('public/admin/vendor/jquery/jquery.min.js')}}"></script>
+        <script src="{{ asset('public/admin/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    
+        <!-- Core plugin JavaScript-->
+        <script src="{{ asset('public/admin/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+    
+        <!-- Custom scripts for all pages-->
+        <script src="{{ asset('public/admin/js/sb-admin-2.min.js')}}"></script>
+    @endproduction
 </body>
 </html>
