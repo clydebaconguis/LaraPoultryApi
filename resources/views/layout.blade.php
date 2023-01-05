@@ -20,9 +20,9 @@
     <link rel="stylesheet" href="{{asset('css/assets/css/sb-admin-2.min.css')}}">
 
 </head>
-<body id="page-top">
+<body>
 
-    <div class="container">
+    <div >
         @yield('content')
     </div>
 
