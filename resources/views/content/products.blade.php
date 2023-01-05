@@ -38,9 +38,9 @@
                                 @foreach ($products as $product)
                                     <tr>
                                         <td>{{$product->name}}</td>
-                                        <td>{{$product->name}}</td>
-                                        <td>{{$product->name}}</td>
-                                        <td>{{$product->name}}</td>
+                                        <td>{{$product->status}}</td>
+                                        <td>{{$product->image}}</td>
+                                        <td>{{$product->stock}}</td>
                                         <td>{{$product->name}}</td>
                                         <td>{{$product->name}}</td>
                                     </tr>
