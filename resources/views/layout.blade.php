@@ -17,7 +17,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/sb-admin-2.css')}}">
 
 </head>
 <body class="bg-gradient-primary">
