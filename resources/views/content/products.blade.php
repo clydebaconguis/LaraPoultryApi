@@ -15,19 +15,19 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
+                                <th>Image</th>
                                 <th>Name</th>
                                 <th>Status</th>
-                                <th>Image</th>
                                 <th>Stock</th>
                                 <th>Price</th>
-                                <th>Salary</th>
+                                <th>Date</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
+                                <th>Image</th>
                                 <th>Name</th>
                                 <th>Status</th>
-                                <th>Image</th>
                                 <th>Stock</th>
                                 <th>Price</th>
                                 <th>Date</th>
@@ -41,8 +41,8 @@
                                         <td>{{$product->name}}</td>
                                         <td>{{$product->status}}</td>
                                         <td>{{$product->stock}}</td>
-                                        <td>{{$product->name}}</td>
-                                        <td>{{$product->name}}</td>
+                                        <td>0</td>
+                                        <td>N/A</td>
                                     </tr>
                                 @endforeach
                          
