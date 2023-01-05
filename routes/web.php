@@ -22,4 +22,4 @@ Route::get('/', function () {
     return view('content.dashboard');
 });
 
-Route::get('/products', [ ProductCategoryController::class, 'windex']);
+Route::get('/product_categories', [ ProductCategoryController::class, 'windex']);
