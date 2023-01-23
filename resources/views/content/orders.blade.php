@@ -39,7 +39,6 @@
                              @unless (count($orders) == 0)           
                                 @foreach ($orders as $order)
                                     <tr>
-                                        <td> <image class="rounded-circle justify-content-center" style="width: 50px; height: 50px" src="https://drive.google.com/uc?export=view&id={{$product->image}}" /></td>
                                         <td>{{$order->trans_code}}</td>
                                         <td>{{$order->name}}</td>
                                         <td>{{$order->user_add}}</td>

@@ -35,7 +35,6 @@
                              @unless (count($users) == 0)           
                                 @foreach ($users as $user)
                                     <tr>
-                                        <td> <image class="rounded-circle justify-content-center" style="width: 50px; height: 50px" src="https://drive.google.com/uc?export=view&id={{$product->image}}" /></td>
                                         <td>{{$user->name}}</td>
                                         <td>{{$user->address}}</td>
                                         <td>{{$user->phone}}</td>
