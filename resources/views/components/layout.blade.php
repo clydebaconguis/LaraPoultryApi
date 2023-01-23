@@ -31,7 +31,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                    {{-- <i class="fas fa-laugh-wink"></i> --}}
                 </div>
                 <div class="sidebar-brand-text mx-3">Poultry Admin</div>
             </a>
@@ -52,7 +52,7 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="/products">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <i class="fa fa-shopping-basket" aria-hidden="true"></i>
                     <span>Products</span></a>
             </li>
             <!-- Divider -->
@@ -61,7 +61,7 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="/orders">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <i class="fa fa-th-list" aria-hidden="true"></i>
                     <span>Orders</span></a>
             </li>
 
@@ -71,7 +71,7 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="/users">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <i class="fa fa-users" aria-hidden="true"></i>
                     <span>Users</span></a>
             </li>
 

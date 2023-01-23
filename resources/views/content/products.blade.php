@@ -19,8 +19,9 @@
                                 <th>Name</th>
                                 <th>Status</th>
                                 <th>Stock</th>
-                                <th>Price</th>
                                 <th>Date</th>
+                                <th>Actions</th>
+            
                             </tr>
                         </thead>
                         <tfoot>
@@ -29,8 +30,8 @@
                                 <th>Name</th>
                                 <th>Status</th>
                                 <th>Stock</th>
-                                <th>Price</th>
                                 <th>Date</th>
+                                <th>Actions</th>
                             </tr>
                         </tfoot>
                         <tbody>
@@ -41,8 +42,8 @@
                                         <td>{{$product->name}}</td>
                                         <td>{{$product->status}}</td>
                                         <td>{{$product->stock}}</td>
-                                        <td>0</td>
-                                        <td>N/A</td>
+                                        <td>{{$product->create_at}}</td>
+                                        <td><button>Edit</button><button>Delete</button></td>
                                     </tr>
                                 
                                 @endforeach
