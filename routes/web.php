@@ -26,3 +26,14 @@ Route::get('/', function () {
 Route::get('/products', function () {
     return view('content.products', [ 'products' => ProductCategory::all() ] );
 } );
+
+Route::get('/orders', function () {
+    return view('content.orders', [ 'orders' => DB::table('transactions')
+    ->join('users', 'transactions.user_id', "=", 'users.id')
+    ->select('transactions.*', 'users.name')
+    ->orderBy('created_at', 'DESC')->get() ] );
+} );
+
+Route::get('/users', function () {
+    return view('content.users', [ 'users' => User::where('status', 0)->orderBy('created_at', 'ASC')->get() ] );
+} );

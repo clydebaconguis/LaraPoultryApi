@@ -42,8 +42,8 @@
                                         <td>{{$product->name}}</td>
                                         <td>{{$product->status}}</td>
                                         <td>{{$product->stock}}</td>
-                                        <td>{{$product->create_at}}</td>
-                                        <td><button>Edit</button><button>Delete</button></td>
+                                        <td>{{$product->created_at}}</td>
+                                        <td><button style="background-color:blue">Edit</button><button style="background-color:red">Delete</button></td>
                                     </tr>
                                 
                                 @endforeach
