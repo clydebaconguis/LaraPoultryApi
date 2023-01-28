@@ -3,7 +3,8 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <div><h1 class="h3 mb-4 text-gray-800">Products</h1> <button type="button" class="btn btn-primary">Add Product</button></div
+        <div><h1 class="h3 mb-4 text-gray-800">Products</h1> <a class="btn btn-primary" href="/addprod">
+                    <span>Add Product</span></a></div
         
         <!-- DataTales Example -->
         <div class="card shadow mb-4">

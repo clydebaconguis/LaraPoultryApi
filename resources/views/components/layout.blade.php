@@ -75,6 +75,12 @@
                     <span>Users</span></a>
             </li>
 
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="/units">
+                    <i class="fa fa-users" aria-hidden="true"></i>
+                    <span>Units</span></a>
+            </li>
             <!-- Divider -->
             <hr class="sidebar-divider">
             <!-- Sidebar Toggler (Sidebar) -->
