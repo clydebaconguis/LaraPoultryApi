@@ -16,6 +16,9 @@ use App\Models\User;
 |
 */
 
+Route::get('/addprod', function () {
+    return view('content.addprod');
+});
 Route::get('/login', function () {
     return view('auth.login');
 });

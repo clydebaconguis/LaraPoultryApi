@@ -22,20 +22,6 @@
      <!-- Custom styles for products page -->
     <link href="{{asset('css/assets/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
 
-    <script src="//unpkg.com/alpinejs" defer></script>
-        <script src="https://cdn.tailwindcss.com"></script>
-        <script>
-            tailwind.config = {
-                theme: {
-                    extend: {
-                        colors: {
-                            laravel: "#ef3b2d",
-                        },
-                    },
-                },
-            };
-    </script>
-    <title>LaraGigs | Find Laravel Jobs & Projects</title>
 </head>
 <body id="page-top">
     <div id="wrapper">
