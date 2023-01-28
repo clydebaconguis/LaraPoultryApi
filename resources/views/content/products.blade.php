@@ -3,7 +3,7 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <div><h1 class="h3 mb-4 text-gray-800">Products</h1> <a class="btn btn-primary" href="/addprod">
+        <div class="d-inline-block"><h1 class="h3 mb-4 text-gray-800">Products</h1> <a class="btn btn-primary" href="/addprod">
                     <span>Add Product</span></a></div
         
         <!-- DataTales Example -->
