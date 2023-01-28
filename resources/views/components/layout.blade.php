@@ -22,6 +22,20 @@
      <!-- Custom styles for products page -->
     <link href="{{asset('css/assets/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
 
+    <script src="//unpkg.com/alpinejs" defer></script>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            laravel: "#ef3b2d",
+                        },
+                    },
+                },
+            };
+    </script>
+    <title>LaraGigs | Find Laravel Jobs & Projects</title>
 </head>
 <body id="page-top">
     <div id="wrapper">
@@ -258,7 +272,7 @@
                             <li class="nav-item dropdown no-arrow">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
                                     <img class="img-profile rounded-circle"
                                         src="{{asset('css/assets/img/undraw_profile.svg')}}">
                                 </a>

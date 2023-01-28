@@ -26,7 +26,7 @@
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>Transaction ID</th>
+                                <th>Transaction</th>
                                 <th>Name</th>
                                 <th>Address</th>
                                 <th>Phone</th>
