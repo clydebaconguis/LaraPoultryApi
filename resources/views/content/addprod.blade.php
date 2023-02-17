@@ -70,7 +70,7 @@
                     <option selected>Select Unit</option>
                     @unless (count($units) == 0)
                         @php
-                            $value = document.getElementById('type').value
+                            $value = document.getElementById('type').value;
                             $arrayUnit = array();
                         @endphp
                         @foreach ($units as $unit)
