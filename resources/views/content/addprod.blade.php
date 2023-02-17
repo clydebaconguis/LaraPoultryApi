@@ -66,14 +66,15 @@
                     name="price"
                     value="{{old('price')}}"
                 />
-                <select class="form-select" aria-label="Default select example" name="type" class="p-2">
+                <select class="form-select" aria-label="Default select example" name="prices" class="p-2">
                     <option selected>Select Unit</option>
                     @unless (count($units) == 0)
                         @php
+                            $value = document.getElementById('type').value
                             $arrayUnit = array();
                         @endphp
                         @foreach ($units as $unit)
-                            @if ($unit->type_id==document.getElementById('type').value)
+                            @if ($unit->type_id==)
                                 @php $arrayUnit = [
                                     'name' => $unit->name,
                                 ];
