@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\ProductCategory;
 use App\Http\Controllers\ProductCategoryController;
 use App\Models\User;
+use App\Models\Type;
 
 /*
 |--------------------------------------------------------------------------
