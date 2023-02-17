@@ -15,7 +15,7 @@
                 />
             <div class="mb-2">
                 <label
-                    for="product"
+                    for="name"
                     class="text-md"
                     >Product Name</label
                 >
@@ -27,7 +27,7 @@
                     value="{{old('name')}}"
                 />
 
-                @error('product')
+                @error('name')
                     <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                 @enderror
             </div>
@@ -66,12 +66,13 @@
                 <label
                     class="inline-block text-md mb-2"
                     >Prices</label>
+
                  <input
-                    type="text"
-                    name="price"
-                    value="{{old('price')}}"
+                    type="number"
+                    name="prices"
+                    value="{{old('prices')}}"
                 />
-                <select class="form-select" aria-label="Default select example" id="prices" name="prices" class="p-2">
+                <select class="form-select" aria-label="Default select example" id="unit" name="unit" class="p-2">
                     <option selected>Select Unit</option>
                     @unless (count($units) == 0)
                         @foreach ($units as $unit)
@@ -82,7 +83,7 @@
             </div>
 
             <div class="mb-6">
-                <label for="logo" class="inline-block text-lg mb-2">
+                <label for="image" class="inline-block text-lg mb-2">
                     Product Image
                 </label>
                 <input
@@ -91,7 +92,7 @@
                     name="image"
                 />
 
-                @error('logo')
+                @error('image')
                     <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                 @enderror
             </div>
