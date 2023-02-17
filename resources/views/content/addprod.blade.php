@@ -74,7 +74,7 @@
                             $arrayUnit = array();
                         @endphp
                         @foreach ($units as $unit)
-                            @if ($unit->type_id==)
+                            @if ($unit->type_id==$value)
                                 @php $arrayUnit = [
                                     'name' => $unit->name,
                                 ];
