@@ -48,6 +48,23 @@
                 >
                 <select class="form-select" aria-label="Default select example" name="type" class="p-2">
                     <option selected>Select Types</option>
+                    @unless (count($types) == 0)           
+                         @foreach ($types as $type)
+                            <option value={{$type}}>{{$type}}</option>
+                        @endforeach
+                         
+                    @endunless
+                </select>
+            </div>
+
+            <div class="mb-2">
+                <label
+                    for="type"
+                    class="inline-block text-md mb-2"
+                    >Prices</label
+                >
+                <select class="form-select" aria-label="Default select example" name="type" class="p-2">
+                    <option selected>Select Types</option>
                     <option value="1">One</option>
                     <option value="2">Two</option>
                     <option value="3">Three</option>
@@ -93,7 +110,7 @@
                     Create
                 </button>
 
-                <a href="/" class="text-dark ml-2"> Back </a>
+                <a href="/products" class="text-dark ml-2"> Back </a>
             </div>
         </form>
     </x-card>

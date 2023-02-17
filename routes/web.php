@@ -5,6 +5,7 @@ use App\Models\ProductCategory;
 use App\Http\Controllers\ProductCategoryController;
 use App\Models\User;
 use App\Models\Type;
+use App\Models\Unit;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +19,10 @@ use App\Models\Type;
 */
 
 Route::get('/addprod', function () {
-    return view('content.addprod');
+    return view('content.addprod', 
+    [   'types' => Type::all(),
+        'units' => Unit::all() 
+    ] );
 });
 Route::post('/addproducts', function () {
     return view('content.addprod');
