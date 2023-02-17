@@ -50,7 +50,7 @@
                     <option selected>Select Types</option>
                     @unless (count($types) == 0)           
                          @foreach ($types as $type)
-                            <option value={{$type}}>{{$type}}</option>
+                            <option value={{$type->name}}>{{$type->name}}</option>
                         @endforeach
                          
                     @endunless
