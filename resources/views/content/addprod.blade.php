@@ -6,7 +6,7 @@
             </h2>
         </header>
 
-        <form method="POST" action="product_categories" enctype="multipart/form-data">
+        <form method="POST" action="/product_categories" enctype="multipart/form-data">
             @csrf
             <div class="mb-2">
                 <label
@@ -17,6 +17,7 @@
                 <input
                     type="text"
                     class=""
+                    required
                     name="name"
                     value="{{old('product')}}"
                 />
