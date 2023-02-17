@@ -64,13 +64,14 @@
 
             <div class="mb-2">
                 <label
+                    for="price"
                     class="inline-block text-md mb-2"
                     >Prices</label>
 
                  <input
                     type="number"
-                    name="prices"
-                    value="{{old('prices')}}"
+                    name="price"
+                    value="{{old('price')}}"
                 />
                 <select class="form-select" aria-label="Default select example" id="unit" name="unit" class="p-2">
                     <option selected>Select Unit</option>
