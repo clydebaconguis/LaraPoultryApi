@@ -6,7 +6,7 @@
             </h2>
         </header>
 
-        <form method="POST" action="/product_categories" enctype="multipart/form-data">
+        <form method="POST" action="/addproduct" enctype="multipart/form-data">
             @csrf
              <input
                     type="hidden"

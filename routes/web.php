@@ -2,12 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\ProductCategory;
+use Illuminate\Http\Request;
 use App\Http\Controllers\ProductCategoryController;
 use App\Models\User;
 use App\Models\Type;
 use App\Models\Unit;
-
-
+use App\Models\Stock;
+use App\Models\Pricing;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,76 +29,79 @@ Route::get('/addprod', function () {
     ] );
 });
 
-Route::apiResource('product_categories', ProductCategoryController::class);
+ /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+Route::post('/addproduct', function (Request $request) {
+    if ($request['purpose'] == "add") {
+        $isTaken = ProductCategory::where('name', $request->name)->first();
+        if (!$isTaken) {
+            $products = $request->validate([
+                'name' => 'required|string',
+                'image' => 'image|mimes:jpg,jpeg,png',
+                'stock' => 'required',
+                'status' => 'required',
+            ]);
+            if ($request->hasFile('image')) {
+                $filename = Str::random(10);
+                $request->file('image')->storeAs('', $filename, 'google');
+                $path = Storage::disk('google')->getMetadata($filename);
+                $products['image'] = '';
+                $products['image'] = $path['path'];
+                $id = ProductCategory::create($products)->id;
+                $json_params = json_decode($request['prices'], true);
+                $price = array();
+                foreach ($json_params as $item) {
+                    $price = array();
+                    $price = [
+                        'product_category_id' => $id,
+                        'type' => $item['type'],
+                        'unit' => $item['unit'],
+                        'value' => $item['value'],
+                    ];
+                    Pricing::create($price);
+                }
+            }
+        }
+    } else {
+        $formfields = $request->validate([
+            'name' => 'required|string',
+            'image' => 'image|mimes:jpg,jpeg,png',
+            'stock' => 'required',
+            'status' => 'required',
+        ]);
 
-// Route::post('/addproduct', function (Request $request) {
-//     if ($request['purpose'] == "add") {
-//         $isTaken = ProductCategory::where('name', $request->name)->first();
-//         if (!$isTaken) {
-//             $products = $request->validate([
-//                 'name' => 'required|string',
-//                 'image' => 'image|mimes:jpg,jpeg,png',
-//                 'stock' => 'required',
-//                 'status' => 'required',
-//             ]);
-//             if ($request->hasFile('image')) {
-//                 $filename = Str::random(10);
-//                 $request->file('image')->storeAs('', $filename, 'google');
-//                 $path = Storage::disk('google')->getMetadata($filename);
-//                 $products['image'] = '';
-//                 $products['image'] = $path['path'];
-//                 $id = ProductCategory::create($products)->id;
-//                 $json_params = json_decode($request['prices'], true);
-//                 $price = array();
-//                 foreach ($json_params as $item) {
-//                     $price = array();
-//                     $price = [
-//                         'product_category_id' => $id,
-//                         'type' => $item['type'],
-//                         'unit' => $item['unit'],
-//                         'value' => $item['value'],
-//                     ];
-//                     Pricing::create($price);
-//                 }
-//             }
-//         }
-//     } else {
+        if ($request->hasFile('image')) {
+            $filename = Str::random(10);
+            $request->file('image')->storeAs('', $filename, 'google');
+            $path = Storage::disk('google')->getMetadata($filename);
+            $formfields['image'] = '';
+            $formfields['image'] = $path['path'];
+        }
 
-//         $formfields = $request->validate([
-//             'name' => 'required|string',
-//             'image' => 'image|mimes:jpg,jpeg,png',
-//             'stock' => 'required',
-//             'status' => 'required',
-//         ]);
+        $json_params = json_decode($request['prices'], true);
+        $price = array();
+        foreach ($json_params as $item) {
+            $price = array();
+            $price = [
+                'product_category_id' => $request['id'],
+                'type' => $item['type'],
+                'unit' => $item['unit'],
+                'value' => $item['value'],
+            ];
+            if ($item['id'] != 0) {
+                Pricing::where('id', $item['id'])->update($price);
+            } else {
+                Pricing::create($price);
+            }
+        }
 
-//         if ($request->hasFile('image')) {
-//             $filename = Str::random(10);
-//             $request->file('image')->storeAs('', $filename, 'google');
-//             $path = Storage::disk('google')->getMetadata($filename);
-//             $formfields['image'] = '';
-//             $formfields['image'] = $path['path'];
-//         }
-
-//         $json_params = json_decode($request['prices'], true);
-//         $price = array();
-//         foreach ($json_params as $item) {
-//             $price = array();
-//             $price = [
-//                 'product_category_id' => $request['id'],
-//                 'type' => $item['type'],
-//                 'unit' => $item['unit'],
-//                 'value' => $item['value'],
-//             ];
-//             if ($item['id'] != 0) {
-//                 Pricing::where('id', $item['id'])->update($price);
-//             } else {
-//                 Pricing::create($price);
-//             }
-//         }
-
-//     return ProductCategory::where('id', $request['id'])->update($formfields);
-// }
-// });
+    // return ProductCategory::where('id', $request['id'])->update($formfields);
+}
+});
 
 Route::get('/login', function () {
     return view('auth.login');
