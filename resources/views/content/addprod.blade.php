@@ -6,7 +6,7 @@
             </h2>
         </header>
 
-        <form method="POST" action="/listings" enctype="multipart/form-data">
+        <form method="POST" action="/addproducts" enctype="multipart/form-data">
             @csrf
             <div class="mb-2">
                 <label
@@ -73,7 +73,7 @@
 
             <div class="mb-6">
                 <label for="logo" class="inline-block text-lg mb-2">
-                    Company Logo
+                    Product Image
                 </label>
                 <input
                     type="file"

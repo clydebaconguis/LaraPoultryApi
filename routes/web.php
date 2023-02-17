@@ -19,6 +19,9 @@ use App\Models\User;
 Route::get('/addprod', function () {
     return view('content.addprod');
 });
+Route::post('/addproducts', function () {
+    return view('content.addprod');
+});
 Route::get('/login', function () {
     return view('auth.login');
 });
@@ -40,4 +43,8 @@ Route::get('/orders', function () {
 
 Route::get('/users', function () {
     return view('content.users', [ 'users' => User::where('status', 0)->orderBy('created_at', 'ASC')->get() ] );
+} );
+
+Route::get('/types', function () {
+    return view('content.type', [ 'types' => Type::all()] );
 } );
