@@ -36,44 +36,41 @@ Route::get('/addprod', function () {
      * @return \Illuminate\Http\Response
      */
 Route::post('/addproduct', function (Request $request) {
-    if ($request['purpose'] == "add") {
-        $isTaken = ProductCategory::where('name', $request->name)->first();
-        if (!$isTaken) {
-            $products = $request->validate([
-                'name' => 'required|string',
-                'image' => 'image|mimes:jpg,jpeg,png',
-                'stock' => 'required',
-                'status' => 'required',
-            ]);
-            if ($request->hasFile('image')) {
-                $filename = Str::random(10);
-                $request->file('image')->storeAs('', $filename, 'google');
-                $path = Storage::disk('google')->getMetadata($filename);
-                $products['image'] = '';
-                $products['image'] = $path['path'];
-                $id = ProductCategory::create($products)->id;
-                // $json_params = json_decode($request['prices'], true);
-                // $price = array();
-                // foreach ($json_params as $item) {
-                //     $price = array();
-                //     $price = [
-                //         'product_category_id' => $id,
-                //         'type' => $item['type'],
-                //         'unit' => $item['unit'],
-                //         'value' => $item['value'],
-                //     ];
-                //     Pricing::create($price);
-                // }
-                $price = [
-                    'product_category_id' => $id,
-                    'type' => $request['type'],
-                    'unit' => $request['unit'],
-                    'value' => $request['price'],
-                ];
-                Pricing::create($price);
-            }
+    $isTaken = ProductCategory::where('name', $request->name)->first();
+    if (!$isTaken) {
+        $products = $request->validate([
+            'name' => 'required|string',
+            'image' => 'image|mimes:jpg,jpeg,png',
+            'stock' => 'required',
+        ]);
+        if ($request->hasFile('image')) {
+            $filename = Str::random(10);
+            $request->file('image')->storeAs('', $filename, 'google');
+            $path = Storage::disk('google')->getMetadata($filename);
+            $products['image'] = '';
+            $products['image'] = $path['path'];
+            $id = ProductCategory::create($products)->id;
+            // $json_params = json_decode($request['prices'], true);
+            // $price = array();
+            // foreach ($json_params as $item) {
+            //     $price = array();
+            //     $price = [
+            //         'product_category_id' => $id,
+            //         'type' => $item['type'],
+            //         'unit' => $item['unit'],
+            //         'value' => $item['value'],
+            //     ];
+            //     Pricing::create($price);
+            // }
+            $price = [
+                'product_category_id' => $id,
+                'type' => $request['type'],
+                'unit' => $request['unit'],
+                'value' => $request['price'],
+            ];
+            Pricing::create($price);
         }
-    } 
+    }
 });
 
 Route::get('/login', function () {

@@ -37,7 +37,7 @@
                     >Stocks</label
                 >
                 <input
-                    type="text"
+                    type="number"
                     name="stock"
                     value="{{old('stock')}}"
                 />
