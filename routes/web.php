@@ -24,8 +24,11 @@ Route::get('/addprod', function () {
         'units' => Unit::all() 
     ] );
 });
-Route::post('/addproducts', function () {
-});
+// Route::apiResource('product_categories', ProductCategoryController::class);
+// Route::post('/addproducts', function () {
+
+// });
+
 Route::get('/login', function () {
     return view('auth.login');
 });

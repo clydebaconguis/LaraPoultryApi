@@ -6,7 +6,7 @@
             </h2>
         </header>
 
-        <form method="POST" action="/addproducts" enctype="multipart/form-data">
+        <form method="POST" action="/product_categories" enctype="multipart/form-data">
             @csrf
             <div class="mb-2">
                 <label
@@ -17,7 +17,7 @@
                 <input
                     type="text"
                     class=""
-                    name="product"
+                    name="name"
                     value="{{old('product')}}"
                 />
 
@@ -82,7 +82,7 @@
                 <input
                     type="file"
                     class="border border-gray-200 rounded p-2 w-full"
-                    name="logo"
+                    name="image"
                 />
 
                 @error('logo')
