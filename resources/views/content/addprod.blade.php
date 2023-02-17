@@ -8,6 +8,11 @@
 
         <form method="POST" action="/product_categories" enctype="multipart/form-data">
             @csrf
+             <input
+                    type="hidden"
+                    name="purpose"
+                    value="add"
+                />
             <div class="mb-2">
                 <label
                     for="product"
@@ -19,7 +24,7 @@
                     class=""
                     required
                     name="name"
-                    value="{{old('product')}}"
+                    value="{{old('name')}}"
                 />
 
                 @error('product')
