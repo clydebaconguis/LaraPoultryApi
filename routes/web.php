@@ -25,7 +25,6 @@ Route::get('/addprod', function () {
     ] );
 });
 Route::post('/addproducts', function () {
-    return view('content.addprod');
 });
 Route::get('/login', function () {
     return view('auth.login');

@@ -46,7 +46,7 @@
                     class="inline-block text-md mb-2"
                     >Type</label
                 >
-                <select class="form-select" aria-label="Default select example" name="type" class="p-2">
+                <select class="form-select" aria-label="Default select example" id="type" name="type" class="p-2">
                     <option selected>Select Types</option>
                     @unless (count($types) == 0)           
                          @foreach ($types as $type)
@@ -68,10 +68,19 @@
                 />
                 <select class="form-select" aria-label="Default select example" name="type" class="p-2">
                     <option selected>Select Unit</option>
-                    @unless (count($units) == 0)           
-                         @foreach ($units as $unit)
+                    @unless (count($units) == 0)
+                        @php
+                        $arrayUnit = array();
+                        @foreach ($units as $unit)
+                            @if ($unit->name==document.getElementById('type').value)
+                                $arrayUnit = [
+                                    'name' => $unit->name,
+                                ];
+                                @break
+                            @endif
                             <option value={{$unit->unit}}>{{$unit->unit}}</option>
                         @endforeach
+                        @endphp
                     @endunless
                 </select>
             </div>
@@ -109,7 +118,7 @@
             </div>
 
             <div class="mb-6">
-                <button
+                <button type="submit"
                     class="bg-dark text-white rounded py-2 px-4 hover:bg-black"
                 >
                     Create
