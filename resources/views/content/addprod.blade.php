@@ -52,7 +52,6 @@
                          @foreach ($types as $type)
                             <option value={{$type->id}}>{{$type->name}}</option>
                         @endforeach
-                         
                     @endunless
                 </select>
             </div>
@@ -66,42 +65,15 @@
                     name="price"
                     value="{{old('price')}}"
                 />
-                <select class="form-select" aria-label="Default select example" name="prices" class="p-2">
+                <select class="form-select" aria-label="Default select example" id="prices" name="prices" class="p-2">
                     <option selected>Select Unit</option>
                     @unless (count($units) == 0)
-                        @php
-                            $value = document.getElementById('type').value;
-                            $arrayUnit = array();
-                        @endphp
                         @foreach ($units as $unit)
-                            @if ($unit->type_id==$value)
-                                @php $arrayUnit = [
-                                    'name' => $unit->name,
-                                ];
-                                @endphp
-                                <option value={{$arrayUnit->name}}>{{$arrayUnit->name}}</option>
-                            @endif
+                                <option value={{$unit->name}}>{{$unit->name}}</option>
                         @endforeach
                     @endunless
                 </select>
             </div>
-
-            {{-- <div class="mb-6">
-                <label for="tags" class="inline-block text-lg mb-2">
-                    Tags (Comma Separated)
-                </label>
-                <input
-                    type="text"
-                    class="border border-gray-200 rounded p-2 w-full"
-                    name="tags"
-                    placeholder="Example: Laravel, Backend, Postgres, etc"
-                    value="{{old('tags')}}"
-                />
-
-                @error('tags')
-                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                @enderror
-            </div> --}}
 
             <div class="mb-6">
                 <label for="logo" class="inline-block text-lg mb-2">
