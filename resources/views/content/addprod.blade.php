@@ -50,7 +50,7 @@
                     <option selected>Select Types</option>
                     @unless (count($types) == 0)           
                          @foreach ($types as $type)
-                            <option value={{$type->name}}>{{$type->name}}</option>
+                            <option value={{$type->id}}>{{$type->name}}</option>
                         @endforeach
                          
                     @endunless
@@ -70,17 +70,17 @@
                     <option selected>Select Unit</option>
                     @unless (count($units) == 0)
                         @php
-                        $arrayUnit = array();
+                            $arrayUnit = array();
+                        @endphp
                         @foreach ($units as $unit)
-                            @if ($unit->name==document.getElementById('type').value)
-                                $arrayUnit = [
+                            @if ($unit->type_id==document.getElementById('type').value)
+                                @php $arrayUnit = [
                                     'name' => $unit->name,
                                 ];
-                                @break
+                                @endphp
+                                <option value={{$arrayUnit->name}}>{{$arrayUnit->name}}</option>
                             @endif
-                            <option value={{$unit->unit}}>{{$unit->unit}}</option>
                         @endforeach
-                        @endphp
                     @endunless
                 </select>
             </div>
