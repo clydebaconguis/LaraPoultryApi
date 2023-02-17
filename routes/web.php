@@ -6,15 +6,7 @@ use App\Http\Controllers\ProductCategoryController;
 use App\Models\User;
 use App\Models\Type;
 use App\Models\Unit;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use App\Models\Size;
-use App\Models\Stock;
-use App\Models\Pricing;
-use App\Models\Product;
-use App\Models\ProductCategory;
-use Illuminate\Support\Facades\Storage;
-use App\Http\Resources\ProductCategoryResource;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +25,8 @@ Route::get('/addprod', function () {
         'units' => Unit::all() 
     ] );
 });
-Route::post('product_categories', ProductCategoryController::class);
+
+Route::apiResource('product_categories', ProductCategoryController::class);
 
 // Route::post('/addproduct', function (Request $request) {
 //     if ($request['purpose'] == "add") {
