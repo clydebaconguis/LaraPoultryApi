@@ -1,40 +1,39 @@
 <x-layout>
     <x-card>
         <header class="text-center">
-            <h2 class="text-center text-lg">
+            <h2 class="text-center text-lg mb-2">
                 Edit a Product
             </h2>
         </header>
 
-        <form method="POST" action="/" enctype="multipart/form-data">
+        <form method="POST" action="/updateprod" enctype="multipart/form-data">
             @csrf
-             <input
-                    type="hidden"
-                    name="purpose"
-                    value="edit"
-                />
-
-            <div class="mb-6">
+            <div class="my-6">
                 <image class="mx-auto d-block" style="width: 100px; height: 100px" src="https://drive.google.com/uc?export=view&id={{$products->image}}" />
             </div>
 
             <div class="mb-2">
-                <label
-                    for="name"
-                    class="text-md"
-                    >Product Name</label
-                >
-                <input
-                    type="text"
-                    class=""
-                    required
-                    name="name"
-                    value="{{$products->name}}"
-                />
+            <tr>
+                <td>
+                    <label
+                        class="text-md"
+                        >Product Name</label
+                    >
+                </td>
+                <td>
+                    <input
+                        type="text"
+                        class=""
+                        required
+                        name="name"
+                        value="{{$products->name}}"
+                    />
 
-                @error('name')
-                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                @enderror
+                    @error('name')
+                        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                    @enderror
+                </td>
+            </tr>
             </div>
 
             <div class="mb-2">
@@ -72,7 +71,7 @@
              @endunless
 
             <div class="mb-6">
-                <button type="submit"
+                <button type="submit" disabled
                     class="bg-dark text-white rounded py-2 px-4 hover:bg-black"
                 >
                     Save
