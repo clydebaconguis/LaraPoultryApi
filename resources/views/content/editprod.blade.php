@@ -24,7 +24,7 @@
                     class=""
                     required
                     name="name"
-                    {{-- value="{{}}" --}}
+                    value="{{$products->name}}"
                 />
 
                 @error('name')
