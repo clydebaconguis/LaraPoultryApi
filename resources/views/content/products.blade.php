@@ -3,8 +3,8 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <div class="d-inline-block"><h1 class="h3 mb-4 text-gray-800">Products</h1> <a class="btn btn-primary" href="/addprod">
-                    <span>Add Product</span></a></div
+        <div class="d-inline-block"><h1 class="h3 mb-4 text-gray-800">Products</h1></div>
+        <div><a class="btn btn-primary " href="/addprod">Add Product</a></div>
         
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
@@ -44,7 +44,7 @@
                                         <td>{{$product->status}}</td>
                                         <td>{{$product->stock}}</td>
                                         <td>{{$product->created_at}}</td>
-                                        <td><button style="background-color:blue">Edit</button><button style="background-color:red">Delete</button></td>
+                                        <td><a type="button" class="btn btn-info" href="/editprod">Edit</a></td>
                                     </tr>
                                 
                                 @endforeach
