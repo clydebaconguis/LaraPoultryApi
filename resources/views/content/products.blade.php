@@ -44,7 +44,7 @@
                                         <td>{{$product->status}}</td>
                                         <td>{{$product->stock}}</td>
                                         <td>{{$product->created_at}}</td>
-                                        <td><a type="button" class="btn btn-info" href="/editprod/{{$product->id}}">Edit</a></td>
+                                        <td><a type="button" class="btn btn-info" href="/editprod/{{$product->id}}/edit">Edit</a></td>
                                     </tr>
                                 
                                 @endforeach

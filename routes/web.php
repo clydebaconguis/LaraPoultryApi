@@ -85,12 +85,12 @@ Route::get('/products', function () {
     return view('content.products', [ 'products' => ProductCategory::all() ] );
 } );
 
-Route::get('/editprod/{prod}/edit', function (ProductCategory $prod) {
+Route::get('/editprod/{prod}/edit', function ($prod) {
     return view('content.editprod', 
     [ 
-        // 'products' => $prod,
-        // 'prices' =>  Pricing::select('id', 'unit', 'type', 'value')
-        //     ->where('product_category_id', $prod)->get()
+        'products' => ProductCategory::find($prod)->get(),
+        'prices' =>  Pricing::select('id', 'unit', 'type', 'value')
+            ->where('product_category_id', $prod)->get()
     ] );
 } );
 
