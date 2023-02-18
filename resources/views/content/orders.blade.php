@@ -45,7 +45,7 @@
                                         <td>{{$order->phone}}</td>
                                         <td>{{$order->payment_opt}}</td>
                                         <td>{{$order->total_payment}}</td>
-                                        <td><button style="background-color:blue">Edit</button></td>
+                                        <td><a type="button" class="btn btn-info" href="/">Status</a></td>
                                     </tr>
                                 
                                 @endforeach

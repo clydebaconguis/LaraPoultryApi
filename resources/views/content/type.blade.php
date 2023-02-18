@@ -30,7 +30,7 @@
                                 @foreach ($types as $type)
                                     <tr>
                                         <td>{{$type->name}}</td>
-                                        <td><button style="background-color:blue">Edit</button></td>
+                                        <td><a type="button" class="btn btn-info" href="/">Edit</a></td>
                                     </tr>
                                 
                                 @endforeach
