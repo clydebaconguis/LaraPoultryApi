@@ -1,7 +1,7 @@
 <x-layout>
     <x-card>
         <header class="text-center">
-            <h2 class="text-center text-lg mb-2">
+            <h2 class="text-center text-lg mb-5">
                 Edit a Product
             </h2>
         </header>
@@ -12,8 +12,7 @@
                 <image class="mx-auto d-block" style="width: 100px; height: 100px" src="https://drive.google.com/uc?export=view&id={{$products->image}}" />
             </div>
 
-            <div class="mb-2">
-            <tr>
+            <tr class="mb-2">
                 <td>
                     <label
                         class="text-md"
@@ -23,7 +22,6 @@
                 <td>
                     <input
                         type="text"
-                        class=""
                         required
                         name="name"
                         value="{{$products->name}}"
@@ -34,39 +32,49 @@
                     @enderror
                 </td>
             </tr>
-            </div>
 
-            <div class="mb-2">
-                <label for="stock" class="inline-block text-md mb-2"
-                    >Stocks</label
-                >
-                <input
-                    type="number"
-                    name="stock"
-                    value="{{$products->stock}}"
-                />
-                @error('stock')
-                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                @enderror
-            </div>
+            <tr class="mb-2">
+                <td>
+                    <label class="inline-block text-md mb-2"
+                        >Stocks</label
+                    >
+                </td>
+                <td>
+                    <input
+                        type="number"
+                        name="stock"
+                        value="{{$products->stock}}"
+                    />
+                    @error('stock')
+                        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                    @enderror
+                </td>
+            </tr>
 
             @unless (count($prices) == 0)
             @foreach ($prices as $price)
-                <div class="mb-2">
-                    <label
-                        for="price"
-                        class="inline-block text-md mb-2"
-                        >Price</label>
+                <tr class="mb-2">
+                    <td>
+                        <label
+                            for="price"
+                            class="inline-block text-md mb-2"
+                            >Price</label>
+                    </td>
 
-                    <input
-                        type="number"
-                        name="price"
-                        value="{{$price->value}}"
-                    />
-                    <select class="form-select" aria-label="Default select example" id="unit" name="unit" class="p-2">
-                        <option selected>{{$price->unit}}</option>
-                    </select>
-                </div>
+                    <td>
+                        <input
+                            type="number"
+                            name="price"
+                            value="{{$price->value}}"
+                        />
+                    </td>
+
+                    <td>
+                        <select class="form-select" aria-label="Default select example" id="unit" name="unit" class="p-2">
+                            <option selected>{{$price->unit}}</option>
+                        </select>
+                    </td>
+                </tr>
              @endforeach
              @endunless
 
