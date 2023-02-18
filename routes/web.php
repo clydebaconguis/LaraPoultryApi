@@ -85,7 +85,7 @@ Route::get('/products', function () {
     return view('content.products', [ 'products' => ProductCategory::all() ] );
 } );
 
-Route::post('/editprod/{prod}/edit', function (ProductCategory $prod) {
+Route::get('/editprod/{prod}/edit', function (ProductCategory $prod) {
     return view('content.editprod', 
     [ 
         // 'products' => $prod,
