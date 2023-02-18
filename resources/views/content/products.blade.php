@@ -3,14 +3,16 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <tr>
-            <td>
-                <h1 class="h3 mb-4 text-gray-800">Products</h1>
-            </td>
-            <td>
-                <a class="btn btn-primary " href="/addprod">Add Product</a>
-            </td>
-        </tr>
+        <table>
+            <tr class="mb-4">
+                <td>
+                    <h1 class="h3 text-gray-800">Products</h1>
+                </td>
+                <td>
+                    <a class="btn btn-primary " href="/addprod">Add Product</a>
+                </td>
+            </tr>
+        </table>
         
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
