@@ -85,6 +85,15 @@ Route::get('/products', function () {
     return view('content.products', [ 'products' => ProductCategory::all() ] );
 } );
 
+Route::get('/editprod/{prod}/edit', function (ProductCategory $prod) {
+    return view('content.editprod', 
+    [ 
+        'products' => $prod,
+        'prices' =>  Pricing::select('id', 'unit', 'type', 'value')
+            ->where('product_category_id', $id)->get()
+    ] );
+} );
+
 Route::get('/orders', function () {
     return view('content.orders', [ 'orders' => DB::table('transactions')
     ->join('users', 'transactions.user_id', "=", 'users.id')
