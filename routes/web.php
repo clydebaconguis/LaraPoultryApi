@@ -90,7 +90,7 @@ Route::get('/editprod/{prod}/edit', function (ProductCategory $prod) {
     [ 
         'products' => $prod,
         'prices' =>  Pricing::select('id', 'unit', 'type', 'value')
-            ->where('product_category_id', $id)->get()
+            ->where('product_category_id', $prod)->get()
     ] );
 } );
 
