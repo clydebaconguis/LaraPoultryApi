@@ -24,7 +24,7 @@
                     class=""
                     required
                     name="name"
-                    value="{{$products->name}}"
+                    value="{{}}"
                 />
 
                 @error('name')
@@ -39,14 +39,14 @@
                 <input
                     type="number"
                     name="stock"
-                    value="{{$product->stock}}"
+                    {{-- value="{{$product->stock}}" --}}
                 />
                 @error('stock')
                     <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                 @enderror
             </div>
 
-            @unless (count($prices) == 0)
+            {{-- @unless (count($prices) == 0)
             @foreach ($prices as $price)
                 <div class="mb-2">
                     <label
@@ -64,13 +64,13 @@
                     </select>
                 </div>
              @endforeach
-             @endunless
+             @endunless --}}
 
             <div class="mb-6">
                 <label for="image" class="inline-block text-lg mb-2">
                     Product Image
                 </label>
-                
+
                 
 
             </div>

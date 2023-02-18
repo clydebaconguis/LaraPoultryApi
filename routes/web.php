@@ -88,9 +88,9 @@ Route::get('/products', function () {
 Route::get('/editprod/{prod}/edit', function ($prod) {
     return view('content.editprod', 
     [ 
-        'products' => ProductCategory::find($prod)->get(),
-        'prices' =>  Pricing::select('id', 'unit', 'type', 'value')
-            ->where('product_category_id', $prod)->get()
+        // 'products' => ProductCategory::find($prod)->get(),
+        // 'prices' =>  Pricing::select('id', 'unit', 'type', 'value')
+        //     ->where('product_category_id', $prod)->get()
     ] );
 } );
 
