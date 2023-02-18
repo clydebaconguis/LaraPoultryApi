@@ -13,9 +13,9 @@
                     name="purpose"
                     value="edit"
                 />
-                
+
             <div class="mb-6">
-                <image class="" style="width: 100px; height: 100px" src="https://drive.google.com/uc?export=view&id={{$products->image}}" />
+                <image class="mx-auto d-block" style="width: 100px; height: 100px" src="https://drive.google.com/uc?export=view&id={{$products->image}}" />
             </div>
 
             <div class="mb-2">
