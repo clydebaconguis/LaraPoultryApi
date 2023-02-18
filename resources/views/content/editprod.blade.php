@@ -79,16 +79,16 @@
              @endforeach
              @endunless
 
-            <div class="mb-6">
-                <button type="submit" disabled
-                    class="bg-dark text-white rounded py-2 px-4 hover:bg-black"
-                >
-                    Save
-                </button>
-
-                <a href="/products" class="text-dark ml-2"> Back </a>
-            </div>
         </table>
+        <div class="mb-6">
+            <button type="submit" disabled
+                class="bg-dark text-white rounded py-2 px-4 hover:bg-black"
+            >
+                Save
+            </button>
+
+            <a href="/products" class="text-dark ml-2"> Back </a>
+        </div>
         </form>
     </x-card>
 </x-layout>
