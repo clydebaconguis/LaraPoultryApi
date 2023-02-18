@@ -7,8 +7,9 @@
         </header>
 
         <form method="POST" action="/updateprod" enctype="multipart/form-data">
+        <table>
             @csrf
-            <div class="my-6">
+            <div class="mb-5">
                 <image class="mx-auto d-block" style="width: 100px; height: 100px" src="https://drive.google.com/uc?export=view&id={{$products->image}}" />
             </div>
 
@@ -87,6 +88,7 @@
 
                 <a href="/products" class="text-dark ml-2"> Back </a>
             </div>
+        </table>
         </form>
     </x-card>
 </x-layout>
