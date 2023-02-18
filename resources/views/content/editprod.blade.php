@@ -80,7 +80,7 @@
              @endunless
 
         </table>
-        <div class="mb-6">
+        <div class="mb-6 mt-4">
             <button type="submit" disabled
                 class="bg-dark text-white rounded py-2 px-4 hover:bg-black"
             >
