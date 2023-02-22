@@ -46,8 +46,8 @@
                                             <a type="button" class="btn btn-info" href="/">Details</a>
                                             <form method="POST" action="/orderstat" enctype="multipart/form-data">
                                             @csrf
-                                                <select name="orderstat" class="btn btn-info">
-                                                    <option selected>select status</option>
+                                                <select name="orderstat" class="btn btn-danger ml-1">
+                                                    <option selected>Select status</option>
                                                     <option name="delivered" value="1">Delivered</option>
                                                     <option name="cancel" value="2">Cancel</option>
                                                 </select>
