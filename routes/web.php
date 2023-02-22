@@ -105,6 +105,8 @@ Route::post('/orderstat', function (Request $request){
     $order = Transaction::find($request['orderid']);
     if($request['delivered'] != null){
         $order->update(['status' => $request['delivered']]);
+    }else {
+        $order->update(['status' => $request['cancel']]);
     }
 });
 
