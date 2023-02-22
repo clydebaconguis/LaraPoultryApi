@@ -47,7 +47,7 @@
                                             <form method="POST" action="/orderstat" enctype="multipart/form-data">
                                             @csrf
                                                 <input type="hidden" name="orderid" value={{$order->id}}/>
-                                                <select name="orderstat" class="btn btn-danger ml-1" onchange="this.form.submit()">
+                                                <select name="orderstat" id="orderstat" class="btn btn-danger ml-1" onchange="this.form.submit()">
                                                     <option selected>Select status</option>
                                                     <option value="delivered">Delivered</option>
                                                     <option value="cancel">Cancel</option>
