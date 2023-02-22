@@ -101,11 +101,11 @@ Route::get('/orders', function () {
     ->orderBy('created_at', 'DESC')->get() ] );
 } );
 
-Route::post('/orderStat/{orderid}', function(Request $request, Transaction $trans){
+Route::post('/orderStat/{order}', function(Request $request, Transaction $order){
     if(!empty($request['ordered'])){
-        $trans->update(['status' => $request['ordered']]);
+        $order->update(['status' => $request['ordered']]);
     }else{
-        $trans->update(['status' => $request['cancel']]);
+        $order->update(['status' => $request['cancel']]);
     }
 })
 
