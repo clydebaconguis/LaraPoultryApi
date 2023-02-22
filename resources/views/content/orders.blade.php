@@ -17,9 +17,7 @@
                             <tr>
                                 <th>OrderId</th>
                                 <th>Name</th>
-                                <th>Address</th>
                                 <th>Phone</th>
-                                <th>Method</th>
                                 <th>Total</th>
                                 <th>Action</th>
                             </tr>
@@ -28,9 +26,7 @@
                             <tr>
                                 <th>OrderId</th>
                                 <th>Name</th>
-                                <th>Address</th>
                                 <th>Phone</th>
-                                <th>Method</th>
                                 <th>Total</th>
                                 <th>Action</th>
                             </tr>
@@ -41,9 +37,7 @@
                                     <tr>
                                         <td>{{$order->trans_code}}</td>
                                         <td>{{$order->name}}</td>
-                                        <td>{{$order->user_add}}</td>
                                         <td>{{$order->phone}}</td>
-                                        <td>{{$order->payment_opt}}</td>
                                         <td>{{$order->total_payment}}</td>
                                         <td>
                                             <a type="button" class="btn btn-info" href="/">Details</a>
