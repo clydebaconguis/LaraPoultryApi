@@ -46,16 +46,10 @@
                                             <a type="button" class="btn btn-info" href="/">Details</a>
                                             <form method="POST" action="/orderstat" enctype="multipart/form-data">
                                             @csrf
-                                                <div class="dropdown ml-1">
-                                                    <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        Action
-                                                    </button>
-                                                    <input type="hidden" value={{$order->id}} name="orderid" />
-                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <a class="dropdown-item" name="delivered" type="submit" value="delivered" >Delivered</a>
-                                                        <a class="dropdown-item" name="cancel" type="submit" value="cancel" >Cancel</a>
-                                                    </div>
-                                                </div>
+                                                <select name="orderstat">
+                                                    <option name="delivered" value="1">Delivered</option>
+                                                    <option name="cancel" value="2">Cancel</option>
+                                                </select>
                                             </form>
                                         </td>
                                     </tr>
