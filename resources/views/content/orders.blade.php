@@ -39,15 +39,15 @@
                                         <td>{{$order->name}}</td>
                                         <td>{{$order->phone}}</td>
                                         <td>{{$order->total_payment}}</td>
-                                        <td>
+                                        <td class="d-flex">
                                             <a type="button" class="btn btn-info" href="/">Details</a>
                                             <div class="dropdown">
                                                 <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     Action
                                                 </button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    <a class="dropdown-item" href="#">Ordered</a>
-                                                    <a class="dropdown-item" href="#">Cancel</a>
+                                                    <a class="dropdown-item" href="/">Ordered</a>
+                                                    <a class="dropdown-item" href="/">Cancel</a>
                                                 </div>
                                             </div>
                                         </td>
