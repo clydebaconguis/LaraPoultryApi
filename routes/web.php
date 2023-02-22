@@ -102,14 +102,7 @@ Route::get('/orders', function () {
 } );
 
 Route::post('/orderstat', function (Request $request){
-    // $order = Transaction::find($request['orderid']);
-    if($request['orderstat'] != null){
-        // $order->update(['status' => $request['delivered']]);
-        Transaction::where('id', $request['orderid'])->update(['status' => $request['orderstat']]);
-    }else {
-        // $order->update(['status' => $request['cancel']]);
-        Transaction::where('id', $request['orderid'])->update(['status' => $request['orderstat']]);
-    }
+    Transaction::where('id', $request['orderid'])->update(['status' => $request['orderstat']]);
 });
 
 Route::get('/users', function () {
