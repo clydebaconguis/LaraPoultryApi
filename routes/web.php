@@ -103,7 +103,6 @@ Route::get('/orders', function () {
 
 Route::post('/orderstat/{orderid}', function ($orderid, Request $request){
     Transaction::find($orderid)->update(['status' => $request['orderstat']]);
-    return view('content.orders');
 });
 
 Route::get('/users', function () {

@@ -44,7 +44,7 @@
                                         <td>{{$order->status}}</td>
                                         <td class="d-flex">
                                             <a type="button" class="btn btn-info" href="/">Details</a>
-                                            <form method="POST" action="/orderstat/{{$order->id}}" enctype="multipart/form-data">
+                                            <form method="POST" id="myform" action="/orderstat/{{$order->id}}" enctype="multipart/form-data" preventDefault() >
                                             @csrf
                                                 {{-- <input type="hidden" name="orderid" value={{}}/> --}}
                                                 <select name="orderstat" id="orderstat" class="btn btn-danger ml-1" onchange="this.form.submit()">
@@ -68,3 +68,8 @@
     </div>
     <!-- /.container-fluid -->
 </x-layout>
+<script>
+document.getElementById("myform").addEventListener("click", function(event){
+  event.preventDefault()
+});
+</script>
