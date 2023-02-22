@@ -15,7 +15,7 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Transaction</th>
+                                <th>OrderId</th>
                                 <th>Name</th>
                                 <th>Address</th>
                                 <th>Phone</th>
@@ -26,7 +26,7 @@
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>Transaction</th>
+                                <th>OrderId</th>
                                 <th>Name</th>
                                 <th>Address</th>
                                 <th>Phone</th>
@@ -45,7 +45,18 @@
                                         <td>{{$order->phone}}</td>
                                         <td>{{$order->payment_opt}}</td>
                                         <td>{{$order->total_payment}}</td>
-                                        <td><a type="button" class="btn btn-info" href="/">Status</a></td>
+                                        <td>
+                                            <a type="button" class="btn btn-info" href="/">Details</a>
+                                            <div class="dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Dropdown button
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" href="#">Ordered</a>
+                                                    <a class="dropdown-item" href="#">Cancel</a>
+                                                </div>
+                                            </div>
+                                        </td>
                                     </tr>
                                 
                                 @endforeach
