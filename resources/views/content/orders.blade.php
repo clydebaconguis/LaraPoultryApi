@@ -46,10 +46,11 @@
                                             <a type="button" class="btn btn-info" href="/">Details</a>
                                             <form method="POST" action="/orderstat" enctype="multipart/form-data">
                                             @csrf
-                                                <select name="orderstat" class="btn btn-danger ml-1">
+                                                <input type="hidden" name="orderid" value = {{$order->id}}/>
+                                                <select name="orderstat" class="btn btn-danger ml-1" onchange="this.form.submit()">
                                                     <option selected>Select status</option>
-                                                    <option name="delivered" value="1">Delivered</option>
-                                                    <option name="cancel" value="2">Cancel</option>
+                                                    <option value="delivered">Delivered</option>
+                                                    <option value="cancel">Cancel</option>
                                                 </select>
                                             </form>
                                         </td>
