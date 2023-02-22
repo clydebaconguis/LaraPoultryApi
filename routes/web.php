@@ -9,7 +9,7 @@ use App\Models\Type;
 use App\Models\Unit;
 use App\Models\Stock;
 use App\Models\Pricing;
-use App\Models\Transactions;
+use App\Models\Transaction;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 /*
