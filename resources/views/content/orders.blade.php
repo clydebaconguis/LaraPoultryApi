@@ -52,7 +52,7 @@
                                                     </button>
                                                     <input type="hidden" value={{$order->id}} name="orderid" />
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <a class="dropdown-item" name="ordered" type="submit" value="ordered" >Ordered</a>
+                                                        <a class="dropdown-item" name="delivered" type="submit" value="delivered" >Delivered</a>
                                                         <a class="dropdown-item" name="cancel" type="submit" value="cancel" >Cancel</a>
                                                     </div>
                                                 </div>

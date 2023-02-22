@@ -103,11 +103,9 @@ Route::get('/orders', function () {
 
 Route::post('/orderstat', function (Request $request){
     $order = Transaction::find($request['orderid']);
-    // if(!empty($request['ordered'])){
-    //     $order->update(['status' => $request['ordered']]);
-    // }else{
-    //     $order->update(['status' => $request['cancel']]);
-    // }
+    if($request['delivered'] != null){
+        $order->update(['status' => $request['delivered']]);
+    }
 });
 
 Route::get('/users', function () {
