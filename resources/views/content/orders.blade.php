@@ -41,15 +41,17 @@
                                         <td>{{$order->total_payment}}</td>
                                         <td class="d-flex">
                                             <a type="button" class="btn btn-info" href="/">Details</a>
-                                            <div class="dropdown">
-                                                <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    Action
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    <a class="dropdown-item" href="/">Ordered</a>
-                                                    <a class="dropdown-item" href="/">Cancel</a>
+                                            <form method="POST" action="/orderStat/{{$order->id}}" enctype="multipart/form-data">
+                                                <div class="dropdown ml-1">
+                                                    <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        Action
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <a class="dropdown-item" name="ordered" type="submit" value="ordered" >Ordered</a>
+                                                        <a class="dropdown-item" name="cancel" type="submit" value="cancel" >Cancel</a>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            </form>
                                         </td>
                                     </tr>
                                 

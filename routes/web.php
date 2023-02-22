@@ -9,6 +9,7 @@ use App\Models\Type;
 use App\Models\Unit;
 use App\Models\Stock;
 use App\Models\Pricing;
+use App\Models\Transactions;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 /*
@@ -99,6 +100,18 @@ Route::get('/orders', function () {
     ->select('transactions.*', 'users.name')
     ->orderBy('created_at', 'DESC')->get() ] );
 } );
+
+Route::post('/orderStat/{orderid}', function(Transactions $trans, Request $details){
+    if(!empty($details['ordered'])){
+        $trans->update([
+            'status' => $details['ordered'],
+        ])
+    }else{
+        $trans->update([
+            'status' => $details['cancel'],
+        ])
+    }
+})
 
 Route::get('/users', function () {
     return view('content.users', [ 'users' => User::where('status', 0)->orderBy('created_at', 'ASC')->get() ] );
