@@ -101,14 +101,14 @@ Route::get('/orders', function () {
     ->orderBy('created_at', 'DESC')->get() ] );
 } );
 
-Route::post('/orderstat', function(Request $request){
+Route::post('/orderstat', function (Request $request){
     $order = Transaction::find($request['orderid']);
-    if(!empty($request['ordered'])){
-        $order->update(['status' => $request['ordered']]);
-    }else{
-        $order->update(['status' => $request['cancel']]);
-    }
-})
+    // if(!empty($request['ordered'])){
+    //     $order->update(['status' => $request['ordered']]);
+    // }else{
+    //     $order->update(['status' => $request['cancel']]);
+    // }
+});
 
 Route::get('/users', function () {
     return view('content.users', [ 'users' => User::where('status', 0)->orderBy('created_at', 'ASC')->get() ] );
