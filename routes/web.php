@@ -101,7 +101,7 @@ Route::get('/orders', function () {
     ->orderBy('created_at', 'DESC')->get() ] );
 } );
 
-Route::post('/orderStat', function(Request $request){
+Route::post('/orderstat', function(Request $request){
     $order = Transaction::find($request['orderid']);
     if(!empty($request['ordered'])){
         $order->update(['status' => $request['ordered']]);

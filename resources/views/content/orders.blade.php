@@ -44,7 +44,7 @@
                                         <td>{{$order->status}}</td>
                                         <td class="d-flex">
                                             <a type="button" class="btn btn-info" href="/">Details</a>
-                                            <form method="POST" action="/orderStat" enctype="multipart/form-data">
+                                            <form method="POST" action="/orderstat" enctype="multipart/form-data">
                                             @csrf
                                                 <div class="dropdown ml-1">
                                                     <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
