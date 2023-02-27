@@ -18,10 +18,15 @@
                     <div class="card-body p-4">
                         <div class="d-flex flex-row mb-4 pb-2">
                         <div class="flex-fill">
-                            <h5 class="bold">Headphones Bose 35 II</h5>
-                            <p class="text-muted"> Qt: 1 item</p>
-                            <h4 class="mb-3"> $ 299 <span class="small text-muted"> via ({{$payment_opt}}) </span></h4>
-                            <p class="text-muted">Tracking Status on: <span class="text-body">11:30pm, Today</span></p>
+                            @unless (count($items) == 0)
+                                @foreach ($items as $item)
+                                    <h5 class="bold">{{$item->product_category_id}}</h5>
+                                    <p class="text-muted"> {{$item->qty}}</p>
+                                    <h4 class="mb-3"> ${{$orders->total_payment}} <span class="small text-muted"> via ({{$orders->payment_opt}}) </span></h4>
+                                    <p class="text-muted">Tracking Status on: <span class="text-body">{{ now()->format('H:i:s') }}, Today</span></p>
+                                @endforeach
+                            @endunless
+                            
                         </div>
                         <div>
                             <img class="align-self-center img-fluid"
