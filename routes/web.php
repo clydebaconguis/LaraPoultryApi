@@ -122,7 +122,7 @@ Route::get('/orderdetails/{id}', function ($id) {
         'details' => DB::table('transactions')
             ->join('users', 'transactions.user_id', "=", 'users.id')
             ->select('transactions.*', 'users.name')
-            ->where('id', $id)->get(),
+            ->where('transactions.id', $id)->get(),
 
         'items' => DB::table('orders')
             ->join('product_categories', 'orders.product_category_id', "=", 'product_categories.id')
