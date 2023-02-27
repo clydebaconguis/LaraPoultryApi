@@ -7,14 +7,12 @@
                     <div class="card-header p-4">
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
-                                @unless (count($orders) == 0)
-                                    @foreach ($orders as $order)
-                                        <p class="text-muted mb-2"> Order ID <span class="fw-bold text-body">{{$order->trans_code}}</span></p>
-                                        <p class="text-muted mb-0"> Place On <span class="fw-bold text-body">{{$order->created_at}}</span> </p>
-                                        <p class="text-muted mb-0"> Name <span class="fw-bold text-body">{{$order->name}}</span> </p>
-                                        <p class="text-muted mb-0"> Phone <span class="fw-bold text-body">{{$order->phone}}</span> </p>
-                                        <p class="text-muted mb-0"> Address <span class="fw-bold text-body">{{$order->user_add}}</span> </p>
-                                    @endforeach
+                                @unless (count($details) == 0)
+                                    <p class="text-muted mb-2"> Order ID <span class="fw-bold text-body">{{$details->trans_code}}</span></p>
+                                    <p class="text-muted mb-0"> Place On <span class="fw-bold text-body">{{$details->created_at}}</span> </p>
+                                    <p class="text-muted mb-0"> Name <span class="fw-bold text-body">{{$details->name}}</span> </p>
+                                    <p class="text-muted mb-0"> Phone <span class="fw-bold text-body">{{$details->phone}}</span> </p>
+                                    <p class="text-muted mb-0"> Address <span class="fw-bold text-body">{{$details->user_add}}</span> </p>
                                 @endunless
                             </div>
                         </div>
@@ -26,7 +24,7 @@
                                 @foreach ($items as $item)
                                     <h5 class="bold">{{$item->product_category_id}}</h5>
                                     <p class="text-muted"> {{$item->qty}}</p>
-                                    <h4 class="mb-3"> ${{$order->total_payment}} <span class="small text-muted"> via ({{$order->payment_opt}}) </span></h4>
+                                    <h4 class="mb-3"> ${{$details->total_payment}} <span class="small text-muted"> via ({{$details->payment_opt}}) </span></h4>
                                     <p class="text-muted">Tracking Status on: <span class="text-body">{{ now()->format('H:i:s') }}, Today</span></p>
                                 @endforeach
                             @endunless
