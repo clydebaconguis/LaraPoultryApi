@@ -35,7 +35,7 @@
                         </div>
                         <div>
                             <img class="align-self-center img-fluid"
-                            src="https://drive.google.com/uc?export=view&id={{$detail->image}}" width="250">
+                            src="https://drive.google.com/uc?export=view&id={{$item->image}}" width="250">
                         </div>
                         </div>
                         <ul id="progressbar-1" class="mx-0 mt-0 mb-5 px-0 pt-0 pb-4">
