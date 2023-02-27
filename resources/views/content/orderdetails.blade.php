@@ -11,7 +11,7 @@
                                     @php
                                         $detail = $details[0]
                                     @endphp
-                                    <p class="text-muted mb-2"> Order ID <span class="fw-bold text-body">{{$details['trans_code']}}</span></p>
+                                    <p class="text-muted mb-2"> Order ID <span class="fw-bold text-body">{{$detail->trans_code}}</span></p>
                                     <p class="text-muted mb-0"> Place On <span class="fw-bold text-body">{{$detail->created_at}}</span> </p>
                                     <p class="text-muted mb-0"> Name <span class="fw-bold text-body">{{$detail->name}}</span> </p>
                                     <p class="text-muted mb-0"> Phone <span class="fw-bold text-body">{{$detail->phone}}</span> </p>
