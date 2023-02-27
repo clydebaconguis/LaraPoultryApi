@@ -1,5 +1,5 @@
 <x-layout>
-    <section class="vh-100 gradient-custom-2">
+    <section class="vh-100">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-md-10 col-lg-8 col-xl-6">
@@ -25,9 +25,9 @@
                         <div class="flex-fill">
                             @unless (count($items) == 0)
                                 @foreach ($items as $item)
-                                    <h5 class="bold">{{$item->product_category_id}}</h5>
-                                    <p class="text-muted"> {{$item->qty}}</p>
-                                    <h4 class="mb-3"> ${{$detail->total_payment}} <span class="small text-muted"> via ({{$detail->payment_opt}}) </span></h4>
+                                    <h5 class="bold">{{$item->name}}</h5>
+                                    <p class="text-muted">Qty: {{$item->qty}}</p>
+                                    <h4 class="mb-3"> Php {{$detail->total_payment}} <span class="small text-muted"> via ({{$detail->payment_opt}}) </span></h4>
                                     <p class="text-muted">Tracking Status on: <span class="text-body">{{ now()->format('H:i:s') }}, Today</span></p>
                                 @endforeach
                             @endunless

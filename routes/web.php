@@ -119,7 +119,14 @@ Route::get('/types', function () {
 Route::get('/orderdetails/{id}', function ($id) {
     return view('content.orderdetails', 
     [ 
-        'details' => Transaction::find($id)->get(), 
-        'items' => Order::where('transaction_id', $id)->get() 
+        'details' => DB::table('transactions')
+            ->join('users', 'transactions.user_id', "=", 'users.id')
+            ->select('transactions.*', 'users.name')
+            ->orderBy('created_at', 'DESC')->get();
+
+        'items' => return DB::table('orders')
+            ->join('product_categories', 'orders.product_category_id', "=", 'product_categories.id')
+            ->select('orders.*', 'product_categories.name', 'product_categories.image')
+            ->where('transaction_id', $transaction_id)->get();
     ] );
 } );
