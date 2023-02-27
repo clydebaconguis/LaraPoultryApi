@@ -32,7 +32,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <img class="align-self-center img-fluid" style="width: 50px; height: 50px"
+                                    <img class="align-self-center img-fluid" style="width: 80px; height: 80px"
                                     src="https://drive.google.com/uc?export=view&id={{$item->image}}" width="250">
                                 </div>
                             @endforeach
