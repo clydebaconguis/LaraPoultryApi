@@ -115,6 +115,6 @@ Route::get('/types', function () {
     return view('content.type', [ 'types' => Type::all()] );
 } );
 
-Route::get('/orderdetails/{id}', function () {
+Route::get('/orderdetails/{id}', function ($id) {
     return view('content.orderdetails', [ 'orders' => Transaction::find($id)->get() ] );
 } );
