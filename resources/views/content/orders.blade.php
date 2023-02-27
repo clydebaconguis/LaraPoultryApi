@@ -47,7 +47,7 @@
                                             <form method="POST" id="myform" action="/orderstat/{{$order->id}}" enctype="multipart/form-data" >
                                             @csrf
                                                 {{-- <input type="hidden" name="orderid" value={{}}/> --}}
-                                                <select name="orderstat" id="orderstat" class="btn btn-danger ml-1" onchange="{formSubmit()}">
+                                                <select name="orderstat" id="orderstat" class="btn btn-danger ml-1" onchange="this.form.submit()">
                                                     <option selected>Select status</option>
                                                     <option value="delivered">Delivered</option>
                                                     <option value="cancel">Cancel</option>
@@ -70,11 +70,11 @@
 </x-layout>
 <script>
 
-function formSubmit()
-{
-    document.getElementById("myform").addEventListener("submit", function(event){
-      event.preventDefault()
-    });
-}
+// function formSubmit()
+// {
+//     document.getElementById("myform").addEventListener("submit", function(event){
+//       event.preventDefault()
+//     });
+// }
 
 </script>
