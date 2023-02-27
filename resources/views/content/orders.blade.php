@@ -43,7 +43,7 @@
                                         <td>{{$order->total_payment}}</td>
                                         <td>{{$order->status}}</td>
                                         <td class="d-flex">
-                                            <a type="button" class="btn btn-info" href="/">Details</a>
+                                            <a type="button" class="btn btn-info" href="/orderdetails/{{$order->id}}">Details</a>
                                             <form method="POST" id="myform" action="/orderstat/{{$order->id}}" enctype="multipart/form-data" >
                                             @csrf
                                                 {{-- <input type="hidden" name="orderid" value={{}}/> --}}
