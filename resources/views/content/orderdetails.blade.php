@@ -41,7 +41,7 @@
                             @if ($detail->status == "delivery")
                                     <li class="step0 active" id="step1"><span
                                             style="margin-left: 22px; margin-top: 12px;">SHIPPED</span></li>
-                                    <li class="step0 active text-center" id="step3"><span
+                                    <li class="step0 active text-center" id="step2"><span
                                         style="margin-right: 22px;">ON DELIVERY</span></li>
                                     <li class="step0 text-muted text-end" id="step3"><span
                                         style="margin-right: 22px;">DELIVERED</span></li>
@@ -49,7 +49,7 @@
                             @elseif ($detail->status == "delivered")
                                    <li class="step0 active" id="step1"><span
                                             style="margin-left: 22px; margin-top: 12px;">SHIPPED</span></li>
-                                    <li class="step0 active text-center" id="step3"><span
+                                    <li class="step0 active text-center" id="step2"><span
                                         style="margin-right: 22px;">ON DELIVERY</span></li>
                                     <li class="step0 active text-end" id="step3"><span
                                         style="margin-right: 22px;">DELIVERED</span></li>
@@ -57,7 +57,7 @@
                             @elseif ($detail->status == "cancel")
                                     <li class="step0 text-muted" id="step1"><span
                                         style="margin-left: 22px; margin-top: 12px;">SHIPPED</span></li>
-                                    <li class="step0 text-muted text-center" id="step3"><span
+                                    <li class="step0 text-muted text-center" id="step2"><span
                                         style="margin-right: 22px;">ON DELIVERY</span></li>
                                     <li class="step0 text-muted text-end" id="step3"><span
                                         style="margin-right: 22px;">CANCEL</span></li>
@@ -65,9 +65,9 @@
                             @elseif($detail->status == "for approval")
                                 <li class="step0 text-muted" id="step1"><span
                                     style="margin-left: 22px; margin-top: 12px;">SHIPPED</span></li>
-                                <li class="step0 text-muted text-center" id="step1"><span
+                                <li class="step0 text-muted text-center" id="step2"><span
                                     style="margin-left: 22px; margin-top: 12px;">ON DELIVERY</span></li>
-                                <li class="step0 text-muted text-end" id="step1"><span
+                                <li class="step0 text-muted text-end" id="step3"><span
                                     style="margin-left: 22px; margin-top: 12px;">DELIVERED</span></li>
                             @endif
                         </ul>
