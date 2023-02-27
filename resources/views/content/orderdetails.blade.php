@@ -8,7 +8,7 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
                                 @unless (count($details) == 0)
-                                    <p class="text-muted mb-2"> Order ID <span class="fw-bold text-body">{{$details['trans_code']}}</span></p>
+                                    {{-- <p class="text-muted mb-2"> Order ID <span class="fw-bold text-body">{{$details['trans_code']}}</span></p> --}}
                                     <p class="text-muted mb-0"> Place On <span class="fw-bold text-body">{{$details->created_at}}</span> </p>
                                     <p class="text-muted mb-0"> Name <span class="fw-bold text-body">{{$details->name}}</span> </p>
                                     <p class="text-muted mb-0"> Phone <span class="fw-bold text-body">{{$details->phone}}</span> </p>
