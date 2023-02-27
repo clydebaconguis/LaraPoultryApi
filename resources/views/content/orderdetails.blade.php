@@ -35,14 +35,15 @@
                         </div>
                         <div>
                             <img class="align-self-center img-fluid"
-                            src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/6.webp" width="250">
+                            src="https://drive.google.com/uc?export=view&id={{$detail->image}}" width="250">
                         </div>
                         </div>
                         <ul id="progressbar-1" class="mx-0 mt-0 mb-5 px-0 pt-0 pb-4">
                         <li class="step0 active" id="step1"><span
                             style="margin-left: 22px; margin-top: 12px;">PLACED</span></li>
                         <li class="step0 active text-center" id="step2"><span>SHIPPED</span></li>
-                        <li class="step0 text-muted text-end" id="step3"><span
+
+                        <li class="{{$detail->status ?'step0 active text-end' : 'step0 text-muted text-end'}}" id="step3"><span
                             style="margin-right: 22px;">DELIVERED</span></li>
                         </ul>
                     </div>
