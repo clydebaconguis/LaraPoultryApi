@@ -122,11 +122,11 @@ Route::get('/orderdetails/{id}', function ($id) {
         'details' => DB::table('transactions')
             ->join('users', 'transactions.user_id', "=", 'users.id')
             ->select('transactions.*', 'users.name')
-            ->where('id', $id)->get();
+            ->where('id', $id)->get(),
 
         'items' => DB::table('orders')
             ->join('product_categories', 'orders.product_category_id', "=", 'product_categories.id')
             ->select('orders.*', 'product_categories.name', 'product_categories.image')
-            ->where('transaction_id', $id)->get();
+            ->where('transaction_id', $id)->get(),
     ] );
 } );
