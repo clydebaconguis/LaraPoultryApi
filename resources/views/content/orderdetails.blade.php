@@ -7,11 +7,15 @@
                     <div class="card-header p-4">
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
-                                <p class="text-muted mb-2"> Order ID <span class="fw-bold text-body">{{$orders->trans_code}}</span></p>
-                                <p class="text-muted mb-0"> Place On <span class="fw-bold text-body">{{$orders->created_at}}</span> </p>
-                                <p class="text-muted mb-0"> Name <span class="fw-bold text-body">{{$orders->name}}</span> </p>
-                                <p class="text-muted mb-0"> Phone <span class="fw-bold text-body">{{$orders->phone}}</span> </p>
-                                <p class="text-muted mb-0"> Phone <span class="fw-bold text-body">{{$orders->user_add}}</span> </p>
+                                @unless (count($orders) == 0)
+                                    @foreach ($orders as $order)
+                                        <p class="text-muted mb-2"> Order ID <span class="fw-bold text-body">{{$order->trans_code}}</span></p>
+                                        <p class="text-muted mb-0"> Place On <span class="fw-bold text-body">{{$order->created_at}}</span> </p>
+                                        <p class="text-muted mb-0"> Name <span class="fw-bold text-body">{{$order->name}}</span> </p>
+                                        <p class="text-muted mb-0"> Phone <span class="fw-bold text-body">{{$order->phone}}</span> </p>
+                                        <p class="text-muted mb-0"> Address <span class="fw-bold text-body">{{$order->user_add}}</span> </p>
+                                    @endforeach
+                                @endunless
                             </div>
                         </div>
                     </div>

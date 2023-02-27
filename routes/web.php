@@ -117,9 +117,9 @@ Route::get('/types', function () {
 } );
 
 Route::get('/orderdetails/{id}', function ($id) {
-    $orders = Transaction::find($id)->get();
-    return view('content.orderdetails', [ 
+    return view('content.orderdetails', 
+    [ 
         'orders' => Transaction::find($id)->get(), 
         'items' => Order::where('transaction_id', $id)->get() 
-        ] );
+    ] );
 } );
