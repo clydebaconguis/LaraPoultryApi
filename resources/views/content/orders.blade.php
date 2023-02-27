@@ -48,9 +48,10 @@
                                             @csrf
                                                 {{-- <input type="hidden" name="orderid" value={{}}/> --}}
                                                 <select name="orderstat" id="orderstat" class="btn btn-danger ml-1" onchange="this.form.submit()">
-                                                    <option selected>Select status</option>
-                                                    <option value="delivered">Delivered</option>
-                                                    <option value="cancel">Cancel</option>
+                                                    <option  class="bg-light text-dark" selected>Select status</option>
+                                                    <option  class="bg-light text-dark" value="for delivery">Approval</option>
+                                                    <option  class="bg-light text-dark" value="delivered">Delivered</option>
+                                                    <option  class="bg-light text-dark"  value="cancel">Cancel</option>
                                                 </select>
                                             </form>
                                         </td>
