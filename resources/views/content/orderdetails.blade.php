@@ -20,9 +20,9 @@
                             </div>
                         </div>
                     </div>
+                    @unless (count($items) == 0)
+                    @foreach ($items as $item)
                     <div class="card-body p-4">
-                        @unless (count($items) == 0)
-                            @foreach ($items as $item)
                                 <div class="d-flex flex-row mb-4 pb-2">
                                     <div class="flex-fill">
                                             <h5 class="bold">{{$item->name}}</h5>
@@ -35,17 +35,17 @@
                                     <img class="align-self-center img-fluid"
                                     src="https://drive.google.com/uc?export=view&id={{$item->image}}" width="250">
                                 </div>
-                            @endforeach
-                        @endunless
                         <ul id="progressbar-1" class="mx-0 mt-0 mb-5 px-0 pt-0 pb-4">
-                        <li class="step0 active" id="step1"><span
-                            style="margin-left: 22px; margin-top: 12px;">PLACED</span></li>
-                        <li class="step0 active text-center" id="step2"><span>SHIPPED</span></li>
+                            <li class="step0 active" id="step1"><span
+                                style="margin-left: 22px; margin-top: 12px;">PLACED</span></li>
+                            <li class="step0 active text-center" id="step2"><span>SHIPPED</span></li>
 
-                        <li class="{{$detail->status ?'step0 active text-end' : 'step0 text-muted text-end'}}" id="step3"><span
-                            style="margin-right: 22px;">DELIVERED</span></li>
+                            <li class="{{$detail->status ?'step0 active text-end' : 'step0 text-muted text-end'}}" id="step3"><span
+                                style="margin-right: 22px;">DELIVERED</span></li>
                         </ul>
                     </div>
+                    @endforeach
+                    @endunless
                 </div>
             </div>
         </div>
