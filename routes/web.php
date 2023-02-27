@@ -124,7 +124,7 @@ Route::get('/orderdetails/{id}', function ($id) {
             ->select('transactions.*', 'users.name')
             ->orderBy('created_at', 'DESC')->get();
 
-        'items' => return DB::table('orders')
+        'items' => DB::table('orders')
             ->join('product_categories', 'orders.product_category_id', "=", 'product_categories.id')
             ->select('orders.*', 'product_categories.name', 'product_categories.image')
             ->where('transaction_id', $transaction_id)->get();
