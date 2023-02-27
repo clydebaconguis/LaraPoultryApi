@@ -69,13 +69,12 @@
     <!-- /.container-fluid -->
 </x-layout>
 <script>
-// document.getElementById("myform").addEventListener("submit", function(event){
-//   event.preventDefault()
-// });
 
 function formSubmit()
 {
-    alert('dasda')
+    document.getElementById("myform").addEventListener("submit", function(event){
+      event.preventDefault()
+    });
 }
 
 </script>
