@@ -32,7 +32,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <img class="align-self-center img-fluid"
+                                    <img class="align-self-center img-fluid" style="width: 50px; height: 50px"
                                     src="https://drive.google.com/uc?export=view&id={{$item->image}}" width="250">
                                 </div>
                             @endforeach
@@ -41,8 +41,8 @@
                                 style="margin-left: 22px; margin-top: 12px;">PLACED</span></li>
                             <li class="step0 active text-center" id="step2"><span>SHIPPED</span></li>
 
-                            <li class="{{$detail->status ?'step0 active text-end' : 'step0 text-muted text-end'}}" id="step3"><span
-                                style="margin-right: 22px;">DELIVERED</span></li>
+                            <li class="{{$detail->status == "delivered" ?'step0 active text-end' : 'step0 text-muted text-end'}}" id="step3"><span
+                                style="margin-right: 22px;">{{$detail->status == "delivered" ? "Delivered" : "On Delivery"}}</span></li>
                         </ul>
                         @endunless
                     </div>
