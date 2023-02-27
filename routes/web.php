@@ -5,6 +5,7 @@ use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ProductCategoryController;
 use App\Models\User;
+use App\Models\Order;
 use App\Models\Type;
 use App\Models\Unit;
 use App\Models\Stock;
@@ -116,5 +117,6 @@ Route::get('/types', function () {
 } );
 
 Route::get('/orderdetails/{id}', function ($id) {
-    return view('content.orderdetails', [ 'orders' => Transaction::find($id)->get() ] );
+    $orders = Transaction::find($id)->get();
+    return view('content.orderdetails', [ 'orders' => $orders, 'items' => Order::where('transaction_id', $id)->get() ] );
 } );
