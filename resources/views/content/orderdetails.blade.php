@@ -26,7 +26,7 @@
                                 @foreach ($items as $item)
                                     <h5 class="bold">{{$item->product_category_id}}</h5>
                                     <p class="text-muted"> {{$item->qty}}</p>
-                                    <h4 class="mb-3"> ${{$orders->total_payment}} <span class="small text-muted"> via ({{$orders->payment_opt}}) </span></h4>
+                                    <h4 class="mb-3"> ${{$order->total_payment}} <span class="small text-muted"> via ({{$order->payment_opt}}) </span></h4>
                                     <p class="text-muted">Tracking Status on: <span class="text-body">{{ now()->format('H:i:s') }}, Today</span></p>
                                 @endforeach
                             @endunless
