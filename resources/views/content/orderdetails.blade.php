@@ -28,6 +28,7 @@
                                             <h5 class="bold">{{$item->name}}</h5>
                                             <p class="text-muted">Qty: {{$item->qty}}</p>
                                             <h4 class="mb-3"> Php {{$detail->total_payment}} <span class="small text-muted"> via ({{$detail->payment_opt}}) </span></h4>
+                                            <p class="text-muted">Status: <span class="text-body">{{ $detail->status }}</span></p>
                                             <p class="text-muted">Tracking Status on: <span class="text-body">{{ now()->format('H:i:s') }}, Today</span></p>
                                     </div>
                                 </div>
@@ -37,12 +38,28 @@
                                 </div>
                             @endforeach
                         <ul id="progressbar-1" class="mx-0 mt-4 mb-5 px-0 pt-0 pb-4">
-                            <li class="step0 active" id="step1"><span
-                                style="margin-left: 22px; margin-top: 12px;">PLACED</span></li>
-                            <li class="step0 active text-center" id="step2"><span>SHIPPED</span></li>
-
-                            <li class="{{$detail->status == "delivered" ?'step0 active text-end' : 'step0 text-muted text-end'}}" id="step3"><span
-                                style="margin-right: 22px;">{{$detail->status == "delivered" ? "Delivered" : "On Delivery"}}</span></li>
+                            @if($detail->status != "for approval")
+                                <li class="step0 active" id="step1"><span
+                                    style="margin-left: 22px; margin-top: 12px;">PLACED</span></li>
+                                <li class="step0 active text-center" id="step2"><span>SHIPPED</span></li>
+                                @if ($detail->status == "delivered")
+                                    <li class="step0 text-muted text-end" id="step3"><span
+                                        style="margin-right: 22px;">DELIVERED</span></li>
+                                @elseif ($detail->status == "delivery")
+                                    <li class="step0 text-muted text-end" id="step3"><span
+                                        style="margin-right: 22px;">ON DELIVERY</span></li>
+                                @elseif ($detail->status == "cancel")
+                                    <li class="step0 text-muted text-end" id="step3"><span
+                                        style="margin-right: 22px;">CANCEL</span></li>
+                                @endif
+                            @else
+                                <li class="step0 active" id="step1"><span
+                                    style="margin-left: 22px; margin-top: 12px;">FOR APPROVAL</span></li>
+                                <li class="step0 text-muted text-center" id="step1"><span
+                                    style="margin-left: 22px; margin-top: 12px;">SHIPPED</span></li>
+                                <li class="step0 text-muted text-end" id="step1"><span
+                                    style="margin-left: 22px; margin-top: 12px;">DELIVERED</span></li>
+                            @endif
                         </ul>
                         @endunless
                     </div>
