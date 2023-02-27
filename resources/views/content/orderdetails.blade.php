@@ -21,23 +21,22 @@
                         </div>
                     </div>
                     <div class="card-body p-4">
-                        <div class="d-flex flex-row mb-4 pb-2">
-                        <div class="flex-fill">
-                            @unless (count($items) == 0)
-                                @foreach ($items as $item)
-                                    <h5 class="bold">{{$item->name}}</h5>
-                                    <p class="text-muted">Qty: {{$item->qty}}</p>
-                                    <h4 class="mb-3"> Php {{$detail->total_payment}} <span class="small text-muted"> via ({{$detail->payment_opt}}) </span></h4>
-                                    <p class="text-muted">Tracking Status on: <span class="text-body">{{ now()->format('H:i:s') }}, Today</span></p>
-                                @endforeach
-                            @endunless
-                            
-                        </div>
-                        <div>
-                            <img class="align-self-center img-fluid"
-                            src="https://drive.google.com/uc?export=view&id={{$item->image}}" width="250">
-                        </div>
-                        </div>
+                        @unless (count($items) == 0)
+                            @foreach ($items as $item)
+                                <div class="d-flex flex-row mb-4 pb-2">
+                                    <div class="flex-fill">
+                                            <h5 class="bold">{{$item->name}}</h5>
+                                            <p class="text-muted">Qty: {{$item->qty}}</p>
+                                            <h4 class="mb-3"> Php {{$detail->total_payment}} <span class="small text-muted"> via ({{$detail->payment_opt}}) </span></h4>
+                                            <p class="text-muted">Tracking Status on: <span class="text-body">{{ now()->format('H:i:s') }}, Today</span></p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <img class="align-self-center img-fluid"
+                                    src="https://drive.google.com/uc?export=view&id={{$item->image}}" width="250">
+                                </div>
+                            @endforeach
+                        @endunless
                         <ul id="progressbar-1" class="mx-0 mt-0 mb-5 px-0 pt-0 pb-4">
                         <li class="step0 active" id="step1"><span
                             style="margin-left: 22px; margin-top: 12px;">PLACED</span></li>
