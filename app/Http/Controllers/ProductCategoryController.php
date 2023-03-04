@@ -21,7 +21,8 @@ class ProductCategoryController extends Controller
      */
     public function index()
     {
-        return ProductCategory::all();
+        $products = ProductCategory::all();
+        return response()->json($products, 200);
     }
 
     // public function windex()
