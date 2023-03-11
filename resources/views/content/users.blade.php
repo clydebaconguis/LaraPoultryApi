@@ -40,11 +40,12 @@
                                         <td>{{$user->phone}}</td>
                                         <td>{{$user->email}}</td>
                                         <td>
-                                            <form method="POST" action="/verify/{{$user->id}}">
+                                            {{-- <form method="GET" action="/verify/{{$user->id}}">
                                                 @csrf
-                                                <input type="hidden" name="stat" value="1">
+                                                <input type="hidden" name="stat" value="1" >
                                                 <a type="button" onclick="this.form.submit()" class="btn btn-info">Approve</a>
-                                            </form>
+                                            </form> --}}
+                                            <a type="button" href="/verify/{{$user->id}}" class="btn btn-info">Approve</a>
                                         </td>
                                     </tr>
                                 

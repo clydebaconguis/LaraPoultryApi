@@ -24,8 +24,8 @@ use Illuminate\Support\Facades\Storage;
 |
 */
 
-Route::post('/verify/{id}', function ($id, Request $request) {
-    User::find($id)->update(['status' => $request['stat']]);
+Route::get('/verify/{id}', function ($id) {
+    User::find($id)->update(['status' => 1]);
 });
 
 Route::get('/addprod', function () {
