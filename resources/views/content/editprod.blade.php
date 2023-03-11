@@ -6,6 +6,8 @@
             </h2>
         </header>
 
+        @if(session()->has('message')) <p class="alert alert-success">{{session('message')}}</p> @endif
+
         <div class="content">
         <div class="col-sm-12 justify-content-center flex">
         <div class="card col-sm-10 p-4">

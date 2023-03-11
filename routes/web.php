@@ -104,7 +104,6 @@ Route::post('/updateprod/{id}', function ($id, Request $request) {
         ]);
     }
 
-
     return back()->with('message', 'Updated successfully!');
 });
 
