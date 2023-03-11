@@ -13,7 +13,7 @@
                 <img src="https://drive.google.com/uc?export=view&id={{$products->image}}" style="width: 80px; height: 80px" class="rounded img-thumbnail" alt="image">
             </div>
 
-            <form method="POST" action="/updateprod" enctype="multipart/form-data">
+            <form method="POST" action="/updateprod/{{$products->id}}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="prodname">Product Name</label>
