@@ -71,11 +71,11 @@ Route::post('/addproduct', function (Request $request) {
     }
 });
 
-Route::get('/login', function () {
+Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/', function () {
+Route::get('/dash', function () {
     return view('content.dashboard');
 });
 
