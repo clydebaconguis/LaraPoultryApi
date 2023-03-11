@@ -13,7 +13,7 @@
                 <img src="https://drive.google.com/uc?export=view&id={{$products->image}}" style="width: 80px; height: 80px" class="rounded img-thumbnail" alt="image">
             </div>
 
-            <form method="POST" action="/updateprod/{{$products->id}}" enctype="multipart/form-data">
+            <form method="POST" name="myform" id="myform" action="/updateprod/{{$products->id}}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="prodname">Product Name</label>
@@ -28,7 +28,8 @@
                 @foreach ($prices as $key => $price)
                     <div class="form-group">
                         <label for="price">Price</label>
-                        <input type="string" class="form-control" value="{{$price->value}}" name="price.{{$key}}" id="price" placeholder="price">
+                        <input type="number" class="form-control" value="{{$price->value}}" name="price" id="price" placeholder="price">
+                        <input type="hidden" class="form-control" value="{{$price->id}}" name="priceid" id="priceid">
                     </div>
                  @endforeach
                  @endunless
@@ -38,11 +39,12 @@
                         <input type="file" class="form-control-file" name="image" id="image" placeholder="image">
                 </div>
                 
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary" >Submit</button>
                 <a href="/products" class="text-dark ml-2"> Back </a>
             </form>
         </div>
         </div>
         </div>
     </x-card>
+
 </x-layout>

@@ -94,9 +94,19 @@ Route::post('/updateprod/{id}', function ($id, Request $request) {
         'stock' => $request['stock'],
     ]);
 
+    $priceid = $request->priceid;
+    $price = $request->price;
+
+    for ($i = 0; $i < count($price); $i++) {
+        $datasave = [];
+        $datasave = [
+            'value' => $price[$i],
+        ];
+        Pricing::where('id', $priceid[$i])->update($datasave);
+    }
+
 
     return back()->with('message', 'Updated successfully!');
-    // Pricing::find()->create($request['price']);
 });
 
 Route::get('/', function () {
