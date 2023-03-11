@@ -34,7 +34,7 @@
                         <option selected>Select Types</option>
                         @unless (count($types) == 0)           
                             @foreach ($types as $type)
-                                <option value={{$type->id}}>{{$type->name}}</option>
+                                <option value={{$type->name}}>{{$type->name}}</option>
                             @endforeach
                         @endunless
                     </select>
@@ -46,7 +46,7 @@
                         <option selected>Select Unit</option>
                         @unless (count($units) == 0)           
                             @foreach ($units as $unit)
-                                <option value={{$unit->id}}>{{$unit->unit}}</option>
+                                <option value={{$unit->unit}}>{{$unit->unit}}</option>
                             @endforeach
                         @endunless
                     </select>
