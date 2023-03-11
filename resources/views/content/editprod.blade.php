@@ -10,9 +10,9 @@
         <div class="col-sm-12 justify-content-center flex">
         <div class="card col-sm-10 p-4">
             <div class="text-center">
-                <img src="{{$products->image}}" class="rounded" alt="image">
+                <img src="https://drive.google.com/uc?export=view&id={{$products->image}}" style="width: 80px; height: 80px" class="rounded img-thumbnail" alt="image">
             </div>
-            
+
             <form method="POST" action="/updateprod" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
