@@ -28,7 +28,7 @@
                 @foreach ($prices as $price)
                     <div class="form-group">
                         <label for="price">Price</label>
-                        <input type="number" class="form-control" value="{{$price->value}}&{{$price->id}}" name="price" id="{{$price->id}}" placeholder="price">
+                        <input type="string" class="form-control" value="{{$price->value}}[{{$price->id}}]" name="price" id="{{$price->id}}" placeholder="price">
                     </div>
                  @endforeach
                  @endunless
