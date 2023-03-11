@@ -41,9 +41,8 @@
                                         <td>{{$user->email}}</td>
                                         <form method="POST" action="/verify/{{$user->id}}" enctype="multipart/form-data" >
                                             @csrf
-                                                <input type="hidden" name="userstat" value='1'/>
                                                 <td><a type="submit" class="btn btn-info"">Approve</a></td>
-                                            </form>
+                                        </form>
                                     </tr>
                                 
                                 @endforeach
