@@ -39,7 +39,11 @@
                                         <td>{{$user->address}}</td>
                                         <td>{{$user->phone}}</td>
                                         <td>{{$user->email}}</td>
-                                        <td><a type="button" class="btn btn-info" href="/verify/{{$user->id}}">Approve</a></td>
+                                        <form method="POST" id="myform" action="/verify/{{$user->id}}" enctype="multipart/form-data" >
+                                            @csrf
+                                                <input type="hidden" name="userstat" value='1'/>
+                                                <td><a type="submit" onclick="this.form.submit()" class="btn btn-info"">Approve</a></td>
+                                            </form>
                                     </tr>
                                 
                                 @endforeach
