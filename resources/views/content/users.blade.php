@@ -39,11 +39,13 @@
                                         <td>{{$user->address}}</td>
                                         <td>{{$user->phone}}</td>
                                         <td>{{$user->email}}</td>
-                                        <form method="POST" action="/verify/{{$user->id}}" enctype="multipart/form-data" >
-                                            @csrf
-                                            <input type="hidden" name="stat" value="1">
-                                            <td><a type="submit" class="btn btn-info">Approve</a></td>
-                                        </form>
+                                        <td>
+                                            <form method="POST" action="/verify/{{$user->id}}">
+                                                @csrf
+                                                <input type="hidden" name="stat" value="1">
+                                                <a type="button" onclick="this.form.submit()" class="btn btn-info">Approve</a>
+                                            </form>
+                                        </td>
                                     </tr>
                                 
                                 @endforeach
