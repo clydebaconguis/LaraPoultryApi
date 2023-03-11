@@ -74,6 +74,7 @@ Route::post('/addproduct', function (Request $request) {
     }
 });
 Route::post('/updateprod/{id}', function ($id, Request $request) {
+
     $products = $request->validate([
         'name' => 'string',
         'stock' => 'numeric',
@@ -94,15 +95,13 @@ Route::post('/updateprod/{id}', function ($id, Request $request) {
         'stock' => $request['stock'],
     ]);
 
-    $priceid = $request->priceid;
-    $price = $request->price;
+    $priceid = $request['priceid'];
+    $price = $request['price'];
 
     for ($i = 0; $i < count($price); $i++) {
-        $datasave = [];
-        $datasave = [
+        Pricing::where('id', $priceid[$i])->update([
             'value' => $price[$i],
-        ];
-        Pricing::where('id', $priceid[$i])->update($datasave);
+        ]);
     }
 
 
