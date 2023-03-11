@@ -6,6 +6,8 @@
             </h2>
         </header>
 
+        @if(session()->has('message')) <p class="alert alert-success">{{session('message')}}</p> @endif
+
         <div class="content">
         <div class="col-sm-12 justify-content-center flex">
         <div class="card col-sm-10 p-4">
@@ -14,6 +16,9 @@
                 <div class="form-group">
                     <label for="prodname">Product Name</label>
                     <input class="form-control" id="prodname" name="name" type="text" placeholder="Product Name">
+                    @error('name')
+                        <p class="alert alert-danger">{{$message}}</p>
+                    @enderror
                 </div>
                 <div class="form-group">
                         <label for="stock">Stocks</label>
