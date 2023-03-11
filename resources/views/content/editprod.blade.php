@@ -25,10 +25,10 @@
                 </div>
 
                 @unless (count($prices) == 0)
-                @foreach ($prices as $price)
+                @foreach ($prices as $key => $price)
                     <div class="form-group">
                         <label for="price">Price</label>
-                        <input type="string" class="form-control" value="{{$price->value}}[{{$price->id}}]" name="price" id="{{$price->id}}" placeholder="price">
+                        <input type="string" class="form-control" value="{{$price->value}}" name="price.{{$key}}" id="price" placeholder="price">
                     </div>
                  @endforeach
                  @endunless

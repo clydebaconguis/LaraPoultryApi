@@ -86,9 +86,14 @@ Route::post('/updateprod/{id}', function ($id, Request $request) {
         $path = Storage::disk('google')->getMetadata($filename);
         $formfields['image'] = '';
         $formfields['image'] = $path['path'];
+        ProductCategory::find($id)->update($products);
     }
 
-    ProductCategory::find($id)->update($products);
+    ProductCategory::find($id)->update([
+        'name' => $request['name'],
+        'stock' => $request['stock'],
+    ]);
+
 
     return back()->with('message', 'Updated successfully!');
     // Pricing::find()->create($request['price']);
