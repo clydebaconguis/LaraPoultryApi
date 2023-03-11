@@ -9,6 +9,10 @@
         <div class="content">
         <div class="col-sm-12 justify-content-center flex">
         <div class="card col-sm-10 p-4">
+            <div class="text-center">
+                <img src="{{$products->image}}" class="rounded" alt="image">
+            </div>
+            
             <form method="POST" action="/updateprod" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
@@ -24,24 +28,8 @@
                 @foreach ($prices as $price)
                     <div class="form-group">
                         <label for="price">Price</label>
-                        <input type="number" class="form-control" value="{{$price->value}}" name="price" id="price" placeholder="price">
+                        <input type="number" class="form-control" value="{{$price->value}}" name="price" id="{{$price->id}}" placeholder="price">
                     </div>
-                    <tr class="mb-2">
-                        <td>
-                            <label
-                                for="price"
-                                class="inline-block text-md mb-2"
-                                >Price</label>
-                        </td>
-    
-                        <td>
-                            <input
-                                type="number"
-                                name="price"
-                                value="{{$price->value}}"
-                            />
-                        </td>
-                    </tr>
                  @endforeach
                  @endunless
 

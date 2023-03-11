@@ -3,7 +3,7 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between p-4">
             <h1 class="h3 text-gray-800">Products</h1>
             <a class="btn btn-primary ms-5" href="/addprod">Add Product</a>
 
