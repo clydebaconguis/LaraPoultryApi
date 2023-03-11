@@ -76,7 +76,9 @@ Route::post('/addproduct', function (Request $request) {
 Route::post('/updateprod/{id}', function ($id, Request $request) {
     $products = $request->validate([
         'name' => 'string',
-        'stock' => 'string',
+        'stock' => 'numeric',
+        'price' => 'numeric',
+        'image' => 'image|mimes:jpg,jpeg,png',
     ]);
 
     if ($request->hasFile('image')) {
@@ -88,14 +90,7 @@ Route::post('/updateprod/{id}', function ($id, Request $request) {
     }
 
     ProductCategory::find($id)->update($products);
-
-    // $price = [
-    //     'product_category_id' => $id,
-    //     'type' => $request['type'],
-    //     'unit' => $request['unit'],
-    //     'value' => $request['price'],
-    // ];
-    // Pricing::create($price);
+    // Pricing::find()->create($request['price']);
 });
 
 Route::get('/', function () {
