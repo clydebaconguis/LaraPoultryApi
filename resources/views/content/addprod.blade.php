@@ -21,16 +21,25 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                        <label for="stock">Stocks</label>
-                        <input type="number" class="form-control" name="stock" id="stock" placeholder="Stock">
+                    <label for="stock">Stocks</label>
+                    <input type="number" class="form-control" name="stock" id="stock" placeholder="Stock">
+                    @error('stock')
+                        <p class="alert alert-danger">{{$message}}</p>
+                    @enderror
                 </div>
                 <div class="form-group">
-                        <label for="price">Price</label>
-                        <input type="number" class="form-control" name="price" id="price" placeholder="price">
+                    <label for="price">Price</label>
+                    <input type="number" class="form-control" name="price" id="price" placeholder="price">
+                    @error('price')
+                        <p class="alert alert-danger">{{$message}}</p>
+                    @enderror
                 </div>
                 <div class="form-group">
-                        <label for="image">Image</label>
-                        <input type="file" class="form-control-file" name="image" id="image" placeholder="image">
+                    <label for="image">Image</label>
+                    <input type="file" class="form-control-file" name="image" id="image" placeholder="image">
+                    @error('image')
+                        <p class="alert alert-danger">{{$message}}</p>
+                    @enderror
                 </div>
                 
                 <div class="form-group">
@@ -43,6 +52,9 @@
                             @endforeach
                         @endunless
                     </select>
+                    @error('type')
+                        <p class="alert alert-danger">{{$message}}</p>
+                    @enderror
                 </div>
 
                 <div class="form-group">
@@ -55,6 +67,9 @@
                             @endforeach
                         @endunless
                     </select>
+                    @error('unit')
+                        <p class="alert alert-danger">{{$message}}</p>
+                    @enderror
                 </div>
 
                 <button type="submit" class="btn btn-primary">Submit</button>

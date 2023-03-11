@@ -54,6 +54,10 @@ Route::post('/addproduct', function (Request $request) {
             'name' => 'required|string',
             'image' => 'image|mimes:jpg,jpeg,png',
             'stock' => 'required',
+            'price' => 'required',
+            'unit' => 'required',
+            'type' => 'required',
+
         ]);
         if ($request->hasFile('image')) {
             $filename = Str::random(10);
