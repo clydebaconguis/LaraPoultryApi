@@ -15,22 +15,22 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
+                                <th>ID</th>
                                 <th>Category</th>
-                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                               <th>Category</th>
-                                <th>Actions</th>
+                               <th>ID</th>
+                                <th>Category</th>
                             </tr>
                         </tfoot>
                         <tbody>
                              @unless (count($types) == 0)           
                                 @foreach ($types as $type)
                                     <tr>
+                                        <td>{{$type->id}}</td>
                                         <td>{{$type->name}}</td>
-                                        <td><a type="button" class="btn btn-info" href="/">Edit</a></td>
                                     </tr>
                                 
                                 @endforeach

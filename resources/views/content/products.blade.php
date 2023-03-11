@@ -3,17 +3,12 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <table class="mb-4">
-            <tr>
-                <td>
-                    <h1 class="h3 text-gray-800">Products</h1>
-                </td>
-                <td>
-                    <a class="btn btn-primary ms-5" href="/addprod">Add Product</a>
-                </td>
-            </tr>
-        </table>
-        
+        <div class="d-flex justify-content-between">
+            <h1 class="h3 text-gray-800">Products</h1>
+            <a class="btn btn-primary ms-5" href="/addprod">Add Product</a>
+
+        </div>
+
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">

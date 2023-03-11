@@ -25,7 +25,10 @@ use Illuminate\Support\Facades\Storage;
 */
 
 Route::get('/verify/{id}', function ($id) {
-    User::find($id)->update(['status' => 1]);
+    $result = User::find($id)->update(['status' => 1]);
+    if ($result) {
+        return redirect('/users');
+    }
 });
 
 Route::get('/addprod', function () {
@@ -69,6 +72,30 @@ Route::post('/addproduct', function (Request $request) {
             Pricing::create($price);
         }
     }
+});
+Route::post('/updateprod/{id}', function ($id, Request $request) {
+    $products = $request->validate([
+        'name' => 'string',
+        'stock' => 'string',
+    ]);
+
+    if ($request->hasFile('image')) {
+        $filename = Str::random(10);
+        $request->file('image')->storeAs('', $filename, 'google');
+        $path = Storage::disk('google')->getMetadata($filename);
+        $formfields['image'] = '';
+        $formfields['image'] = $path['path'];
+    }
+
+    ProductCategory::find($id)->update($products);
+
+    // $price = [
+    //     'product_category_id' => $id,
+    //     'type' => $request['type'],
+    //     'unit' => $request['unit'],
+    //     'value' => $request['price'],
+    // ];
+    // Pricing::create($price);
 });
 
 Route::get('/', function () {
