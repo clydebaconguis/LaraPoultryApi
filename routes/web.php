@@ -77,7 +77,6 @@ Route::post('/updateprod/{id}', function ($id, Request $request) {
     $products = $request->validate([
         'name' => 'string',
         'stock' => 'numeric',
-        'price' => 'numeric',
         'image' => 'image|mimes:jpg,jpeg,png',
     ]);
 
@@ -90,6 +89,8 @@ Route::post('/updateprod/{id}', function ($id, Request $request) {
     }
 
     ProductCategory::find($id)->update($products);
+
+    return back()->with('message', 'Updated successfully!');
     // Pricing::find()->create($request['price']);
 });
 
