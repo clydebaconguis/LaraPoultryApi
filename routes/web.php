@@ -24,19 +24,26 @@ use Illuminate\Support\Facades\Storage;
 |
 */
 
-Route::get('/addprod', function () {
-    return view('content.addprod', 
-    [   'types' => Type::all(),
-        'units' => Unit::all() 
-    ] );
+Route::post('/verify/{id}', function ($id) {
+    return User::find($id)->update(['status' => 1]);
 });
 
- /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+Route::get('/addprod', function () {
+    return view(
+        'content.addprod',
+        [
+            'types' => Type::all(),
+            'units' => Unit::all()
+        ]
+    );
+});
+
+/**
+ * Store a newly created resource in storage.
+ *
+ * @param  \Illuminate\Http\Request  $request
+ * @return \Illuminate\Http\Response
+ */
 Route::post('/addproduct', function (Request $request) {
     $isTaken = ProductCategory::where('name', $request->name)->first();
     if (!$isTaken) {
@@ -52,18 +59,7 @@ Route::post('/addproduct', function (Request $request) {
             $products['image'] = '';
             $products['image'] = $path['path'];
             $id = ProductCategory::create($products)->id;
-            // $json_params = json_decode($request['prices'], true);
-            // $price = array();
-            // foreach ($json_params as $item) {
-            //     $price = array();
-            //     $price = [
-            //         'product_category_id' => $id,
-            //         'type' => $item['type'],
-            //         'unit' => $item['unit'],
-            //         'value' => $item['value'],
-            //     ];
-            //     Pricing::create($price);
-            // }
+
             $price = [
                 'product_category_id' => $id,
                 'type' => $request['type'],
@@ -84,49 +80,53 @@ Route::get('/', function () {
 });
 
 Route::get('/products', function () {
-    return view('content.products', [ 'products' => ProductCategory::all() ] );
-} );
+    return view('content.products', ['products' => ProductCategory::all()]);
+});
 
 Route::get('/editprod/{prod}/edit', function (ProductCategory $prod) {
-    return view('content.editprod', 
-    [ 
-        'products' => $prod,
-        'prices' =>  Pricing::where('product_category_id', $prod['id'])->get()
-    ] );
-} );
+    return view(
+        'content.editprod',
+        [
+            'products' => $prod,
+            'prices' =>  Pricing::where('product_category_id', $prod['id'])->get()
+        ]
+    );
+});
 
 Route::get('/orders', function () {
-    return view('content.orders', [ 'orders' => DB::table('transactions')
-    ->join('users', 'transactions.user_id', "=", 'users.id')
-    ->select('transactions.*', 'users.name')
-    ->orderBy('created_at', 'DESC')->get() ] );
-} );
+    return view('content.orders', ['orders' => DB::table('transactions')
+        ->join('users', 'transactions.user_id', "=", 'users.id')
+        ->select('transactions.*', 'users.name')
+        ->orderBy('created_at', 'DESC')->get()]);
+});
 
-Route::post('/orderstat/{orderid}', function ($orderid, Request $request){
+Route::post('/orderstat/{orderid}', function ($orderid, Request $request) {
     Transaction::find($orderid)->update(['status' => $request['orderstat']]);
 
     return back()->with('message', 'Status updated successfully!');
 });
 
 Route::get('/users', function () {
-    return view('content.users', [ 'users' => User::where('status', 0)->orderBy('created_at', 'ASC')->get() ] );
-} );
+    return view('content.users', ['users' => User::where('status', 0)->orderBy('created_at', 'ASC')->get()]);
+});
 
 Route::get('/types', function () {
-    return view('content.type', [ 'types' => Type::all()] );
-} );
+    return view('content.type', ['types' => Type::all()]);
+});
 
 Route::get('/orderdetails/{id}', function ($id) {
-    return view('content.orderdetails', 
-    [ 
-        'details' => DB::table('transactions')
-            ->join('users', 'transactions.user_id', "=", 'users.id')
-            ->select('transactions.*', 'users.name')
-            ->where('transactions.id', $id)->get(),
+    return view(
+        'content.orderdetails',
+        [
+            'details' => DB::table('transactions')
+                ->join('users', 'transactions.user_id', "=", 'users.id')
+                ->select('transactions.*', 'users.name')
+                ->where('transactions.id', $id)->get(),
 
-        'items' => DB::table('orders')
-            ->join('product_categories', 'orders.product_category_id', "=", 'product_categories.id')
-            ->select('orders.*', 'product_categories.name', 'product_categories.image')
-            ->where('transaction_id', $id)->get(),
-    ] );
-} );
+            'items' => DB::table('orders')
+                ->join('product_categories', 'orders.product_category_id', "=", 'product_categories.id')
+                ->select('orders.*', 'product_categories.name', 'product_categories.image')
+                ->where('transaction_id', $id)->get(),
+        ]
+    );
+});

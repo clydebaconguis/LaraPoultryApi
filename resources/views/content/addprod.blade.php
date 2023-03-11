@@ -6,66 +6,31 @@
             </h2>
         </header>
 
-        <form method="POST" action="/addproduct" enctype="multipart/form-data">
-        <table>
-            @csrf
-             <input
-                    type="hidden"
-                    name="purpose"
-                    value="add"
-                />
-
-            <tr class="mb-2">
-                <td>
-                    <label
-                        class="text-md"
-                        >Product Name</label
-                    >
-                </td>
-
-                <td>
-                    <input
-                        type="text"
-                        class=""
-                        required
-                        name="name"
-                        value="{{old('name')}}"
-                    />
-                    @error('name')
-                        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                    @enderror
-                </td>
-            </tr>
-
-            <tr class="mb-2">
-                <td>
-                    <label class="inline-block text-md mb-2"
-                        >Stocks</label
-                    >
-                </td>
-
-                <td>
-                    <input
-                        type="number"
-                        name="stock"
-                        value="{{old('stock')}}"
-                    />
-                    @error('stock')
-                        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                    @enderror
-                </td>
-            </tr>
-
-            <tr class="mb-2">
-                <td>
-                    <label
-                        for="type"
-                        class="inline-block text-md mb-2"
-                        >Type</label
-                    >
-                </td>
-                <td>
-                    <select class="form-select" aria-label="Default select example" id="type" name="type" class="p-2">
+        <div class="content">
+        <div class="col-sm-12 justify-content-center flex">
+        <div class="card col-sm-10 p-4">
+            <form method="POST" action="/addproduct" enctype="multipart/form-data">
+                @csrf
+                <div class="form-group">
+                    <label for="prodname">Product Name</label>
+                    <input class="form-control" id="prodname" name="name" type="text" placeholder="Product Name">
+                </div>
+                <div class="form-group">
+                        <label for="stock">Stocks</label>
+                        <input type="number" class="form-control" name="stock" id="stock" placeholder="Stock">
+                </div>
+                <div class="form-group">
+                        <label for="price">Price</label>
+                        <input type="number" class="form-control" name="price" id="price" placeholder="price">
+                </div>
+                <div class="form-group">
+                        <label for="image">Image</label>
+                        <input type="file" class="form-control-file" name="image" id="image" placeholder="image">
+                </div>
+                
+                <div class="form-group">
+                    <label for="type">Categories</label>
+                    <select class="form-control" aria-label="Default select example" id="type" name="type" class="p-2">
                         <option selected>Select Types</option>
                         @unless (count($types) == 0)           
                             @foreach ($types as $type)
@@ -73,64 +38,25 @@
                             @endforeach
                         @endunless
                     </select>
-                </td>
-            </tr>
+                </div>
 
-            <tr class="mb-2">
-                <td>
-                    <label
-                        for="price"
-                        class="inline-block text-md mb-2"
-                        >Prices</label>
-                </td>
-                <td>
-                    <input
-                        type="number"
-                        name="price"
-                        value="{{old('price')}}"
-                    />
-                </td>
-                <td>
-                    <select class="form-select" aria-label="Default select example" id="unit" name="unit" class="p-2">
+                <div class="form-group">
+                    <label for="unit">Unit</label>
+                    <select class="form-control" aria-label="Default select example" id="unit" name="unit" class="p-2">
                         <option selected>Select Unit</option>
-                        @unless (count($units) == 0)
+                        @unless (count($units) == 0)           
                             @foreach ($units as $unit)
-                                    <option value={{$unit->unit}}>{{$unit->unit}}</option>
+                                <option value={{$unit->id}}>{{$unit->unit}}</option>
                             @endforeach
                         @endunless
                     </select>
-                </td>
-            </tr>
+                </div>
 
-            <tr class="mb-6">
-                <td>
-                    <label for="image" class="inline-block text-lg mb-2">
-                        Product Image
-                    </label>
-                </td>
-
-                <td>
-                    <input
-                        type="file"
-                        class="border border-gray-200 rounded p-2 w-full"
-                        name="image"
-                    />
-                    @error('image')
-                        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                    @enderror
-                </td>
-            </tr>
-            </table>
-
-            <div class="mb-6 mt-4">
-                <button type="submit"
-                    class="bg-dark text-white rounded py-2 px-4 hover:bg-black"
-                >
-                    Create
-                </button>
-
+                <button type="submit" class="btn btn-primary">Submit</button>
                 <a href="/products" class="text-dark ml-2"> Back </a>
-            </div>
-        </form>
+            </form>
+        </div>
+        </div>
+        </div>
     </x-card>
 </x-layout>

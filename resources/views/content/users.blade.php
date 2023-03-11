@@ -39,7 +39,7 @@
                                         <td>{{$user->address}}</td>
                                         <td>{{$user->phone}}</td>
                                         <td>{{$user->email}}</td>
-                                        <td><a type="button" class="btn btn-info" href="/">Approve</a></td>
+                                        <td><a type="button" class="btn btn-info" href="/verify/{{$user->id}}">Approve</a></td>
                                     </tr>
                                 
                                 @endforeach
