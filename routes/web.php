@@ -75,7 +75,7 @@ Route::post('/addproduct', function (Request $request) {
             ];
             Pricing::create($price);
         }
-        return back()->with('message', 'Updated successfully!');
+        return back()->with('message', 'Added successfully!');
     }
 });
 Route::post('/updateprod/{id}', function ($id, Request $request) {
