@@ -14,11 +14,11 @@ class CartFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => 1,
-            'product_category_id' => 1,
-            'size' => 'small',
-            'total' => 500.00,
-            'tray' => 50,
+            // 'user_id' => 1,
+            // 'product_category_id' => 1,
+            // 'size' => 'small',
+            // 'total' => 500.00,
+            // 'tray' => 50,
         ];
     }
 }
