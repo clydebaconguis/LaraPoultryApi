@@ -106,39 +106,44 @@ class DatabaseSeeder extends Seeder
         //     'address' => 'Cagayan de Oro City'
         // ]);
 
-        Type::factory()->create([
+        $eggid = Type::factory()->create([
             'name' => 'Eggs',
         ]);
-        Type::factory()->create([
+
+        $meatid = Type::factory()->create([
             'name' => 'Meat',
         ]);
-        Type::factory()->create([
+        $manureid = Type::factory()->create([
             'name' => 'Manure',
         ]);
 
         Unit::factory()->create([
             'unit' => 'small',
-            'type_id' => 1
+            'type_id' => $eggid,
         ]);
         Unit::factory()->create([
             'unit' => 'medium',
-            'type_id' => 1
+            'type_id' => $eggid,
         ]);
         Unit::factory()->create([
             'unit' => 'large',
-            'type_id' => 1
+            'type_id' => $eggid,
         ]);
         Unit::factory()->create([
             'unit' => 'x-large',
-            'type_id' => 1
+            'type_id' => $eggid,
         ]);
         Unit::factory()->create([
             'unit' => 'per kilo',
-            'type_id' => 2,
+            'type_id' => $meatid,
+        ]);
+        Unit::factory()->create([
+            'unit' => 'per head',
+            'type_id' => $meatid,
         ]);
         Unit::factory()->create([
             'unit' => 'per sack',
-            'type_id' => 3,
+            'type_id' => $manureid,
         ]);
     }
 }
