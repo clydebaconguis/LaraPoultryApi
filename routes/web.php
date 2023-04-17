@@ -116,6 +116,21 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+Route::post('/auth-admin', function (Request $request) {
+    $validated = $request->validate([
+        'email' => 'required|string',
+        'pass' => 'required|string',
+    ]);
+
+    if($validated['email'] == "admin@admin" && $validated['pass'] == "admin123"){
+        return redirect('/dash');
+    }
+    else{
+        return back()->with('message', 'Authentication failed!');
+    }
+});
+
+
 Route::get('/dash', function () {
     return view('content.dashboard');
 });

@@ -47,7 +47,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="/">
+                <a class="nav-link" href="/dash">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -55,7 +55,7 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
+            <!-- Nav Item - products -->
             <li class="nav-item active">
                 <a class="nav-link" href="/products">
                     <i class="fa fa-shopping-basket" aria-hidden="true"></i>
@@ -64,7 +64,7 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-             <!-- Nav Item - Dashboard -->
+             <!-- Nav Item - types -->
             <li class="nav-item active">
                 <a class="nav-link" href="/types">
                     <i class="fa fa-cubes" aria-hidden="true"></i></i>
@@ -84,7 +84,7 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
+            <!-- Nav Item - Users -->
             <li class="nav-item active">
                 <a class="nav-link" href="/users">
                     <i class="fa fa-users" aria-hidden="true"></i>
