@@ -132,6 +132,16 @@ Route::post('/auth-admin', function (Request $request) {
 
 
 Route::get('/dash', function () {
+    $totalProducts = ProductCategory::count();
+    $totalCategory = Type::count();
+    $totalOrder = Transaction::count();
+    $totalUser = User::count();
+    return view('content.dashboard', [
+        'totalProducts' => $totalProducts,
+        'totalCategory' => $totalCategory,
+        'totalOrder' => $totalOrder,
+        'totalUser' => $totalUser,
+    ]);
     return view('content.dashboard');
 });
 
