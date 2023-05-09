@@ -93,19 +93,19 @@ class TransactionController extends Controller
             'status' => 'required',
         ]);
         if ($request->hasFile('image')) {
-            $filename = Str::random(10);
-            $request->file('image')->storeAs('', $filename, 'google');
-            $path = Storage::disk('google')->getMetadata($filename);
-            $formfields['image'] = $path['path'];
-            if($request->payment == "COD"){
-                $formfields['proof_of_payment'] = $path['path'];
-            }
+            // $filename = Str::random(10);
+            // $request->file('image')->storeAs('', $filename, 'google');
+            // $path = Storage::disk('google')->getMetadata($filename);
+            // $formfields['image'] = $path['path'];
+            // if($request->payment == "COD"){
+            //     $formfields['proof_of_payment'] = $path['path'];
+            // }
 
             Transaction::find($id)->update([   
                 'status' => $formfields['status'],
                 'date_delivered' => date('Y-m-d H:i:s'),
-                'proof_of_delivery' => $$formfields['image'],
-                'proof_of_payment' => $$$formfields['proof_of_payment'],
+                // 'proof_of_delivery' => $$formfields['image'],
+                // 'proof_of_payment' => $$$formfields['proof_of_payment'],
             ]);
         }
     }
