@@ -16,6 +16,8 @@ class Transaction extends Model
         'payment_opt',
         'user_id',
         'status',
+        'lat',
+        'long',
     ];
 
     protected $table = 'transactions';
