@@ -181,7 +181,7 @@ Route::post('/orderstat/{orderid}', function ($orderid, Request $request) {
 
 Route::get('/users', function () {
     return view('content.users', ['users' => User::where('status', 0)
-    ->sortBy('created_at', 'ASC')
+    ->orderBy('created_at', 'ASC')
     ->groupBy('status')->get()]);
 });
 
