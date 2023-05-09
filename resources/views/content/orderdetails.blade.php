@@ -16,6 +16,19 @@
                                     <p class="text-muted mb-0"> Name <span class="fw-bold text-body">{{$detail->name}}</span> </p>
                                     <p class="text-muted mb-0"> Phone <span class="fw-bold text-body">{{$detail->phone}}</span> </p>
                                     <p class="text-muted mb-0"> Address <span class="fw-bold text-body">{{$detail->user_add}}</span> </p>
+                                    @if ($detail->date_delivered)
+                                        <p class="text-muted mb-0"> Date Delivered <span class="fw-bold text-body">{{$detail->date_delivered}}</span> </p>
+                                    @endif
+                                    @if ($detail->proof_of_delivery)
+                                        <img class="align-self-center img-fluid" style="width: 80px; height: 80px"
+                                        src="https://drive.google.com/uc?export=view&id={{$detail->proof_of_delivery}}"> 
+                                        
+                                    @endif
+                                    @if ($detail->proof_of_payment)
+                                        <img class="align-self-center img-fluid" style="width: 80px; height: 80px"
+                                        src="https://drive.google.com/uc?export=view&id={{$detail->proof_of_payment}}"> 
+                                        
+                                    @endif
                                 @endunless
                             </div>
                         </div>
