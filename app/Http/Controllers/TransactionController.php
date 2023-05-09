@@ -38,19 +38,19 @@ class TransactionController extends Controller
     public function store(Request $request)
     {
         if ($request->hasFile('image')) {
-            // $filename = Str::random(10);
-            // $request->file('image')->storeAs('', $filename, 'google');
-            // $path = Storage::disk('google')->getMetadata($filename);
-            // $formfields['image'] = $path['path'];
-            // if($request->payment == "COD"){
-            //     $formfields['proof_of_payment'] = $path['path'];
-            // }
+            $filename = Str::random(10);
+            $request->file('image')->storeAs('', $filename, 'google');
+            $path = Storage::disk('google')->getMetadata($filename);
+            $pop = "";
+            if($request->payment == "COD"){
+                $pop = $path['path'];
+            }
 
             Transaction::find($request['orderId'])->update([   
                 'status' => $request['status'],
                 'date_delivered' => date('Y-m-d H:i:s'),
-                // 'proof_of_delivery' => $$formfields['image'],
-                // 'proof_of_payment' => $$$formfields['proof_of_payment'],
+                'proof_of_delivery' => $path['path'],
+                'proof_of_payment' => $pop,
             ]);
         }
 
