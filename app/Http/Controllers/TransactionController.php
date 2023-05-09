@@ -86,7 +86,7 @@ class TransactionController extends Controller
      * @param  \App\Models\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Transaction $transaction)
+    public function update(Request $request, $id )
     {
         $formfields = $request->validate([
             'image' => 'image|mimes:jpg,jpeg,png',
@@ -100,13 +100,13 @@ class TransactionController extends Controller
             if($request->payment == "COD"){
                 $formfields['proof_of_payment'] = $path['path'];
             }
-            
-            $transaction->update([   
-                    'status' => $formfields['status'],
-                    'date_delivered' => date('Y-m-d H:i:s'),
-                    'proof_of_delivery' => $$formfields['image'],
-                    'proof_of_payment' => $$$formfields['proof_of_payment'],
-                ]);
+
+            Transaction::find($id)->update([   
+                'status' => $formfields['status'],
+                'date_delivered' => date('Y-m-d H:i:s'),
+                'proof_of_delivery' => $$formfields['image'],
+                'proof_of_payment' => $$$formfields['proof_of_payment'],
+            ]);
         }
     }
 
