@@ -6,9 +6,11 @@ use App\Models\Cart;
 use App\Models\Order;
 use App\Models\ProductCategory;
 use App\Models\Transaction;
+use DateTime;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class TransactionController extends Controller
 {
@@ -75,24 +77,6 @@ class TransactionController extends Controller
     {
         return Transaction::where('user_id', $user_id)
             ->orderBy('created_at', 'DESC')->get();
-
-        // foreach ($transac as $item) {
-
-        //     $order = DB::table('orders')
-        //         ->join('product_categories', 'orders.product_category_id', "=", 'product_categories.id')
-        //         ->select('orders.*', 'product_categories.name', 'product_categories.image')
-        //         ->where('transaction_id', $item['id'])->get();
-
-        //     array_push($Orders, $order);
-        // }
-
-        // return $Orders;
-
-        // return DB::table('orders')
-        //     ->join('product_categories', 'orders.product_category_id', "=", 'product_categries.id')
-        //     ->select('orders.*', 'product_categories.name', 'product_categories.image')
-        //     ->where('transaction_id', $transac['id'])->get();
-
     }
 
     /**
@@ -104,17 +88,25 @@ class TransactionController extends Controller
      */
     public function update(Request $request, Transaction $transaction)
     {
-        if ($request['purpose'] == "confirm") {
-            $orders = Order::where('transaction_id', $transaction['id'])->get();
-            foreach ($orders as $ord) {
-                $stock = "";
-                $stock = ProductCategory::find($ord['product_category_id']);
-                $diff = $stock->stock - $ord->qty;
-                $stock->update(['stock' => $diff]);
+        $formfields = $request->validate([
+            'image' => 'image|mimes:jpg,jpeg,png',
+            'status' => 'required',
+        ]);
+        if ($request->hasFile('image')) {
+            $filename = Str::random(10);
+            $request->file('image')->storeAs('', $filename, 'google');
+            $path = Storage::disk('google')->getMetadata($filename);
+            $formfields['image'] = $path['path'];
+            if($request->payment == "COD"){
+                $formfields['proof_of_payment'] = $path['path'];
             }
-            return $transaction->update(['status' => $request['status']]);
-        } else {
-            return $transaction->update(['status' => $request['status']]);
+            
+            $transaction->update([   
+                    'status' => $formfields['status'],
+                    'date_delivered' => date('Y-m-d H:i:s'),
+                    'proof_of_delivery' => $$formfields['image'],
+                    'proof_of_payment' => $$$formfields['proof_of_payment'],
+                ]);
         }
     }
 

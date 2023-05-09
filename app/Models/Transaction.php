@@ -18,6 +18,10 @@ class Transaction extends Model
         'status',
         'lat',
         'long',
+        'date_delivered',
+        'date_to_deliver',
+        'proof_of_delivery',
+        'proof_of_payment',
     ];
 
     protected $table = 'transactions';
