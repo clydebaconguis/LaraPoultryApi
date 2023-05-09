@@ -37,6 +37,25 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
+        if ($request->hasFile('image')) {
+            // $filename = Str::random(10);
+            // $request->file('image')->storeAs('', $filename, 'google');
+            // $path = Storage::disk('google')->getMetadata($filename);
+            // $formfields['image'] = $path['path'];
+            // if($request->payment == "COD"){
+            //     $formfields['proof_of_payment'] = $path['path'];
+            // }
+
+            Transaction::find($request['orderId'])->update([   
+                'status' => $request['status'],
+                'date_delivered' => date('Y-m-d H:i:s'),
+                // 'proof_of_delivery' => $$formfields['image'],
+                // 'proof_of_payment' => $$$formfields['proof_of_payment'],
+            ]);
+        }
+
+
+
         $formfields = $request->validate([
             'user_add' => 'required|string',
             'phone' => 'required|string',
@@ -88,26 +107,26 @@ class TransactionController extends Controller
      */
     public function update(Request $request, $id )
     {
-        $formfields = $request->validate([
-            'image' => 'image|mimes:jpg,jpeg,png',
-            'status' => 'required',
-        ]);
-        if ($request->hasFile('image')) {
-            // $filename = Str::random(10);
-            // $request->file('image')->storeAs('', $filename, 'google');
-            // $path = Storage::disk('google')->getMetadata($filename);
-            // $formfields['image'] = $path['path'];
-            // if($request->payment == "COD"){
-            //     $formfields['proof_of_payment'] = $path['path'];
-            // }
+        // $formfields = $request->validate([
+        //     'image' => 'image|mimes:jpg,jpeg,png',
+        //     'status' => 'required',
+        // ]);
+        // if ($request->hasFile('image')) {
+        //     // $filename = Str::random(10);
+        //     // $request->file('image')->storeAs('', $filename, 'google');
+        //     // $path = Storage::disk('google')->getMetadata($filename);
+        //     // $formfields['image'] = $path['path'];
+        //     // if($request->payment == "COD"){
+        //     //     $formfields['proof_of_payment'] = $path['path'];
+        //     // }
 
-            Transaction::find($id)->update([   
-                'status' => $formfields['status'],
-                'date_delivered' => date('Y-m-d H:i:s'),
-                // 'proof_of_delivery' => $$formfields['image'],
-                // 'proof_of_payment' => $$$formfields['proof_of_payment'],
-            ]);
-        }
+        //     Transaction::find($id)->update([   
+        //         'status' => $formfields['status'],
+        //         'date_delivered' => date('Y-m-d H:i:s'),
+        //         // 'proof_of_delivery' => $$formfields['image'],
+        //         // 'proof_of_payment' => $$$formfields['proof_of_payment'],
+        //     ]);
+        // }
     }
 
     /**
