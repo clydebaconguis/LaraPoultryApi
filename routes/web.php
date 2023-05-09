@@ -167,16 +167,30 @@ Route::get('/orders', function () {
 });
 
 Route::post('/orderstat/{orderid}', function ($orderid, Request $request) {
-    Transaction::find($orderid)->update(['status' => $request['orderstat']]);
-    $orders = Order::where('transaction_id', $orderid)->get();
-    foreach ($orders as $ord) {
-        $stock = "";
-        $stock = ProductCategory::find($ord['product_category_id']);
-        $diff = $stock->stock - $ord->qty;
-        $stock->update(['stock' => $diff]);
+    if($request['orderstat'] == "delivery"){
+        Transaction::find($orderid)->update(['status' => $request['orderstat']]);
+        $orders = Order::where('transaction_id', $orderid)->get();
+        foreach ($orders as $ord) {
+            $stock = "";
+            $stock = ProductCategory::find($ord['product_category_id']);
+            $diff = $stock->stock - $ord->qty;
+            $stock->update(['stock' => $diff]);
+        }
+    }else if ($request['orderstat'] == "cancel"){
+        Transaction::find($orderid)->update(['status' => $request['orderstat']]);
+        $orders = Order::where('transaction_id', $orderid)->get();
+        foreach ($orders as $ord) {
+            $stock = "";
+            $stock = ProductCategory::find($ord['product_category_id']);
+            $diff = $stock->stock - $ord->qty;
+            $stock->update(['stock' => $diff]);
+        }
+    }else{
+        Transaction::find($orderid)->update(['status' => $request['orderstat']]);
     }
 
     return back()->with('message', 'Status updated successfully!');
+
 });
 
 Route::get('/users', function () {
