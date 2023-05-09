@@ -45,7 +45,11 @@
                                                 <input type="hidden" name="stat" value="1" >
                                                 <a type="button" onclick="this.form.submit()" class="btn btn-info">Approve</a>
                                             </form> --}}
-                                            <a type="button" href="/verify/{{$user->id}}" class="btn btn-info">Approve</a>
+                                            @if ($user->status == 0)
+                                                <a type="button" href="/verify/{{$user->id}}" class="btn btn-info">Approve</a>
+                                            @else
+                                                <button type="button" disabled class="btn btn-outline-info">Active</button>
+                                            @endif
                                         </td>
                                     </tr>
                                 
