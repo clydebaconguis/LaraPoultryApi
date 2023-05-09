@@ -44,8 +44,8 @@ class TransactionController extends Controller
             'status' => 'string',
         ]);
 
-        $formfields['lat'] = $request['lat'];
-        $formfields['long'] = $request['long'];
+        $formfields['lat'] = $request->lat;
+        $formfields['long'] = $request->long;
         $formfields['trans_code'] = Str::random(10);
         $transaction = Transaction::create($formfields);
 
