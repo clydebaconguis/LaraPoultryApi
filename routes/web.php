@@ -180,7 +180,8 @@ Route::post('/orderstat/{orderid}', function ($orderid, Request $request) {
 });
 
 Route::get('/users', function () {
-    return view('content.users', ['users' => User::orderBy('status')
+    return view('content.users', 
+    ['users' => User::all()]);
     
 });
 
