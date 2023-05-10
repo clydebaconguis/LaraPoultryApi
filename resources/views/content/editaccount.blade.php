@@ -11,7 +11,7 @@
         <div class="content">
         <div class="col-sm-12 justify-content-center flex">
         <div class="card col-sm-10 p-4">
-            <form method="POST" name="myform" id="myform" action="/updateaccount/{{$detail->id}}" enctype="multipart/form-data">
+            <form method="PUT" name="myform" id="myform" action="/updateaccount/{{$detail->id}}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="num">Number</label>
