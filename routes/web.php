@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ProductCategoryController;
+use App\Models\Account;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Type;
@@ -218,4 +219,32 @@ Route::get('/orderdetails/{id}', function ($id) {
                 ->where('transaction_id', $id)->get(),
         ]
     );
+});
+
+Route::get('/editaccount/{id}/edit', function (Account $detail) {
+    return view(
+        'content.editaccount',
+        [
+            'detail' => $detail,
+        ]
+    );
+});
+
+Route::get('/accounts', function () {
+    return view('content.accounts', ['accounts' => Account::all()]);
+});
+
+Route::post('/updateaccount/{id}', function ($id, Request $request) {
+
+    $products = $request->validate([
+        'num' => 'string',
+        'passcode' => 'string',
+    ]);
+
+    Account::find($id)->update([
+        'num' => $request['num'],
+        'passcode' => $request['passcode'],
+    ]);
+
+    return back()->with('message', 'Updated successfully!');
 });

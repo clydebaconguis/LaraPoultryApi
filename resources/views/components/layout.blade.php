@@ -90,6 +90,13 @@
                     <i class="fa fa-users" aria-hidden="true"></i>
                     <span>Users</span></a>
             </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+            <li class="nav-item active">
+                <a class="nav-link" href="/accounts">
+                    <i class="fa fa-users" aria-hidden="true"></i>
+                    <span>Accounts</span></a>
+            </li>
 
            
             <!-- Divider -->
