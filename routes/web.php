@@ -252,8 +252,8 @@ Route::put('/updateaccount/{id}', function ($id, Request $request) {
 Route::post('/addaccount', function (Request $request) {
     $formfields = $request->validate([
         'num' => 'string',
-        'passcode' => 'string',
     ]);
+    $formfields['passcode'] = $request['passcode'];
     Account::create($formfields);
     
     return back()->with('message', 'Added successfully!');
