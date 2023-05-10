@@ -234,7 +234,7 @@ Route::get('/accounts', function () {
     return view('content.accounts', ['accounts' => Account::all()]);
 });
 
-Route::post('/updateaccount/{id}', function ($id, Request $request) {
+Route::put('/updateaccount/{id}', function ($id, Request $request) {
 
     $products = $request->validate([
         'num' => 'string',
@@ -242,12 +242,13 @@ Route::post('/updateaccount/{id}', function ($id, Request $request) {
     ]);
 
     Account::find($id)->update([
-        'num' => $request['num'],
-        'passcode' => $request['passcode'],
+        'num' => $products['num'],
+        'passcode' => $$products['passcode'],
     ]);
 
     return back()->with('message', 'Updated successfully!');
 });
+
 Route::post('/addaccount', function (Request $request) {
     $formfields = $request->validate([
         'num' => 'string',
