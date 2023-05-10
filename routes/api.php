@@ -16,6 +16,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PricingController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\ProductCategoryController;
+use App\Models\Account;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +56,10 @@ Route::apiResource('types', TypeController::class);
 
 // Units
 Route::apiResource('units', UnitController::class);
+// Accounts
+Route::get('/accounts', function () {
+    return Account::all();
+});
 
 Route::post('/logout', [AuthController::class, 'logout']);
 Route::group(['middleware' => ['auth:sanctum']], function () {
