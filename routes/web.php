@@ -230,17 +230,14 @@ Route::get('/editaccount/{item}/edit', function (Account $item) {
     return view('content.editaccount', ['detail' => $item]);
 });
 
-Route::put('/updateaccount/{id}', function ($id, Request $request) {
+Route::post('/updateaccount/{account}', function (Account $account, Request $request) {
 
-    $products = $request->validate([
+    $formfields = $request->validate([
         'num' => 'string',
         'passcode' => 'string',
     ]);
 
-    Account::find($id)->update([
-        'num' => $products['num'],
-        'passcode' => $$products['passcode'],
-    ]);
+    $account->update($formfields);
 
     return back()->with('message', 'Updated successfully!');
 });
