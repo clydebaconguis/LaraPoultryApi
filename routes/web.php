@@ -226,8 +226,8 @@ Route::get('/accounts', function () {
     return view('content.accounts', ['accounts' => Account::all()]);
 });
 
-Route::get('/editaccount/{id}/edit', function (Account $account) {
-    return view('content.editaccount', ['detail' => $account]);
+Route::get('/editaccount/{item}/edit', function (Account $item) {
+    return view('content.editaccount', ['detail' => $item]);
 });
 
 Route::put('/updateaccount/{id}', function ($id, Request $request) {
