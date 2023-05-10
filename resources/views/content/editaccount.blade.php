@@ -15,11 +15,11 @@
                 @csrf
                 <div class="form-group">
                     <label for="num">Number</label>
-                    <input class="form-control" value="{{$detail->num}}" id="num" name="num" type="text">
+                    <input class="form-control" value="{{$detail}}" id="num" name="num" type="text">
                 </div>
                 <div class="form-group">
                         <label for="passcode">Passcode</label>
-                        <input type="text" value="{{$detail->passcode}}" class="form-control" name="passcode" id="passcode">
+                        <input type="text" value="{{$detail}}" class="form-control" name="passcode" id="passcode">
                 </div>
 
                 <button type="submit" class="btn btn-primary" >Submit</button>
