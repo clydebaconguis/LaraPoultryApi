@@ -226,9 +226,10 @@ Route::get('/accounts', function () {
     return view('content.accounts', ['accounts' => Account::all()]);
 });
 
-Route::get('/editaccount/{id}/edit', function ($id) {
-    return view('content.editaccount', ['detail' => Account::where('id', $id)->get()]);
+Route::get('/editaccount/{id}/edit', function (Account $account) {
+    return view('content.editaccount', ['detail' => $account]);
 });
+
 Route::put('/updateaccount/{id}', function ($id, Request $request) {
 
     $products = $request->validate([
