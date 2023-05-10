@@ -221,8 +221,8 @@ Route::get('/orderdetails/{id}', function ($id) {
     );
 });
 
-Route::get('/editaccount/{id}/edit', function ($detail) {
-    return view('content.editaccount', ['detail' => Account::find($detail)->get()]);
+Route::get('/editaccount/{id}/edit', function ($id) {
+    return view('content.editaccount', ['detail' => Account::where('id', $id)->get()]);
 });
 
 Route::get('/accounts', function () {
