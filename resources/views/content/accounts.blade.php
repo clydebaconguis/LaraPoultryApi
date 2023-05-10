@@ -31,14 +31,14 @@
                         <thead>
                             <tr>
                                 <th>Number</th>
-                                <th>Address</th>
+                                <th>Passcode</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <th>Number</th>
-                                <th>Address</th>
+                                <th>Passcode</th>
                                 <th>Actions</th>
                             </tr>
                         </tfoot>
@@ -48,11 +48,6 @@
                                     <tr>
                                         <td>{{$item->num}}</td>
                                         <td>{{$item->passcode}}</td>
-                                            {{-- <form method="GET" action="/verify/{{$user->id}}">
-                                                @csrf
-                                                <input type="hidden" name="stat" value="1" >
-                                                <a type="button" onclick="this.form.submit()" class="btn btn-info">Approve</a>
-                                            </form> --}}
                                         <td><a type="button" class="btn btn-info" href="/editaccount/{{$item->id}}/edit">Edit</a></td>
                                     </tr>
                                 

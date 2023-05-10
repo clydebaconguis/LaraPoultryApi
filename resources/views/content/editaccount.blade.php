@@ -14,16 +14,16 @@
             <form method="POST" name="myform" id="myform" action="/updateaccount/{{$detail->id}}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
-                    <label for="prodname">Number</label>
-                    <input class="form-control" value="{{$detail->num}}" id="prodname" name="name" type="text" placeholder="Product Name">
+                    <label for="num">Number</label>
+                    <input class="form-control" value="{{$detail->num}}" id="num" name="num" type="text">
                 </div>
                 <div class="form-group">
-                        <label for="stock">Passcode</label>
-                        <input type="number" value="{{$detail->passcode}}" class="form-control" name="stock" id="stock" placeholder="Stock">
+                        <label for="passcode">Passcode</label>
+                        <input type="text" value="{{$detail->passcode}}" class="form-control" name="passcode" id="passcode">
                 </div>
 
                 <button type="submit" class="btn btn-primary" >Submit</button>
-                <a href="/products" class="text-dark ml-2"> Back </a>
+                <a href="/accounts" class="text-dark ml-2"> Back </a>
             </form>
         </div>
         </div>

@@ -222,12 +222,7 @@ Route::get('/orderdetails/{id}', function ($id) {
 });
 
 Route::get('/editaccount/{id}/edit', function (Account $detail) {
-    return view(
-        'content.editaccount',
-        [
-            'detail' => $detail,
-        ]
-    );
+    return view('content.editaccount', ['detail' => $detail]);
 });
 
 Route::get('/accounts', function () {
