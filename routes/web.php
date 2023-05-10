@@ -232,12 +232,10 @@ Route::get('/editaccount/{item}/edit', function (Account $item) {
 
 Route::post('/updateaccount/{account}', function (Account $account, Request $request) {
 
-    $formfields = $request->validate([
-        'num' => 'string',
-        'passcode' => 'string',
+    $account->update([
+        'num' => $request['num'],
+        'passcode' => $request['num']
     ]);
-
-    $account->update($formfields);
 
     return back()->with('message', 'Updated successfully!');
 });
