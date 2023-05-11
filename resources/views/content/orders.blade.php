@@ -48,14 +48,14 @@ a<x-layout>
                                     <td>{{$order->created_at}}</td>
                                     <td class="d-flex">
                                     <form method="POST" id="myform" action="/orderstat/{{$order->id}}" enctype="multipart/form-data" >
-                                        @csrf
+                                        {{-- @csrf --}}
                                         {{-- <a type="button" class="btn btn-info" href="/orderdetails/{{$order->id}}">Details</a> --}}
-                                        <select name="orderstat" id="orderstat" class="btn btn-danger ml-1" onchange="this.form.submit()">
+                                        {{-- <select name="orderstat" id="orderstat" class="btn btn-danger ml-1" onchange="this.form.submit()">
                                             <option  class="bg-light text-dark" selected>Select status</option>
                                             <option  class="bg-light text-dark" value="delivery">Approve</option>
                                             <option  class="bg-light text-dark" value="delivered">Delivered</option>
                                             <option  class="bg-light text-dark"  value="cancel">Cancel</option>
-                                        </select>
+                                        </select> --}}
                                     </form>
                                     </td>
                                 </tr>
