@@ -37,9 +37,9 @@
                             </tr>
                         </tfoot>
                         <tbody>
+                            <tr>
                              @unless (count($orders) == 0)           
                                 @foreach ($orders as $order)
-                                    <tr>
                                         <td>{{$order->trans_code}}</td>
                                         <td>{{$order->name}}</td>
                                         <td>{{$order->phone}}</td>
@@ -59,11 +59,9 @@
                                                 </select>
                                             </form>
                                         </td>
-                                    </tr>
-                                
                                 @endforeach
-                         
                             @endunless
+                            </tr>
                         </tbody>
                     </table>
                 </div>
