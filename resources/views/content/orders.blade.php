@@ -46,8 +46,8 @@ a<x-layout>
                                     <td>{{$order->total_payment}}</td>
                                     <td>{{$order->status}}</td>
                                     <td>{{$order->created_at}}</td>
-                                    <td class="d-flex">
-                                        <form method="POST" id="myform" action="/orderstat/{{$order->id}}" enctype="multipart/form-data" >
+                                    <form method="POST" id="myform" action="/orderstat/{{$order->id}}" enctype="multipart/form-data" >
+                                        <td class="d-flex">
                                             @csrf
                                             <a type="button" class="btn btn-info" href="/orderdetails/{{$order->id}}">Details</a>
                                             <select name="orderstat" id="orderstat" class="btn btn-danger ml-1" onchange="this.form.submit()">
@@ -56,8 +56,8 @@ a<x-layout>
                                                 <option  class="bg-light text-dark" value="delivered">Delivered</option>
                                                 <option  class="bg-light text-dark"  value="cancel">Cancel</option>
                                             </select>
-                                        </form>
-                                    </td>
+                                        </td>
+                                    </form>
                                 </tr>
                                 @endforeach
                             @endunless
