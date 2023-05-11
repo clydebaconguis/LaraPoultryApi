@@ -147,7 +147,7 @@ Route::get('/dash', function () {
 });
 
 Route::get('/products', function () {
-    return view('content.products', ['products' => ProductCategory::all()]);
+    return view('content.products', ['products' => ProductCategory::orderBy('created_at', 'ASC')->get()]);
 });
 
 Route::get('/editprod/{prod}/edit', function (ProductCategory $prod) {
