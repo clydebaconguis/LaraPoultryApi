@@ -163,7 +163,7 @@ Route::get('/editprod/{prod}/edit', function (ProductCategory $prod) {
 Route::get('/orders', function () {
     return view('content.orders', ['orders' => Transaction::select('transactions.*','users.name')
         ->join('users', 'transactions.user_id', "=", 'users.id')
-        ->orderBy('created_at', 'desc')->get()]);
+        ->orderBy('id', 'asc')->get()]);
 });
 
 Route::post('/orderstat/{orderid}', function ($orderid, Request $request) {
