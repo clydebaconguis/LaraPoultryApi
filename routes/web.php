@@ -1,19 +1,20 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Models\ProductCategory;
-use Illuminate\Http\Request;
-use App\Http\Controllers\ProductCategoryController;
-use App\Models\Account;
-use App\Models\User;
-use App\Models\Order;
+use Carbon\Carbon;
 use App\Models\Type;
 use App\Models\Unit;
+use App\Models\User;
+use App\Models\Order;
 use App\Models\Stock;
+use App\Models\Account;
 use App\Models\Pricing;
 use App\Models\Transaction;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Models\ProductCategory;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\ProductCategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -167,8 +168,12 @@ Route::get('/orders', function () {
 });
 
 Route::post('/orderstat/{orderid}', function ($orderid, Request $request) {
+    $today = Carbon::now();
+    $tomorrow = $today->addDay();
     if($request['orderstat'] == "delivery"){
-        Transaction::find($orderid)->update(['status' => $request['orderstat']]);
+        Transaction::find($orderid)->update([
+            'status' => $request['orderstat'],
+            'date_to_deliver' => $tomorrow ]);
         $orders = Order::where('transaction_id', $orderid)->get();
         foreach ($orders as $ord) {
             $stock = "";
@@ -182,8 +187,8 @@ Route::post('/orderstat/{orderid}', function ($orderid, Request $request) {
         foreach ($orders as $ord) {
             $stock = "";
             $stock = ProductCategory::find($ord['product_category_id']);
-            $diff = $stock->stock - $ord->qty;
-            $stock->update(['stock' => $diff]);
+            $sum = $stock->stock + $ord->qty;
+            $stock->update(['stock' => $sum]);
         }
     }else{
         Transaction::find($orderid)->update(['status' => $request['orderstat']]);
