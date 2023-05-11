@@ -73,13 +73,3 @@
     </div>
     <!-- /.container-fluid -->
 </x-layout>
-<script>
-
-// function formSubmit()
-// {
-//     document.getElementById("myform").addEventListener("submit", function(event){
-//       event.preventDefault()
-//     });
-// }
-
-</script>
