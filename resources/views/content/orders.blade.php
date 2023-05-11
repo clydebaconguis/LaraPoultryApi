@@ -20,6 +20,7 @@
                                 <th>Phone</th>
                                 <th>Total</th>
                                 <th>Status</th>
+                                <th>Date</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -30,6 +31,7 @@
                                 <th>Phone</th>
                                 <th>Total</th>
                                 <th>Status</th>
+                                <th>Date</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>
@@ -42,6 +44,7 @@
                                         <td>{{$order->phone}}</td>
                                         <td>{{$order->total_payment}}</td>
                                         <td>{{$order->status}}</td>
+                                        <td>{{$order->created_at}}</td>
                                         <td class="d-flex">
                                             <a type="button" class="btn btn-info" href="/orderdetails/{{$order->id}}">Details</a>
                                             <form method="POST" id="myform" action="/orderstat/{{$order->id}}" enctype="multipart/form-data" >
