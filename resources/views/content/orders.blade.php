@@ -42,12 +42,20 @@
                                 <td>{{$order->total_payment}}</td>
                                 <td>{{$order->status}}</td>
                                 <td>{{$order->created_at}}</td>
-                                <td>
+                                <td id="sorter">
                                     <p hidden >{{$order->id}}</p>
-                                    <div>
+                                    <div onload="sort()">
                                         <form method="POST" action="/orderstat/{{$order->id}}">
                                         @csrf
                                             <a type="button" class="btn btn-info" href="/orderdetails/{{$order->id}}">Details</a>
+                                            @if ($order->status == "cancel")
+                                                <select name="orderstat" id="orderstat" class="btn btn-secondary ml-1" disabled onchange="this.form.submit()">
+                                                    <option  class="bg-light text-dark" selected>Select status</option>
+                                                    <option  class="bg-light text-dark" value="delivery">Approve</option>
+                                                    <option  class="bg-light text-dark" value="delivered">Delivered</option>
+                                                    <option  class="bg-light text-dark"  value="cancel">Cancel</option>
+                                                </select>
+                                            @endif
                                             <select name="orderstat" id="orderstat" class="btn btn-danger ml-1" onchange="this.form.submit()">
                                                 <option  class="bg-light text-dark" selected>Select status</option>
                                                 <option  class="bg-light text-dark" value="delivery">Approve</option>
@@ -67,5 +75,10 @@
         </div>
 
     </div>
+    <script>
+        var sorter = document.getElementById('sorter');
+        for(var i = 0; i < 2; i++)
+        sorter.click();
+    </script>
     <!-- /.container-fluid -->
 </x-layout>
