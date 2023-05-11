@@ -21,7 +21,7 @@ class ProductCategoryController extends Controller
      */
     public function index()
     {
-        $products = ProductCategory::all();
+        $products = ProductCategory::orderBy('id', 'ASC')->get();
         return response()->json($products, 200);
     }
 
