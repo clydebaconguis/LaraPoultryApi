@@ -20,7 +20,7 @@
                                 <th>Total</th>
                                 <th>Status</th>
                                 <th>Date</th>
-                                <th>Action</th>
+                                <th id="sorter">Action</th>
                             </tr>
                         </thead>
                         <tfoot>
@@ -42,7 +42,7 @@
                                 <td>{{$order->total_payment}}</td>
                                 <td>{{$order->status}}</td>
                                 <td>{{$order->created_at}}</td>
-                                <td id="sorter">
+                                <td>
                                     <p hidden >{{$order->id}}</p>
                                     <div onload="sort()">
                                         <form method="POST" action="/orderstat/{{$order->id}}">
