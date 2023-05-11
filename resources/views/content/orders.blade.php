@@ -74,17 +74,14 @@
                 </div>
             </div>
         </div>
-
     </div>
-    
-    <!-- /.container-fluid -->
-</x-layout>
-<script>
-    function sort(){
-        alert("yawa ka");
-        var sorter = document.getElementById('sorter');
-        for(var i = 0; i < 2; i++){
-            sorter.click();
+    <script>
+        function sort(){
+            alert("yawa ka");
+            var sorter = document.getElementById('sorter');
+            for(var i = 0; i < 2; i++){
+                sorter.click();
+            }
         }
-    }
-</script>
+    </script>
+</x-layout>
