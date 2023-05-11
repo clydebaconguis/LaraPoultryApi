@@ -10,7 +10,6 @@
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">DataTables Poultry</h6>
             </div>
-            <p>{{$orders}}</p>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -44,6 +43,7 @@
                                 <td>{{$order->status}}</td>
                                 <td>{{$order->created_at}}</td>
                                 <td>
+                                    <p hidden >{{$order->id}}</p>
                                     <div>
                                         <form method="POST" action="/orderstat/{{$order->id}}">
                                         @csrf
