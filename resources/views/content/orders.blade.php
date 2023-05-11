@@ -39,26 +39,27 @@ a<x-layout>
                         <tbody>
                             @unless (count($orders) == 0)           
                             @foreach ($orders as $order)
+                            <tr>
+                                <td>{{$order->trans_code}}</td>
+                                <td>{{$order->name}}</td>
+                                <td>{{$order->phone}}</td>
+                                <td>{{$order->total_payment}}</td>
+                                <td>{{$order->status}}</td>
+                                <td>{{$order->created_at}}</td>
+                                <td><button>hello</button></td>
                             {{-- <form method="POST" id="myform" action="/orderstat/{{$order->id}}" enctype="multipart/form-data"> --}}
                                 {{-- @csrf --}}
-                                <tr>
-                                    <td>{{$order->trans_code}}</td>
-                                    <td>{{$order->name}}</td>
-                                    <td>{{$order->phone}}</td>
-                                    <td>{{$order->total_payment}}</td>
-                                    <td>{{$order->status}}</td>
-                                    <td>{{$order->created_at}}</td>
-                                    {{-- <td > --}}
-                                        {{-- <a type="button" class="btn btn-info" href="/orderdetails/{{$order->id}}">Details</a>
+                                    {{-- <td> 
+                                        <a type="button" class="btn btn-info" href="/orderdetails/{{$order->id}}">Details</a>
                                         <select name="orderstat" id="orderstat" class="btn btn-danger ml-1" onchange="this.form.submit()">
                                             <option  class="bg-light text-dark" selected>Select status</option>
                                             <option  class="bg-light text-dark" value="delivery">Approve</option>
                                             <option  class="bg-light text-dark" value="delivered">Delivered</option>
                                             <option  class="bg-light text-dark"  value="cancel">Cancel</option>
-                                        </select> --}}
-                                    {{-- </td> --}}
-                                </tr>
-                            {{-- </form> --}}
+                                        </select>
+                                    </td>--}}
+                                    {{-- </form> --}}
+                            </tr>
                             @endforeach
                             @endunless
                         </tbody>
