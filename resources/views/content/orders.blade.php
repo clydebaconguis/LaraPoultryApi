@@ -48,7 +48,7 @@ a<x-layout>
                                     <td>{{$order->total_payment}}</td>
                                     <td>{{$order->status}}</td>
                                     <td>{{$order->created_at}}</td>
-                                    <td class="d-flex">
+                                    <td >
                                         {{-- <a type="button" class="btn btn-info" href="/orderdetails/{{$order->id}}">Details</a>
                                         <select name="orderstat" id="orderstat" class="btn btn-danger ml-1" onchange="this.form.submit()">
                                             <option  class="bg-light text-dark" selected>Select status</option>
