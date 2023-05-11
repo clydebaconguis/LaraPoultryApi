@@ -366,5 +366,15 @@
         <script src="{{asset('css/assets/js/demo/datatables-demo.js')}}"></script>
 
     </div>
+
+    <script>
+        function sort(){
+            alert("yawa ka");
+            var sorter = document.getElementById('sorter');
+            for(var i = 0; i < 2; i++){
+                sorter.click();
+            }
+        }
+    </script>
 </body>
 </html>
