@@ -1,6 +1,6 @@
 <x-layout>
     <!-- Begin Page Content -->
-    <div class="container-fluid">
+    <div class="container-fluid" onload="sort()">
 
         <!-- Page Heading -->
         <h1 class="h3 mb-4 text-gray-800">Orders</h1>
@@ -44,11 +44,11 @@
                                 <td>{{$order->created_at}}</td>
                                 <td>
                                     <p hidden >{{$order->id}}</p>
-                                    <div onload="sort()">
+                                    <div>
                                         <form method="POST" action="/orderstat/{{$order->id}}">
                                         @csrf
                                             <a type="button" class="btn btn-info" href="/orderdetails/{{$order->id}}">Details</a>
-                                            @if($order->status == "cancel")
+                                            @if($order->status == "cancel"||$order->status == "delivered")
                                                 <select name="orderstat" id="orderstat" class="btn btn-secondary ml-1" disabled onchange="this.form.submit()">
                                                     <option  class="bg-light text-dark" selected>Select status</option>
                                                     <option  class="bg-light text-dark" value="delivery">Approve</option>
@@ -76,12 +76,13 @@
         </div>
 
     </div>
-    <script>
-        function sort(){
-            var sorter = document.getElementById('sorter');
-            for(var i = 0; i < 2; i++)
-            sorter.click();
-        }
-    </script>
+    
     <!-- /.container-fluid -->
 </x-layout>
+<script>
+    function sort(){
+        var sorter = document.getElementById('sorter');
+        for(var i = 0; i < 2; i++)
+        sorter.click();
+    }
+</script>
