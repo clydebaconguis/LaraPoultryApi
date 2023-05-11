@@ -39,7 +39,7 @@ a<x-layout>
                         <tbody>
                             @unless (count($orders) == 0)           
                             @foreach ($orders as $order)
-                            <form method="POST" id="myform" action="/orderstat/{{$order->id}}" enctype="multipart/form-data">
+                            {{-- <form method="POST" id="myform" action="/orderstat/{{$order->id}}" enctype="multipart/form-data"> --}}
                                 {{-- @csrf --}}
                                 <tr>
                                     <td>{{$order->trans_code}}</td>
@@ -49,16 +49,16 @@ a<x-layout>
                                     <td>{{$order->status}}</td>
                                     <td>{{$order->created_at}}</td>
                                     <td class="d-flex">
-                                        {{-- <a type="button" class="btn btn-info" href="/orderdetails/{{$order->id}}">Details</a> --}}
-                                        {{-- <select name="orderstat" id="orderstat" class="btn btn-danger ml-1" onchange="this.form.submit()">
+                                        <a type="button" class="btn btn-info" href="/orderdetails/{{$order->id}}">Details</a>
+                                        <select name="orderstat" id="orderstat" class="btn btn-danger ml-1" onchange="this.form.submit()">
                                             <option  class="bg-light text-dark" selected>Select status</option>
                                             <option  class="bg-light text-dark" value="delivery">Approve</option>
                                             <option  class="bg-light text-dark" value="delivered">Delivered</option>
                                             <option  class="bg-light text-dark"  value="cancel">Cancel</option>
-                                        </select> --}}
+                                        </select>
                                     </td>
                                 </tr>
-                            </form>
+                            {{-- </form> --}}
                             @endforeach
                             @endunless
                         </tbody>
