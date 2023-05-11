@@ -1,6 +1,6 @@
 <x-layout>
     <!-- Begin Page Content -->
-    <div class="container-fluid" onload="sort()">
+    <div class="container-fluid">
 
         <!-- Page Heading -->
         <h1 class="h3 mb-4 text-gray-800">Orders</h1>
@@ -20,7 +20,7 @@
                                 <th>Total</th>
                                 <th>Status</th>
                                 <th>Date</th>
-                                <th id="sorter">Action</th>
+                                <th onload="sort()" id="sorter">Action</th>
                             </tr>
                         </thead>
                         <tfoot>
