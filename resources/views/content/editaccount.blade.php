@@ -17,10 +17,10 @@
                     <label for="num">Number</label>
                     <input class="form-control" value="{{$detail->num}}" id="num" name="num" type="text">
                 </div>
-                <div class="form-group">
+                {{-- <div class="form-group">
                         <label for="passcode">Passcode</label>
                         <input type="text" value="{{$detail->passcode}}" class="form-control" name="passcode" id="passcode">
-                </div>
+                </div> --}}
 
                 <button type="submit" class="btn btn-primary" >Submit</button>
                 <a href="/accounts" class="text-dark ml-2"> Back </a>

@@ -12,7 +12,7 @@
               <label for="num">Number</label>
               <input type="text" class="form-control" name="num" id="num" required placeholder="Enter Num">
             </div>
-            <div class="form-group">
+            <div hidden class="form-group">
               <label for="passcode">Passcode</label>
               <input type="text" class="form-control" name="passcode" id="passcode" placeholder="Enter Passcode">
             </div>
@@ -31,14 +31,14 @@
                         <thead>
                             <tr>
                                 <th>Number</th>
-                                <th>Passcode</th>
+                                {{-- <th>Passcode</th> --}}
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <th>Number</th>
-                                <th>Passcode</th>
+                                {{-- <th>Passcode</th> --}}
                                 <th>Actions</th>
                             </tr>
                         </tfoot>
@@ -47,7 +47,7 @@
                                 @foreach ($accounts as $item)
                                     <tr>
                                         <td>{{$item->num}}</td>
-                                        <td>{{$item->passcode}}</td>
+                                        {{-- <td>{{$item->passcode}}</td> --}}
                                         <td><a type="button" class="btn btn-info" href="/editaccount/{{$item->id}}/edit">Edit</a></td>
                                     </tr>
                                 
