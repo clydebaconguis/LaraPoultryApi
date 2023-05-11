@@ -20,7 +20,7 @@
                                 <th>Total</th>
                                 <th>Status</th>
                                 <th>Date</th>
-                                <th onload="sort()" onclick="alert('yawa ka')" id="sorter">Action</th>
+                                <th onload="sort()" onclick="sort()" id="sorter">Action</th>
                             </tr>
                         </thead>
                         <tfoot>
