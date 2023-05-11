@@ -20,7 +20,7 @@
                                 <th>Total</th>
                                 <th>Status</th>
                                 <th>Date</th>
-                                <th onload="sort()" id="sorter">Action</th>
+                                <th onload="sort()" onclick="alert('yawa ka')" id="sorter">Action</th>
                             </tr>
                         </thead>
                         <tfoot>
@@ -77,7 +77,7 @@
     </div>
     <script>
         function sort(){
-            alert("yawa ka");
+            alert('yawa ka');
             var sorter = document.getElementById('sorter');
             for(let i = 0; i < 2; i++){
                 sorter.click();
