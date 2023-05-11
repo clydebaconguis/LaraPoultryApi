@@ -161,9 +161,9 @@ Route::get('/editprod/{prod}/edit', function (ProductCategory $prod) {
 });
 
 Route::get('/orders', function () {
-    return view('content.orders', ['orders' => Transaction::select('transactions*','users.name')
+    return view('content.orders', ['orders' => Transaction::select('transactions.*','users.name')
         ->join('users', 'transactions.user_id', "=", 'users.id')
-        ->orderBy('id', 'desc')->get()]);
+        ->orderBy('transactions.id', 'desc')->get()]);
 });
 
 Route::post('/orderstat/{orderid}', function ($orderid, Request $request) {
