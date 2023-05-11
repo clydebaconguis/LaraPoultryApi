@@ -164,7 +164,7 @@ Route::get('/orders', function () {
     return view('content.orders', ['orders' => DB::table('transactions')
         ->join('users', 'transactions.user_id', "=", 'users.id')
         ->select('transactions.*', 'users.name')
-        ->orderBy('transactions.id', 'DESC')->get()]);
+        ->orderBy('created_at', 'DESC')->get()]);
 });
 
 Route::post('/orderstat/{orderid}', function ($orderid, Request $request) {
