@@ -13,14 +13,16 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead onload="sort();">
+                        <thead>
                             <tr>
                                 <th>OrderId</th>
                                 <th>Name</th>
                                 <th>Total</th>
                                 <th>Status</th>
                                 <th>Date</th>
-                                <th id="sorter">Action</th>
+                                <th>
+                                    <img style="display:none" src="" alt="" id="sorter" onload="sort();">
+                                    Action</th>
                             </tr>
                         </thead>
                         <tfoot>
