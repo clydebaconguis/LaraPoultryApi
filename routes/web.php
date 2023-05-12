@@ -118,7 +118,7 @@ Route::post('/updateprod/{id}', function ($id, Request $request) {
 
 Route::get('/', function () {
     return view('auth.login');
-})->name('login');
+})->name('home');
 
 Route::post('/auth-admin', function (Request $request) {
     $request->validate([
@@ -130,7 +130,7 @@ Route::post('/auth-admin', function (Request $request) {
     //     return redirect('/dash');
     // }
     // return redirect()->back()->withErrors(['email', 'Invalid Credentials']);
-});
+})->name('login');
 
 
 Route::get('/dash', function () {
