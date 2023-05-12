@@ -20,9 +20,10 @@
                                 <th>Total</th>
                                 <th>Status</th>
                                 <th>Date</th>
-                                <th>
-                                    <img style="display:none" src="" alt="" id="sorter" onload="sort();">
-                                    Action</th>
+                                <th id="sorter">
+                                    <img style="display:none" src="" alt="" onload="sort();">
+                                    Action
+                                </th>
                             </tr>
                         </thead>
                         <tfoot>
@@ -79,13 +80,14 @@
     </div>
     <script>
         window.onload = function(){
-            alert('yawa ka');
+            // alert('yawa ka');
+            var sorter = document.getElementById('sorter');
+            for(let i = 0; i < 2; i++){
+                sorter.click();
+            }
         }
         // function sort(){
-        //     // var sorter = document.getElementById('sorter');
-        //     // for(let i = 0; i < 2; i++){
-        //     //     sorter.click();
-        //     // }
+        //     
         // }
     </script>
 </x-layout>
