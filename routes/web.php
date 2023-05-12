@@ -144,6 +144,7 @@ Route::get('/dash', function () {
         'totalCategory' => $totalCategory,
         'totalOrder' => $totalOrder,
         'totalUser' => $totalUser,
+        'user' => auth()->user(),
     ]);
     return view('content.dashboard');
 })->middleware('auth');
