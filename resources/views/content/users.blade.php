@@ -48,7 +48,7 @@
                                                 <input type="hidden" name="stat" value="1" >
                                                 <a type="button" onclick="this.form.submit()" class="btn btn-info">Approve</a>
                                             </form> --}}
-                                            @if ($user->status == 0)
+                                            @if ($user->status == 0 && $user->role != "admin")
                                                 <a type="button" href="/verify/{{$user->id}}" class="btn btn-info">Approve</a>
                                             @else
                                                 <button type="button" disabled class="btn btn-outline-info">Active</button>

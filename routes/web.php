@@ -118,7 +118,12 @@ Route::post('/updateprod/{id}', function ($id, Request $request) {
 
 Route::get('/', function () {
     return view('auth.login');
-})->name('login');
+})->name('login')->middleware('guest');
+
+Route::get('/logout', function () {
+    auth()->logout();
+    return redirect('/');
+})->middleware('auth');
 
 Route::post('/auth-admin', function (Request $request) {
     $credentials = $request->validate([
@@ -150,7 +155,7 @@ Route::get('/dash', function () {
 
 Route::get('/products', function () {
     return view('content.products', ['products' => ProductCategory::orderBy('created_at', 'ASC')->get()]);
-});
+})->middleware('auth');
 
 Route::get('/editprod/{prod}/edit', function (ProductCategory $prod) {
     return view(
@@ -160,13 +165,13 @@ Route::get('/editprod/{prod}/edit', function (ProductCategory $prod) {
             'prices' =>  Pricing::where('product_category_id', $prod['id'])->get()
         ]
     );
-});
+})->middleware('auth');
 
 Route::get('/orders', function () {
     return view('content.orders', ['orders' => Transaction::select('transactions.*','users.name')
         ->join('users', 'transactions.user_id', "=", 'users.id')
         ->orderBy('id', 'desc')->get()]);
-});
+})->middleware('auth');
 
 Route::post('/orderstat/{orderid}', function ($orderid, Request $request) {
     $today = Carbon::now();
@@ -212,17 +217,17 @@ Route::post('/orderstat/{orderid}', function ($orderid, Request $request) {
     }
 
     return back()->with('message', 'status updated successfully!');
-});
+})->middleware('auth');
 
 Route::get('/users', function () {
     return view('content.users', 
     ['users' => User::all()]);
     
-});
+})->middleware('auth');
 
 Route::get('/types', function () {
     return view('content.type', ['types' => Type::all()]);
-});
+})->middleware('auth');
 
 Route::get('/orderdetails/{id}', function ($id) {
     return view(
@@ -239,16 +244,16 @@ Route::get('/orderdetails/{id}', function ($id) {
                 ->where('transaction_id', $id)->get(),
         ]
     );
-});
+})->middleware('auth');
 
 
 Route::get('/accounts', function () {
     return view('content.accounts', ['accounts' => Account::all()]);
-});
+})->middleware('auth');
 
 Route::get('/editaccount/{item}/edit', function (Account $item) {
     return view('content.editaccount', ['detail' => $item]);
-});
+})->middleware('auth');
 
 Route::post('/updateaccount/{account}', function (Account $account, Request $request) {
 
@@ -258,7 +263,7 @@ Route::post('/updateaccount/{account}', function (Account $account, Request $req
     ]);
 
     return back()->with('message', 'Updated successfully!');
-});
+})->middleware('auth');
 
 Route::post('/addaccount', function (Request $request) {
     $formfields = $request->validate([
@@ -268,4 +273,4 @@ Route::post('/addaccount', function (Request $request) {
     Account::create($formfields);
     
     return back()->with('message', 'Added successfully!');
-});
+})->middleware('auth');
