@@ -170,11 +170,10 @@ Route::get('/orders', function () {
 Route::post('/orderstat/{orderid}', function ($orderid, Request $request) {
     $today = Carbon::now();
     $tomorrow = $today->addDay();
-    $transaction = Transaction::find($orderid)->get();
     if($request['orderstat'] == "delivery"){
-        $forApproval = $transaction->where('status','for approval')->first();
+        $forApproval = Transaction::find($orderid)->where('status','for approval')->first();
         if($forApproval){
-            $transaction->update([
+            Transaction::find($orderid)->update([
                 'status' => $request['orderstat'],
                 'date_to_deliver' => $tomorrow ]);
             $orders = Order::where('transaction_id', $orderid)->get();
@@ -187,7 +186,7 @@ Route::post('/orderstat/{orderid}', function ($orderid, Request $request) {
             return back()->with('message', 'Status updated successfully!');
         }
     }else if($request['orderstat'] == "cancel"){
-        $transaction->update(['status' => $request['orderstat']]);
+        Transaction::find($orderid)->update(['status' => $request['orderstat']]);
         $orders = Order::where('transaction_id', $orderid)->get();
         foreach ($orders as $ord) {
             $stock = "";
@@ -198,13 +197,13 @@ Route::post('/orderstat/{orderid}', function ($orderid, Request $request) {
         return back()->with('message', 'status updated successfully!');
 
     }else if($request['orderstat'] == "delivered"){
-        $transaction->update([
+        Transaction::find($orderid)->update([
             'status' => $request['orderstat'],
         ]);
     }else if($request['orderstat'] == "failed"){
         $proven = Transaction::find($orderid)->where('status', 'delivery')->first();
         if($proven){
-            $transaction->update([
+            Transaction::find($orderid)->update([
                 'status' => $request['orderstat'],
                 'date_to_deliver' => $tomorrow
             ]);
