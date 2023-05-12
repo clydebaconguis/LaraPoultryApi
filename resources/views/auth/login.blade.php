@@ -38,7 +38,7 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
-                                    @if($errors->any()) 
+                                    {{-- @if($errors->any()) 
                                     <div class="bg-red-200 p-3">
                                         <ul>
                                             @foreach ($errors->all() as $error)
@@ -46,7 +46,7 @@
                                             @endforeach
                                         </ul>
                                     </div> 
-                                    @endif
+                                    @endif --}}
 
                                     <form class="user" method="POST" action="/auth-admin">
                                         @csrf

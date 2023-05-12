@@ -121,15 +121,16 @@ Route::get('/', function () {
 })->name('home');
 
 Route::post('/auth-admin', function (Request $request) {
-    $request->validate([
+    $credentials = $request->validate([
         'email' => 'required|email',
         'password' => 'required',
     ]);
 
-    // if(Auth::attempt(['email', 'password'])){
-    //     return redirect('/dash');
-    // }
-    // return redirect()->back()->withErrors(['email', 'Invalid Credentials']);
+    if(Auth::attempt($credentials)){
+        $request->session()->regenerate();
+        return redirect('/dash');
+    }
+    return redirect()->back()->withErrors(['email', 'Invalid Credentials']);
 });
 
 
