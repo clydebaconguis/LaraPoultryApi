@@ -185,6 +185,8 @@ Route::post('/orderstat/{orderid}', function ($orderid, Request $request) {
                     $diff = $stock->stock - $ord->qty;
                     $stock->update(['stock' => $diff]);
                 }
+            }else{
+                return back()->with('message', 'Invalid Status input!');
             }
         }else if ($request['orderstat'] == "cancel"){
             Transaction::find($orderid)->update(['status' => $request['orderstat']]);
@@ -195,12 +197,16 @@ Route::post('/orderstat/{orderid}', function ($orderid, Request $request) {
                 $sum = $stock->stock + $ord->qty;
                 $stock->update(['stock' => $sum]);
             }
+            return back()->with('message', 'status updated successfully!');
+
         }else if ($request['orderstat'] == "delivered"){
             $proven = Transaction::find($orderid)->where('status', 'delivery')->first();
             if($proven){
                 Transaction::find($orderid)->update([
                     'status' => $request['orderstat'],
                 ]);
+            }else{
+                return back()->with('message', 'Order not yet verified!');
             }
         }else if($request['orderstat'] == "failed"){
             $proven = Transaction::find($orderid)->where('status', 'delivery')->first();
