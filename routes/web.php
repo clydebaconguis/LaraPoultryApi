@@ -115,8 +115,8 @@ Route::post('/updateprod/{id}', function ($id, Request $request) {
 });
 
 Route::get('/', function () {
-    return view('auth.login')->name('login');
-});
+    return view('auth.login');
+})->name('login');
 
 Route::post('/auth-admin', function (Request $request) {
     $validated = $request->validate([
