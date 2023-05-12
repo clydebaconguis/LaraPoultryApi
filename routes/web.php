@@ -151,7 +151,7 @@ Route::get('/dash', function () {
         'totalUser' => $totalUser,
         'user' => auth()->user(),
     ]);
-})->middleware('auth');
+})->middleware('auth')->name('home');
 
 Route::get('/products', function () {
     return view('content.products', ['products' => ProductCategory::orderBy('created_at', 'ASC')->get()]);
