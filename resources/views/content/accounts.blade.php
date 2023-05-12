@@ -8,15 +8,19 @@
 
         <form  method="POST" action="/addaccount" enctype="multipart/form-data">
             @csrf
-            <div class="d-flex">
+            <div class="d-flex justify-content-between">
                 <div>
+                    <h4>Add New GCash</h4>
                     <div class="form-group">
-                        <label for="num">New Gcash</label>
+                        <label for="num">Gcash</label>
                         <input type="text" class="form-control" name="num" id="num" required placeholder="Enter Number">
                     </div>
                     <div hidden class="form-group">
                         <label for="passcode">Passcode</label>
                         <input type="text" class="form-control" name="passcode" id="passcode" placeholder="Enter Passcode">
+                    </div>
+                    <div>
+                        <button type="submit" class="mb-4 btn btn-primary">Add</button>
                     </div>
                 </div>
                 <div>
@@ -29,9 +33,11 @@
                         <label for="password">Password</label>
                         <input type="text" class="form-control" name="password" id="password" required placeholder="Enter Password">
                     </div>
+                    <div>
+                        <button type="submit" class="mb-4 btn btn-primary">Add</button>
+                    </div>
                 </div>
             </div>
-            <button type="submit" class="mb-4 btn btn-primary">Add</button>
         </form>
 
 
