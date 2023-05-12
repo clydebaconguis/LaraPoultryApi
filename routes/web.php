@@ -173,7 +173,7 @@ Route::post('/orderstat/{orderid}', function ($orderid, Request $request) {
         $today = Carbon::now();
         $tomorrow = $today->addDay();
         if($request['orderstat'] == "delivery"){
-            $forApproval = Transaction::find($orderid)->where('status', 'for approval')->first();
+            $forApproval = Transaction::find($orderid)->where('status','for approval')->first();
             if($forApproval){
                 Transaction::find($orderid)->update([
                     'status' => $request['orderstat'],
@@ -187,7 +187,7 @@ Route::post('/orderstat/{orderid}', function ($orderid, Request $request) {
                 }
                 return back()->with('message', 'Status updated successfully!');
             }else{
-                return back()->with('message', 'Invalid Status input!');
+                return back()->with('message', 'Invalid ksjdlfkjd Status input!');
             }
         }else if ($request['orderstat'] == "cancel"){
             Transaction::find($orderid)->update(['status' => $request['orderstat']]);
