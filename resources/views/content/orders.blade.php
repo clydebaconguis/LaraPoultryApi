@@ -78,12 +78,14 @@
         </div>
     </div>
     <script>
-        function sort(){
+        window.onload = function(){
             alert('yawa ka');
-            // var sorter = document.getElementById('sorter');
-            // for(let i = 0; i < 2; i++){
-            //     sorter.click();
-            // }
         }
+        // function sort(){
+        //     // var sorter = document.getElementById('sorter');
+        //     // for(let i = 0; i < 2; i++){
+        //     //     sorter.click();
+        //     // }
+        // }
     </script>
 </x-layout>
