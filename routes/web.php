@@ -115,21 +115,25 @@ Route::post('/updateprod/{id}', function ($id, Request $request) {
 });
 
 Route::get('/', function () {
-    return view('auth.login');
+    return view('auth.login')->name('login');
 });
 
 Route::post('/auth-admin', function (Request $request) {
     $validated = $request->validate([
-        'email' => 'required|string',
-        'pass' => 'required|string',
+        'email' => 'required|email',
+        'password' => 'required|',
     ]);
 
-    if($validated['email'] == "admin@admin" && $validated['pass'] == "admin123"){
+    if(auth()->attempt(request()->only(['email', 'password']))){
         return redirect('/dash');
     }
-    else{
-        return back()->with('message', 'Authentication failed!');
-    }
+    return redirect()->back()->withErrors(['email', 'Invalid Credentials']);
+    // if($validated['email'] == "admin@admin" && $validated['pass'] == "admin123"){
+    //     return redirect('/dash');
+    // }
+    // else{
+    //     return back()->with('message', 'Authentication failed!');
+    // }
 });
 
 
@@ -145,7 +149,7 @@ Route::get('/dash', function () {
         'totalUser' => $totalUser,
     ]);
     return view('content.dashboard');
-});
+})->middleware('auth');
 
 Route::get('/products', function () {
     return view('content.products', ['products' => ProductCategory::orderBy('created_at', 'ASC')->get()]);

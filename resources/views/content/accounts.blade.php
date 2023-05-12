@@ -15,10 +15,7 @@
                         <label for="num">Gcash</label>
                         <input type="text" class="form-control" name="num" id="num" required placeholder="Enter Number">
                     </div>
-                    <div hidden class="form-group">
-                        <label for="passcode">Passcode</label>
-                        <input type="text" class="form-control" name="passcode" id="passcode" placeholder="Enter Passcode">
-                    </div>
+                    <input type="hidden" value="number" class="form-control" name="purpose" id="purpose">
                     <div>
                         <button type="submit" class="mb-4 btn btn-primary">Add</button>
                     </div>
@@ -34,6 +31,7 @@
                         <input type="text" class="form-control" name="password" id="password" required placeholder="Enter Password">
                     </div>
                     <div>
+                        <input type="hidden" value="admin" class="form-control" name="purpose" id="purpose">
                         <button type="submit" class="mb-4 btn btn-primary">Add</button>
                     </div>
                 </div>

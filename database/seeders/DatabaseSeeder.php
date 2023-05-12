@@ -10,6 +10,7 @@ use App\Models\Type;
 use App\Models\Unit;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -58,6 +59,11 @@ class DatabaseSeeder extends Seeder
         Unit::factory()->create([
             'unit' => 'per sack',
             'type_id' => $manureid,
+        ]);
+        User::factory()->create([
+            'name' => 'Admin Admin',
+            'email' => 'admin@admin.com',
+            'password' => Hash::make('secret'),
         ]);
     }
 }

@@ -46,14 +46,14 @@
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
                                                 placeholder="Enter Email">
                                                 @error('email')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
                                                 @enderror
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" name="pass" class="form-control form-control-user"
+                                            <input type="password" name="password" class="form-control form-control-user"
                                                 id="exampleInputPassword" placeholder="Enter Password">
-                                                @error('pass')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @error('password')
+                                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
                                                 @enderror
                                         </div>
                                        
