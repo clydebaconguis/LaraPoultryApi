@@ -62,20 +62,28 @@
                                                     <option  class="bg-light text-dark"  value="cancel">Cancel</option>
                                                 </select>
                                             @elseif($order->status == "failed")
-                                                <select name="orderstat" id="orderstat" class="btn btn-warning" onchange="this.form.submit()">
+                                                <select name="orderstat" id="orderstat" class="btn btn-warning ml-1" onchange="this.form.submit()">
                                                     <option  class="bg-light text-dark" selected>Select status</option>
-                                                    <option  class="bg-light text-dark" value="delivery">Approve</option>
+                                                    <option  class="bg-light text-dark" disabled value="delivery">Approve</option>
                                                     <option  class="bg-light text-dark" value="delivered">Delivered</option>
-                                                    <option  class="bg-light text-dark" value="failed">Failed</option>
+                                                    <option  class="bg-light text-dark" disabled value="failed">Failed</option>
                                                     <option  class="bg-light text-dark"  value="cancel">Cancel</option>
                                                 </select>
-                                            @else
+                                            @elseif($order->status == "for approval")
                                             <select name="orderstat" id="orderstat" class="btn btn-danger ml-1" onchange="this.form.submit()">
                                                 <option  class="bg-light text-dark" selected>Select status</option>
                                                 <option  class="bg-light text-dark" value="delivery">Approve</option>
+                                                <option  class="bg-light text-dark" disabled value="delivered">Delivered</option>
+                                                <option  class="bg-light text-dark" disabled value="failed">Failed</option>
+                                                <option  class="bg-light text-dark"  value="cancel">Cancel</option>
+                                            </select>
+                                            @else
+                                            <select name="orderstat" id="orderstat" class="btn btn-danger ml-1" onchange="this.form.submit()">
+                                                <option  class="bg-light text-dark" selected>Select status</option>
+                                                <option  class="bg-light text-dark" disabled value="delivery">Approve</option>
                                                 <option  class="bg-light text-dark" value="delivered">Delivered</option>
                                                 <option  class="bg-light text-dark" value="failed">Failed</option>
-                                                <option  class="bg-light text-dark"  value="cancel">Cancel</option>
+                                                <option  class="bg-light text-dark" value="cancel">Cancel</option>
                                             </select>
                                             @endif
                                         </form>
