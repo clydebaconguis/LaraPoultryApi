@@ -168,64 +168,56 @@ Route::get('/orders', function () {
 });
 
 Route::post('/orderstat/{orderid}', function ($orderid, Request $request) {
-    $exist = Transaction::find($orderid)->where('status', $request['orderstat'])->first();
-    if(!$exist){
-        $today = Carbon::now();
-        $tomorrow = $today->addDay();
-        if($request['orderstat'] == "delivery"){
-            $forApproval = Transaction::find($orderid)->where('status','for approval')->first();
-            if($forApproval){
-                Transaction::find($orderid)->update([
-                    'status' => $request['orderstat'],
-                    'date_to_deliver' => $tomorrow ]);
-                $orders = Order::where('transaction_id', $orderid)->get();
-                foreach ($orders as $ord) {
-                    $stock = "";
-                    $stock = ProductCategory::find($ord['product_category_id']);
-                    $diff = $stock->stock - $ord->qty;
-                    $stock->update(['stock' => $diff]);
-                }
-                return back()->with('message', 'Status updated successfully!');
-            }else{
-                return back()->with('message', 'Invalid ksjdlfkjd Status input!');
-            }
-        }else if ($request['orderstat'] == "cancel"){
-            Transaction::find($orderid)->update(['status' => $request['orderstat']]);
+    $today = Carbon::now();
+    $tomorrow = $today->addDay();
+    if($request['orderstat'] == "delivery"){
+        $forApproval = Transaction::find($orderid)->where('status','for approval')->first();
+        if($forApproval){
+            Transaction::find($orderid)->update([
+                'status' => $request['orderstat'],
+                'date_to_deliver' => $tomorrow ]);
             $orders = Order::where('transaction_id', $orderid)->get();
             foreach ($orders as $ord) {
                 $stock = "";
                 $stock = ProductCategory::find($ord['product_category_id']);
-                $sum = $stock->stock + $ord->qty;
-                $stock->update(['stock' => $sum]);
+                $diff = $stock->stock - $ord->qty;
+                $stock->update(['stock' => $diff]);
             }
-            return back()->with('message', 'status updated successfully!');
-
-        }else if ($request['orderstat'] == "delivered"){
-            $proven = Transaction::find($orderid)->where('status', 'delivery')->first();
-            if($proven){
-                Transaction::find($orderid)->update([
-                    'status' => $request['orderstat'],
-                ]);
-            }else{
-                return back()->with('message', 'Order not yet verified!');
-            }
-        }else if($request['orderstat'] == "failed"){
-            $proven = Transaction::find($orderid)->where('status', 'delivery')->first();
-            if($proven){
-                Transaction::find($orderid)->update([
-                    'status' => $request['orderstat'],
-                    'date_to_deliver' => $tomorrow
-                ]);
-                return back()->with('message', 'Order Rescheduled successfully on'. $tomorrow);
-            }
-            
+            return back()->with('message', 'Status updated successfully!');
+        }else{
+            return back()->with('message', 'Invalid ksjdlfkjd Status input!');
         }
+    }else if ($request['orderstat'] == "cancel"){
+        Transaction::find($orderid)->update(['status' => $request['orderstat']]);
+        $orders = Order::where('transaction_id', $orderid)->get();
+        foreach ($orders as $ord) {
+            $stock = "";
+            $stock = ProductCategory::find($ord['product_category_id']);
+            $sum = $stock->stock + $ord->qty;
+            $stock->update(['stock' => $sum]);
+        }
+        return back()->with('message', 'status updated successfully!');
 
-        return back()->with('message', 'Status updated successfully!');
-    }else{
-        return back()->with('message', 'Invalid Status input!');
+    }else if ($request['orderstat'] == "delivered"){
+        $proven = Transaction::find($orderid)->where('status', 'delivery')->first();
+        if($proven){
+            Transaction::find($orderid)->update([
+                'status' => $request['orderstat'],
+            ]);
+        }else{
+            return back()->with('message', 'Order not yet verified!');
+        }
+    }else if($request['orderstat'] == "failed"){
+        $proven = Transaction::find($orderid)->where('status', 'delivery')->first();
+        if($proven){
+            Transaction::find($orderid)->update([
+                'status' => $request['orderstat'],
+                'date_to_deliver' => $tomorrow
+            ]);
+            return back()->with('message', 'Order Rescheduled successfully on'. $tomorrow);
+        }
+        
     }
-
 });
 
 Route::get('/users', function () {
