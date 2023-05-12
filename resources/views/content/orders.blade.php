@@ -19,8 +19,8 @@
                                 <th>Name</th>
                                 <th>Total</th>
                                 <th>Status</th>
-                                <th>Date</th>
-                                <th id="sorter">
+                                <th id="sorter">Date</th>
+                                <th>
                                     <img style="display:none" src="" alt="" onload="sort();">
                                     Action
                                 </th>
