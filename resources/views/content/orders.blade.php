@@ -5,6 +5,8 @@
         <!-- Page Heading -->
         <h1 class="h3 mb-4 text-gray-800">Orders</h1>
 
+        @if(session()->has('message')) <p class="alert alert-success">{{session('message')}}</p> @endif
+
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">

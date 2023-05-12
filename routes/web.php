@@ -185,6 +185,7 @@ Route::post('/orderstat/{orderid}', function ($orderid, Request $request) {
                     $diff = $stock->stock - $ord->qty;
                     $stock->update(['stock' => $diff]);
                 }
+                return back()->with('message', 'Status updated successfully!');
             }else{
                 return back()->with('message', 'Invalid Status input!');
             }
