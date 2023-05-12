@@ -13,14 +13,14 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
+                        <thead onload="sort();">
                             <tr>
                                 <th>OrderId</th>
                                 <th>Name</th>
                                 <th>Total</th>
                                 <th>Status</th>
                                 <th>Date</th>
-                                <th onload="sort()" onclick="sort()" id="sorter">Action</th>
+                                <th id="sorter">Action</th>
                             </tr>
                         </thead>
                         <tfoot>
@@ -78,10 +78,10 @@
     <script>
         function sort(){
             alert('yawa ka');
-            var sorter = document.getElementById('sorter');
-            for(let i = 0; i < 2; i++){
-                sorter.click();
-            }
+            // var sorter = document.getElementById('sorter');
+            // for(let i = 0; i < 2; i++){
+            //     sorter.click();
+            // }
         }
     </script>
 </x-layout>
