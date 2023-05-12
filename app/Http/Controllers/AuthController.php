@@ -27,6 +27,7 @@ class AuthController extends Controller
         } else {
             $fields = $request->validate([
                 'name' => 'required|string',
+                'role' => 'required|string',
                 'email' => 'required|string',
                 'phone' => 'required|string',
                 'password' => 'required|string',
@@ -36,6 +37,7 @@ class AuthController extends Controller
 
         $user = User::create([
             'name' => $fields['name'],
+            'role' => $fields['role'],
             'email' => $fields['email'],
             'phone' => $fields['phone'],
             'address' => $fields['address'],
