@@ -33,7 +33,7 @@ Route::get('/verify/{id}', function ($id) {
     if ($result) {
         return redirect('/users');
     }
-});
+})->middleware('auth');
 
 Route::get('/addprod', function () {
     return view(
@@ -43,7 +43,7 @@ Route::get('/addprod', function () {
             'units' => Unit::all()
         ]
     );
-});
+})->middleware('auth');
 
 /**
  * Store a newly created resource in storage.
@@ -81,7 +81,7 @@ Route::post('/addproduct', function (Request $request) {
         }
         return back()->with('message', 'Added successfully!');
     }
-});
+})->middleware('auth');
 Route::post('/updateprod/{id}', function ($id, Request $request) {
 
     $products = $request->validate([
@@ -151,7 +151,7 @@ Route::get('/dash', function () {
         'totalUser' => $totalUser,
         'user' => auth()->user(),
     ]);
-})->middleware('auth')->name('home');
+})->name('home')->middleware('auth');
 
 Route::get('/products', function () {
     return view('content.products', ['products' => ProductCategory::orderBy('created_at', 'ASC')->get()]);
