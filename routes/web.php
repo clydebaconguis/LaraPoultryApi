@@ -146,7 +146,6 @@ Route::get('/dash', function () {
         'totalUser' => $totalUser,
         'user' => auth()->user(),
     ]);
-    return view('content.dashboard');
 })->middleware('auth');
 
 Route::get('/products', function () {
