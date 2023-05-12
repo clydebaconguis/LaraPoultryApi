@@ -48,7 +48,7 @@
                                     </div> 
                                     @endif
 
-                                    <form class="user" method="POST" action="{{ url('login') }}">
+                                    <form class="user" method="POST" action="/auth-admin">
                                         @csrf
                                         <div class="form-group">
                                             <input type="email" name="email" class="form-control form-control-user"

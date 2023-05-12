@@ -130,7 +130,7 @@ Route::post('/auth-admin', function (Request $request) {
     //     return redirect('/dash');
     // }
     // return redirect()->back()->withErrors(['email', 'Invalid Credentials']);
-})->name('login');
+});
 
 
 Route::get('/dash', function () {
