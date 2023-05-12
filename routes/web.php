@@ -184,10 +184,8 @@ Route::post('/orderstat/{orderid}', function ($orderid, Request $request) {
                 $stock->update(['stock' => $diff]);
             }
             return back()->with('message', 'Status updated successfully!');
-        }else{
-            return back()->with('message', 'Invalid ksjdlfkjd Status input!');
         }
-    }else if ($request['orderstat'] == "cancel"){
+    }else if($request['orderstat'] == "cancel"){
         Transaction::find($orderid)->update(['status' => $request['orderstat']]);
         $orders = Order::where('transaction_id', $orderid)->get();
         foreach ($orders as $ord) {
@@ -198,9 +196,9 @@ Route::post('/orderstat/{orderid}', function ($orderid, Request $request) {
         }
         return back()->with('message', 'status updated successfully!');
 
-    }else if ($request['orderstat'] == "delivered"){
-        $proven = Transaction::find($orderid)->where('status', 'delivery')->first();
-        if($proven){
+    }else if($request['orderstat'] == "delivered"){
+        $initial = Transaction::find($orderid)->where('status', 'for approval')->first();
+        if(!$initial){
             Transaction::find($orderid)->update([
                 'status' => $request['orderstat'],
             ]);
@@ -216,7 +214,6 @@ Route::post('/orderstat/{orderid}', function ($orderid, Request $request) {
             ]);
             return back()->with('message', 'Order Rescheduled successfully on'. $tomorrow);
         }
-        
     }
 });
 
