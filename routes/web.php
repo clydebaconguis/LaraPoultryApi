@@ -183,7 +183,6 @@ Route::post('/orderstat/{orderid}', function ($orderid, Request $request) {
                 $diff = $stock->stock - $ord->qty;
                 $stock->update(['stock' => $diff]);
             }
-            return back()->with('message', 'Status updated successfully!');
         }
     }else if($request['orderstat'] == "cancel"){
         Transaction::find($orderid)->update(['status' => $request['orderstat']]);
@@ -194,12 +193,12 @@ Route::post('/orderstat/{orderid}', function ($orderid, Request $request) {
             $sum = $stock->stock + $ord->qty;
             $stock->update(['stock' => $sum]);
         }
-        return back()->with('message', 'status updated successfully!');
 
     }else if($request['orderstat'] == "delivered"){
         Transaction::find($orderid)->update([
             'status' => $request['orderstat'],
         ]);
+        
     }else if($request['orderstat'] == "failed"){
         $proven = Transaction::find($orderid)->where('status', 'delivery')->first();
         if($proven){
@@ -210,6 +209,8 @@ Route::post('/orderstat/{orderid}', function ($orderid, Request $request) {
             return back()->with('message', 'Order Rescheduled successfully on'. $tomorrow);
         }
     }
+
+    return back()->with('message', 'status updated successfully!');
 });
 
 Route::get('/users', function () {
