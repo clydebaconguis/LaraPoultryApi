@@ -119,9 +119,9 @@ Route::get('/', function () {
 })->name('login');
 
 Route::post('/auth-admin', function (Request $request) {
-    $validated = $request->validate([
+    $request->validate([
         'email' => 'required|email',
-        'password' => 'required|',
+        'password' => 'required',
     ]);
 
     if(auth()->attempt(request()->only(['email', 'password']))){

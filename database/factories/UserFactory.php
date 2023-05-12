@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class UserFactory extends Factory
@@ -17,5 +18,5 @@ class UserFactory extends Factory
             //
         ];
     }
-    protected $model = Type::class;
+    protected $model = User::class;
 }
