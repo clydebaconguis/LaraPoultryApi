@@ -215,6 +215,8 @@ Route::post('/orderstat/{orderid}', function ($orderid, Request $request) {
         }
 
         return back()->with('message', 'Status updated successfully!');
+    }else{
+        return back()->with('message', 'Invalid Status input!');
     }
 
 });
