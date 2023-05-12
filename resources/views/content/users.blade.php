@@ -19,6 +19,7 @@
                                 <th>Address</th>
                                 <th>Phone</th>
                                 <th>Email</th>
+                                <th>Role</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -28,6 +29,7 @@
                                 <th>Address</th>
                                 <th>Phone</th>
                                 <th>Email</th>
+                                <th>Role</th>
                                 <th>Actions</th>
                             </tr>
                         </tfoot>
@@ -39,6 +41,7 @@
                                         <td>{{$user->address}}</td>
                                         <td>{{$user->phone}}</td>
                                         <td>{{$user->email}}</td>
+                                        <td>{{$user->role}}</td>
                                         <td>
                                             {{-- <form method="GET" action="/verify/{{$user->id}}">
                                                 @csrf
