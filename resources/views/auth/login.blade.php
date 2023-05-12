@@ -38,8 +38,17 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
-                                    @if(session()->has('message')) <p class="alert alert-danger">{{session('message')}}</p> @endif
-                                    <form class="user" method="POST" action="/auth-admin">
+                                    @if($errors->any()) 
+                                    <div class="bg-red-200 p-3">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div> 
+                                    @endif
+
+                                    <form class="user" method="POST" action="{{ url('login') }}">
                                         @csrf
                                         <div class="form-group">
                                             <input type="email" name="email" class="form-control form-control-user"

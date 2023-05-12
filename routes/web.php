@@ -15,6 +15,8 @@ use App\Models\ProductCategory;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\ProductCategoryController;
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -124,16 +126,10 @@ Route::post('/auth-admin', function (Request $request) {
         'password' => 'required',
     ]);
 
-    if(auth()->attempt(request()->only(['email', 'password']))){
-        return redirect('/dash');
-    }
-    return redirect()->back()->withErrors(['email', 'Invalid Credentials']);
-    // if($validated['email'] == "admin@admin" && $validated['pass'] == "admin123"){
+    // if(Auth::attempt(['email', 'password'])){
     //     return redirect('/dash');
     // }
-    // else{
-    //     return back()->with('message', 'Authentication failed!');
-    // }
+    // return redirect()->back()->withErrors(['email', 'Invalid Credentials']);
 });
 
 
