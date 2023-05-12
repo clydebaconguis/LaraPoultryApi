@@ -15,23 +15,7 @@
                         <label for="num">Gcash</label>
                         <input type="text" class="form-control" name="num" id="num" required placeholder="Enter Number">
                     </div>
-                    <input type="hidden" value="number" class="form-control" name="purpose" id="purpose">
                     <div>
-                        <button type="submit" class="mb-4 btn btn-primary">Add</button>
-                    </div>
-                </div>
-                <div>
-                    <h4>Add New Admin</h4>
-                    <div class="form-group">
-                        <label for="username">Email</label>
-                        <input type="email" class="form-control" name="username" id="username" required placeholder="Enter Email">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="text" class="form-control" name="password" id="password" required placeholder="Enter Password">
-                    </div>
-                    <div>
-                        <input type="hidden" value="admin" class="form-control" name="purpose" id="purpose">
                         <button type="submit" class="mb-4 btn btn-primary">Add</button>
                     </div>
                 </div>

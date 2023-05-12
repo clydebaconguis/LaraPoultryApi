@@ -151,7 +151,7 @@ Route::get('/dash', function () {
         'totalUser' => $totalUser,
         'user' => auth()->user(),
     ]);
-})->name('home')->middleware('auth');
+})->middleware('auth');
 
 Route::get('/products', function () {
     return view('content.products', ['products' => ProductCategory::orderBy('created_at', 'ASC')->get()]);
@@ -259,7 +259,6 @@ Route::post('/updateaccount/{account}', function (Account $account, Request $req
 
     $account->update([
         'num' => $request['num'],
-        'passcode' => $request['num']
     ]);
 
     return back()->with('message', 'Updated successfully!');
@@ -269,7 +268,6 @@ Route::post('/addaccount', function (Request $request) {
     $formfields = $request->validate([
         'num' => 'string',
     ]);
-    $formfields['passcode'] = $request['passcode'];
     Account::create($formfields);
     
     return back()->with('message', 'Added successfully!');
