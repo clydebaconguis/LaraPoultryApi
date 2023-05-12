@@ -168,33 +168,46 @@ Route::get('/orders', function () {
 });
 
 Route::post('/orderstat/{orderid}', function ($orderid, Request $request) {
-    $today = Carbon::now();
-    $tomorrow = $today->addDay();
-    if($request['orderstat'] == "delivery"){
-        Transaction::find($orderid)->update([
-            'status' => $request['orderstat'],
-            'date_to_deliver' => $tomorrow ]);
-        $orders = Order::where('transaction_id', $orderid)->get();
-        foreach ($orders as $ord) {
-            $stock = "";
-            $stock = ProductCategory::find($ord['product_category_id']);
-            $diff = $stock->stock - $ord->qty;
-            $stock->update(['stock' => $diff]);
+    $exist = Transaction::find($orderid)->where('status', $request['orderstat'])->first();
+    if(!$exist){
+        $today = Carbon::now();
+        $tomorrow = $today->addDay();
+        if($request['orderstat'] == "delivery"){
+            Transaction::find($orderid)->update([
+                'status' => $request['orderstat'],
+                'date_to_deliver' => $tomorrow ]);
+            $orders = Order::where('transaction_id', $orderid)->get();
+            foreach ($orders as $ord) {
+                $stock = "";
+                $stock = ProductCategory::find($ord['product_category_id']);
+                $diff = $stock->stock - $ord->qty;
+                $stock->update(['stock' => $diff]);
+            }
+        }else if ($request['orderstat'] == "cancel"){
+            Transaction::find($orderid)->update(['status' => $request['orderstat']]);
+            $orders = Order::where('transaction_id', $orderid)->get();
+            foreach ($orders as $ord) {
+                $stock = "";
+                $stock = ProductCategory::find($ord['product_category_id']);
+                $sum = $stock->stock + $ord->qty;
+                $stock->update(['stock' => $sum]);
+            }
+        }else if ($request['orderstat'] == "delivered"){
+            $proven = Transaction::find($orderid)->where('status', 'delivery')->first();
+            if($proven){
+                Transaction::find($orderid)->update([
+                    'status' => $request['orderstat'],
+                ]);
+            }
+        }else{
+            Transaction::find($orderid)->update([
+                'status' => $request['orderstat'],
+                'date_to_deliver' => $tomorrow
+            ]);
         }
-    }else if ($request['orderstat'] == "cancel"){
-        Transaction::find($orderid)->update(['status' => $request['orderstat']]);
-        $orders = Order::where('transaction_id', $orderid)->get();
-        foreach ($orders as $ord) {
-            $stock = "";
-            $stock = ProductCategory::find($ord['product_category_id']);
-            $sum = $stock->stock + $ord->qty;
-            $stock->update(['stock' => $sum]);
-        }
-    }else{
-        Transaction::find($orderid)->update(['status' => $request['orderstat']]);
-    }
 
-    return back()->with('message', 'Status updated successfully!');
+        return back()->with('message', 'Status updated successfully!');
+    }
 
 });
 

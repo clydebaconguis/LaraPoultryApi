@@ -56,6 +56,15 @@
                                                     <option  class="bg-light text-dark" selected>Select status</option>
                                                     <option  class="bg-light text-dark" value="delivery">Approve</option>
                                                     <option  class="bg-light text-dark" value="delivered">Delivered</option>
+                                                    <option  class="bg-light text-dark" value="failed">Failed</option>
+                                                    <option  class="bg-light text-dark"  value="cancel">Cancel</option>
+                                                </select>
+                                            @elseif($order->status == "failed")
+                                                <select name="orderstat" id="orderstat" class="btn btn-warning" onchange="this.form.submit()">
+                                                    <option  class="bg-light text-dark" selected>Select status</option>
+                                                    <option  class="bg-light text-dark" value="delivery">Approve</option>
+                                                    <option  class="bg-light text-dark" value="delivered">Delivered</option>
+                                                    <option  class="bg-light text-dark" value="failed">Failed</option>
                                                     <option  class="bg-light text-dark"  value="cancel">Cancel</option>
                                                 </select>
                                             @else
@@ -63,6 +72,7 @@
                                                 <option  class="bg-light text-dark" selected>Select status</option>
                                                 <option  class="bg-light text-dark" value="delivery">Approve</option>
                                                 <option  class="bg-light text-dark" value="delivered">Delivered</option>
+                                                <option  class="bg-light text-dark" value="failed">Failed</option>
                                                 <option  class="bg-light text-dark"  value="cancel">Cancel</option>
                                             </select>
                                             @endif
