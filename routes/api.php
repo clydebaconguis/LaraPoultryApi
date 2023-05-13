@@ -35,7 +35,7 @@ Route::post('/verify/{id}', [AuthController::class, 'verify']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/getUsers', [AuthController::class, 'getUsers']);
-Route::post('/logout', [AuthController::class, 'logout']);
+Route::get('/logout/{id}', [AuthController::class, 'logout']);
 
 // Categories routes
 Route::apiResource('product_categories', ProductCategoryController::class);
@@ -62,7 +62,6 @@ Route::get('/accounts', function () {
     return Account::all();
 });
 
-Route::post('/logout', [AuthController::class, 'logout']);
 Route::group(['middleware' => ['auth:sanctum']], function () {
 });
 
