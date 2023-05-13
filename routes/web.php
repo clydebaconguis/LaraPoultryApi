@@ -203,6 +203,7 @@ Route::post('/orderstat/{orderid}', function ($orderid, Request $request) {
     }else if($request['orderstat'] == "delivered"){
         Transaction::find($orderid)->update([
             'status' => $request['orderstat'],
+            'date_delivered' => $today,
         ]);
         
     }else if($request['orderstat'] == "failed"){
