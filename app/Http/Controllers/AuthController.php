@@ -83,7 +83,7 @@ class AuthController extends Controller
 
     public function logout($id)
     {
-        $user = User::find($id)->get();
+        $user = User::find($id);
         $user->tokens()->delete();
 
         return response()->json(['message' => "success"]);
