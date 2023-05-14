@@ -94,8 +94,8 @@
                                                 <option  class="bg-light text-dark" selected>Select status</option>
                                                 <option  class="bg-light text-dark" disabled value="preparing for delivery">Approve</option>
                                                 <option  class="bg-light text-dark" disabled value="delivery">On Delivery</option>
-                                                <option  class="bg-light text-dark" disabled value="delivered">Delivered</option>
-                                                <option  class="bg-light text-dark" disabled value="failed">Failed</option>
+                                                <option  class="bg-light text-dark" value="delivered">Delivered</option>
+                                                <option  class="bg-light text-dark" value="failed">Failed</option>
                                                 <option  class="bg-light text-dark" value="cancel">Cancel</option>
                                             </select>
                                             @endif
