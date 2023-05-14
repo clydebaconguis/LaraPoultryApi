@@ -51,13 +51,13 @@ Route::apiResource('carts', CartController::class);
 Route::apiResource('orders', OrderController::class);
 Route::post('/orderstat/{id}', function($id, Request $request){
     Transaction::find($id)->update(['status' => $request['orderstat']]);
-    $orders = Order::where('transaction_id', $id)->get();
-    foreach ($orders as $ord) {
-        $stock = "";
-        $stock = ProductCategory::find($ord['product_category_id']);
-        $sum = $stock->stock + $ord->qty;
-        $stock->update(['stock' => $sum]);
-    }
+        $orders = Order::where('transaction_id', $id)->get();
+        foreach ($orders as $ord) {
+            $stock = "";
+            $stock = ProductCategory::find($ord['product_category_id']);
+            $sum = $stock->stock + $ord->qty;
+            $stock->update(['stock' => $sum]);
+        }
 });
 
 // Transaction routes
