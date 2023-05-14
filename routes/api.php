@@ -2,7 +2,9 @@
 
 use App\Models\Cart;
 use App\Models\Size;
+use App\Models\Order;
 use App\Models\Orders;
+use App\Models\Account;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Models\ProductCategory;
@@ -16,7 +18,6 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PricingController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\ProductCategoryController;
-use App\Models\Account;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +49,16 @@ Route::apiResource('carts', CartController::class);
 
 // Orders routes
 Route::apiResource('orders', OrderController::class);
+Route::post('/orderstat/{id}', function($id, Request $request){
+    Transaction::find($id)->update(['status' => $request['orderstat']]);
+    $orders = Order::where('transaction_id', $id)->get();
+    foreach ($orders as $ord) {
+        $stock = "";
+        $stock = ProductCategory::find($ord['product_category_id']);
+        $sum = $stock->stock + $ord->qty;
+        $stock->update(['stock' => $sum]);
+    }
+});
 
 // Transaction routes
 Route::apiResource('transactions', TransactionController::class);
