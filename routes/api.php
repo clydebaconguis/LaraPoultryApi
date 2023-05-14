@@ -50,7 +50,7 @@ Route::apiResource('carts', CartController::class);
 // Orders routes
 Route::apiResource('orders', OrderController::class);
 Route::post('/orderstat/{id}', function($id, Request $request){
-    Transaction::find($id)->update(['status' => $request['orderstat']]);
+    Transaction::find($id)->update(['status' => $request['status']]);
         $orders = Order::where('transaction_id', $id)->get();
         foreach ($orders as $ord) {
             $stock = "";
