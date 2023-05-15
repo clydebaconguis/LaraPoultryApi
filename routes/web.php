@@ -121,7 +121,7 @@ Route::get('/', function () {
 })->name('login')->middleware('guest');
 
 Route::get('/logout', function () {
-    auth()->logout();
+    Auth::logout();
     return redirect('/');
 })->middleware('auth');
 
