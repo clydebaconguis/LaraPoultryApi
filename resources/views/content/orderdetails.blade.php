@@ -25,10 +25,12 @@
                                         src="https://drive.google.com/uc?export=view&id={{$detail->proof_of_delivery}}"> 
                                         
                                     @endif
-                                    @if ($detail->proof_of_payment)
+                                    
+                                    @if ($detail->proof_of_payment && $detail->payment_opt == "GCASH")
+                                        <p>{{$detail->proof_of_payment}}</p>
+                                    @else
                                         <img class="align-self-center img-fluid" style="width: 80px; height: 80px"
                                         src="https://drive.google.com/uc?export=view&id={{$detail->proof_of_payment}}"> 
-                                        
                                     @endif
                                 @endunless
                             </div>
