@@ -60,15 +60,14 @@ class TransactionController extends Controller
                     'proof_of_delivery' => $path['path'],
                 ]);
                 return response()->json(['message' => "Successfully delivered"]);
-            }else{
-                Transaction::find($request['orderId'])->update([   
-                    'status' => $request['status'],
-                    'date_to_deliver' => $tomorrow,
-                ]);
-
-                return response()->json(['message' => "Rescheduled Successfully"]);
             }
-            
+        }else{
+            Transaction::find($request['orderId'])->update([   
+                'status' => $request['status'],
+                'date_to_deliver' => $tomorrow,
+            ]);
+
+            return response()->json(['message' => "Rescheduled Successfully"]);
         }
 
 
