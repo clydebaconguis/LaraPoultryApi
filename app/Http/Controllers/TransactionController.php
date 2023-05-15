@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
+use Carbon\Carbon;
 use App\Models\Cart;
 use App\Models\Order;
-use App\Models\ProductCategory;
 use App\Models\Transaction;
-use DateTime;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\ProductCategory;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -37,21 +38,37 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
+        $today = Carbon::now();
+        $tomorrow = $today->addDay();
         if ($request->hasFile('image')) {
-            $filename = Str::random(10);
-            $request->file('image')->storeAs('', $filename, 'google');
-            $path = Storage::disk('google')->getMetadata($filename);
-            $pop = "";
-            if($request->payment == "COD"){
-                $pop = $path['path'];
-            }
+            if($request->status == "delivered"){
+                $filename = Str::random(10);
+                $request->file('image')->storeAs('', $filename, 'google');
+                $path = Storage::disk('google')->getMetadata($filename);
+                if($request->payment == "COD"){
+                    Transaction::find($request['orderId'])->update([   
+                        'status' => $request['status'],
+                        'date_delivered' => $today,
+                        'proof_of_delivery' => $path['path'],
+                        'proof_of_payment' => $path['path'],
+                    ]);
+                    return response()->json(['message' => "Successfully delivered"]);
+                }
+                Transaction::find($request['orderId'])->update([   
+                    'status' => $request['status'],
+                    'date_delivered' => $today,
+                    'proof_of_delivery' => $path['path'],
+                ]);
+                return response()->json(['message' => "Successfully delivered"]);
+            }else{
+                Transaction::find($request['orderId'])->update([   
+                    'status' => $request['status'],
+                    'date_to_deliver' => $tomorrow,
+                ]);
 
-            Transaction::find($request['orderId'])->update([   
-                'status' => $request['status'],
-                'date_delivered' => date('Y-m-d H:i:s'),
-                'proof_of_delivery' => $path['path'],
-                'proof_of_payment' => $pop,
-            ]);
+                return response()->json(['message' => "Rescheduled Successfully"]);
+            }
+            
         }
 
 
