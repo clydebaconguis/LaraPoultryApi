@@ -38,40 +38,6 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        $today = Carbon::now();
-        $tomorrow = $today->addDay();
-        if ($request->status == "delivered") {
-            $filename = Str::random(10);
-            $request->file('image')->storeAs('', $filename, 'google');
-            $path = Storage::disk('google')->getMetadata($filename);
-            if($request['payment'] == "COD"){
-                Transaction::find($request['orderId'])->update([   
-                    'status' => $request['status'],
-                    'date_delivered' => $today,
-                    'proof_of_delivery' => $path['path'],
-                    'proof_of_payment' => $path['path'],
-                ]);
-                return response()->json(['message' => "Successfully delivered"]);
-            }else{
-                Transaction::find($request['orderId'])->update([   
-                    'status' => $request['status'],
-                    'date_delivered' => $today,
-                    'proof_of_delivery' => $path['path'],
-                ]);
-                return response()->json(['message' => "Successfully delivered"]);
-            }
-            
-        }
-
-        if(!$request->hasFile('image') && $request['status'] == "failed"){
-            Transaction::find($request['orderId'])->update([   
-                'status' => $request['status'],
-                'date_to_deliver' => $tomorrow,
-            ]);
-
-            return response()->json(['message' => "Rescheduled Successfully"]);
-        }
-
         if($request->has("purpose") && $request->purpose == "store"){
             $formfields = $request->validate([
                 'user_add' => 'required|string',
@@ -126,28 +92,41 @@ class TransactionController extends Controller
      * @param  \App\Models\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id )
+    public function update(Request $request,$rowId)
     {
-        // $formfields = $request->validate([
-        //     'image' => 'image|mimes:jpg,jpeg,png',
-        //     'status' => 'required',
-        // ]);
-        // if ($request->hasFile('image')) {
-        //     // $filename = Str::random(10);
-        //     // $request->file('image')->storeAs('', $filename, 'google');
-        //     // $path = Storage::disk('google')->getMetadata($filename);
-        //     // $formfields['image'] = $path['path'];
-        //     // if($request->payment == "COD"){
-        //     //     $formfields['proof_of_payment'] = $path['path'];
-        //     // }
+        $today = Carbon::now();
+        $tomorrow = $today->addDay();
+        if ($request->status == "delivered") {
+            $filename = Str::random(10);
+            $request->file('image')->storeAs('', $filename, 'google');
+            $path = Storage::disk('google')->getMetadata($filename);
+            if($request['payment'] == "COD"){
+                Transaction::find($rowId)->update([   
+                    'status' => $request['status'],
+                    'date_delivered' => $today,
+                    'proof_of_delivery' => $path['path'],
+                    'proof_of_payment' => $path['path'],
+                ]);
+                return response()->json(['message' => "Successfully delivered"]);
+            }else{
+                Transaction::find($rowId)->update([   
+                    'status' => $request['status'],
+                    'date_delivered' => $today,
+                    'proof_of_delivery' => $path['path'],
+                ]);
+                return response()->json(['message' => "Successfully delivered"]);
+            }
+            
+        }
 
-        //     Transaction::find($id)->update([   
-        //         'status' => $formfields['status'],
-        //         'date_delivered' => date('Y-m-d H:i:s'),
-        //         // 'proof_of_delivery' => $$formfields['image'],
-        //         // 'proof_of_payment' => $$$formfields['proof_of_payment'],
-        //     ]);
-        // }
+        if(!$request->hasFile('image') && $request['status'] == "failed"){
+            Transaction::find($rowId)->update([   
+                'status' => $request['status'],
+                'date_to_deliver' => $tomorrow,
+            ]);
+
+            return response()->json(['message' => "Rescheduled Successfully"]);
+        }
     }
 
     /**
