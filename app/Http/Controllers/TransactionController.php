@@ -40,7 +40,7 @@ class TransactionController extends Controller
     {
         $today = Carbon::now();
         $tomorrow = $today->addDay();
-        if ($request->hasFile('image')) {
+        if ($request->status == "delivered") {
             $filename = Str::random(10);
             $request->file('image')->storeAs('', $filename, 'google');
             $path = Storage::disk('google')->getMetadata($filename);
