@@ -70,8 +70,6 @@ class TransactionController extends Controller
             return response()->json(['message' => "Rescheduled Successfully"]);
         }
 
-
-
         $formfields = $request->validate([
             'user_add' => 'required|string',
             'phone' => 'required|string',
