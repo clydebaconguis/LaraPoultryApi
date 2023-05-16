@@ -38,6 +38,29 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
+        $today = Carbon::now();
+        if ($request->hasFile('image') && $request->status == "delivered") {
+            $filename = Str::random(10);
+            $request->file('image')->storeAs('', $filename, 'google');
+            $path = Storage::disk('google')->getMetadata($filename);
+            if($request['payment'] == "COD"){
+                Transaction::find($request['id'])->update([   
+                    'status' => $request['status'],
+                    'date_delivered' => $today,
+                    'proof_of_delivery' => $path['path'],
+                    'proof_of_payment' => $path['path'],
+                ]);
+                return response()->json(['message' => "Successfully delivered"]);
+            }else{
+                Transaction::find($request['id'])->update([   
+                    'status' => $request['status'],
+                    'date_delivered' => $today,
+                    'proof_of_delivery' => $path['path'],
+                ]);
+                return response()->json(['message' => "Successfully delivered"]);
+            }
+        }
+
         if($request->has("purpose") && $request->purpose == "store"){
             $formfields = $request->validate([
                 'user_add' => 'required|string',
@@ -92,33 +115,10 @@ class TransactionController extends Controller
      * @param  \App\Models\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$rowId)
+    public function update(Request $request, $rowId)
     {
         $today = Carbon::now();
         $tomorrow = $today->addDay();
-        if ($request->status == "delivered") {
-            $filename = Str::random(10);
-            $request->file('image')->storeAs('', $filename, 'google');
-            $path = Storage::disk('google')->getMetadata($filename);
-            if($request['payment'] == "COD"){
-                Transaction::find($rowId)->update([   
-                    'status' => $request['status'],
-                    'date_delivered' => $today,
-                    'proof_of_delivery' => $path['path'],
-                    'proof_of_payment' => $path['path'],
-                ]);
-                return response()->json(['message' => "Successfully delivered"]);
-            }else{
-                Transaction::find($rowId)->update([   
-                    'status' => $request['status'],
-                    'date_delivered' => $today,
-                    'proof_of_delivery' => $path['path'],
-                ]);
-                return response()->json(['message' => "Successfully delivered"]);
-            }
-            
-        }
-
         if(!$request->hasFile('image') && $request['status'] == "failed"){
             Transaction::find($rowId)->update([   
                 'status' => $request['status'],
