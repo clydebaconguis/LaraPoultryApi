@@ -40,7 +40,7 @@ class TransactionController extends Controller
     {
         $today = Carbon::now();
         $tomorrow = $today->addDay();
-        if ($request->hasFile('image')) {
+        if ($request->hasFile('image') && !$request->has("purpose")) {
             if($request->status == "delivered"){
                 $filename = Str::random(10);
                 $request->file('image')->storeAs('', $filename, 'google');
@@ -61,7 +61,7 @@ class TransactionController extends Controller
                 ]);
                 return response()->json(['message' => "Successfully delivered"]);
             }
-        }else{
+        }else if(!$request->hasFile('image') && !$request->has("purpose")){
             Transaction::find($request['orderId'])->update([   
                 'status' => $request['status'],
                 'date_to_deliver' => $tomorrow,
