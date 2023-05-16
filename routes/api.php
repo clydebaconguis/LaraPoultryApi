@@ -49,8 +49,10 @@ Route::apiResource('carts', CartController::class);
 
 // Orders routes
 Route::apiResource('orders', OrderController::class);
-Route::post('/orderstat/{id}', function($id, Request $request){
-    Transaction::find($id)->update(['status' => $request['status']]);
+
+Route::post('/orderstat/{id}/cancel', function($id, Request $request){
+    if($request->status == "cancel"){
+        Transaction::find($id)->update(['status' => $request['status']]);
         $orders = Order::where('transaction_id', $id)->get();
         foreach ($orders as $ord) {
             $stock = "";
@@ -58,6 +60,7 @@ Route::post('/orderstat/{id}', function($id, Request $request){
             $sum = $stock->stock + $ord->qty;
             $stock->update(['stock' => $sum]);
         }
+    }
 });
 
 // Transaction routes

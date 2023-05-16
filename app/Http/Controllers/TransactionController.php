@@ -70,16 +70,15 @@ class TransactionController extends Controller
             return response()->json(['message' => "Rescheduled Successfully"]);
         }
 
-        $formfields = $request->validate([
-            'user_add' => 'required|string',
-            'phone' => 'required|string',
-            'total_payment' => 'required',
-            'payment_opt' => 'required|string',
-            'user_id' => 'required',
-            'status' => 'string',
-        ]);
-
         if($request->has("purpose") && $request->purpose == "store"){
+            $formfields = $request->validate([
+                'user_add' => 'required|string',
+                'phone' => 'required|string',
+                'total_payment' => 'required',
+                'payment_opt' => 'required|string',
+                'user_id' => 'required',
+                'status' => 'string',
+            ]);
             $formfields['lat'] = $request->lat;
             $formfields['long'] = $request->long;
             if($request->has('proof_of_payment')){
