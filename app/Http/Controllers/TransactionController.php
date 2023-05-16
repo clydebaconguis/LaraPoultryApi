@@ -79,28 +79,31 @@ class TransactionController extends Controller
             'status' => 'string',
         ]);
 
-        $formfields['lat'] = $request->lat;
-        $formfields['long'] = $request->long;
-        if($request->has('proof_of_payment')){
-            $formfields['proof_of_payment'] = $request->proof_of_payment;
-        }
-        $formfields['trans_code'] = Str::random(10);
-        $transaction = Transaction::create($formfields);
+        if($request->has("purpose") && $request->purpose == "store"){
+            $formfields['lat'] = $request->lat;
+            $formfields['long'] = $request->long;
+            if($request->has('proof_of_payment')){
+                $formfields['proof_of_payment'] = $request->proof_of_payment;
+            }
+            $formfields['trans_code'] = Str::random(10);
+            $transaction = Transaction::create($formfields);
 
-        $products = json_decode($request['products'], true);
-        foreach ($products as $item) {
-            $prod = [
-                'product_category_id' => $item['product_category_id'],
-                'transaction_id' => $transaction['id'],
-                'size' => $item['size'],
-                'qty' => $item['qty'],
-            ];
-            Order::create($prod);
-            $prod = array();
+            $products = json_decode($request['products'], true);
+            foreach ($products as $item) {
+                $prod = [
+                    'product_category_id' => $item['product_category_id'],
+                    'transaction_id' => $transaction['id'],
+                    'size' => $item['size'],
+                    'qty' => $item['qty'],
+                ];
+                Order::create($prod);
+                $prod = array();
+            }
+            Cart::where('user_id', $formfields['user_id'])->delete();
+            $transaction['message'] = 'Success';
+            return response($transaction, 201);
         }
-        Cart::where('user_id', $formfields['user_id'])->delete();
-        $transaction['message'] = 'Success';
-        return response($transaction, 201);
+
     }
 
     /**
