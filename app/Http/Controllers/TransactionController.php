@@ -40,11 +40,12 @@ class TransactionController extends Controller
     {
         $today = Carbon::now();
         $tomorrow = $today->addDay();
-        if ($request->hasFile('image') && $request['status'] == "delivered") {
+        if ($request->hasFile('image') && $request->status == "delivered") {
             $filename = Str::random(10);
             $request->file('image')->storeAs('', $filename, 'google');
             $path = Storage::disk('google')->getMetadata($filename);
-            if($request->payment == "COD"){
+            $opt = Transaction::find($request['orderId'])->payment_opt;
+            if($opt == "COD"){
                 Transaction::find($request['orderId'])->update([   
                     'status' => $request['status'],
                     'date_delivered' => $today,
@@ -52,13 +53,15 @@ class TransactionController extends Controller
                     'proof_of_payment' => $path['path'],
                 ]);
                 return response()->json(['message' => "Successfully delivered"]);
+            }else{
+                Transaction::find($request['orderId'])->update([   
+                    'status' => $request['status'],
+                    'date_delivered' => $today,
+                    'proof_of_delivery' => $path['path'],
+                ]);
+                return response()->json(['message' => "Successfully delivered"]);
             }
-            Transaction::find($request['orderId'])->update([   
-                'status' => $request['status'],
-                'date_delivered' => $today,
-                'proof_of_delivery' => $path['path'],
-            ]);
-            return response()->json(['message' => "Successfully delivered"]);
+            
         }
 
         if(!$request->hasFile('image') && $request['status'] == "failed"){
