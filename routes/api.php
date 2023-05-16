@@ -51,7 +51,8 @@ Route::apiResource('carts', CartController::class);
 Route::apiResource('orders', OrderController::class);
 
 Route::post('/orderstat/{id}/cancel', function($id, Request $request){
-    if($request->status == "cancel"){
+    $transac = Transaction::find($id);
+    if($request->status == "cancel" && $transac->status =="for approval" || $transac->status =="preparing for delivery" ){
         Transaction::find($id)->update(['status' => $request['status']]);
         $orders = Order::where('transaction_id', $id)->get();
         foreach ($orders as $ord) {
@@ -60,6 +61,8 @@ Route::post('/orderstat/{id}/cancel', function($id, Request $request){
             $sum = $stock->stock + $ord->qty;
             $stock->update(['stock' => $sum]);
         }
+
+        return response()->json(['message' => "cancelled"]);
     }
 });
 
