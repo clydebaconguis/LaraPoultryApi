@@ -40,12 +40,11 @@ class TransactionController extends Controller
     {
         $today = Carbon::now();
         $tomorrow = $today->addDay();
-        if ($request->hasFile('image') && $request->status == "delivered") {
+        if ($request->hasFile('image')) {
             $filename = Str::random(10);
             $request->file('image')->storeAs('', $filename, 'google');
             $path = Storage::disk('google')->getMetadata($filename);
-            $opt = Transaction::find($request['orderId'])->payment_opt;
-            if($opt == "COD"){
+            if($request['payment'] == "COD"){
                 Transaction::find($request['orderId'])->update([   
                     'status' => $request['status'],
                     'date_delivered' => $today,
