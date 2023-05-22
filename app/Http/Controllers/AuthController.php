@@ -91,6 +91,6 @@ class AuthController extends Controller
 
     public function chpass($id, Request $request){
         User::find($id)->update(['password'=> $request['password'] ]);
-        return response()->json(['message' => "success"])
+        return response()->json(['message' => "success"]);
     }
 }
