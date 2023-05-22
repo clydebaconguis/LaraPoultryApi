@@ -228,7 +228,7 @@
                 @endunless
                 <h6 class="m-0 font-weight-bold text-primary">{{$status}}
                     Total Item for Approval{{count($orders2)}}
-                @endif</h6>
+                </h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
