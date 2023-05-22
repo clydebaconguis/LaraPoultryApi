@@ -94,82 +94,130 @@
         </div>
     </div>
 
-    <!-- Content Row -->
-    <div class="row">
+    <div class="container-fluid">
 
-        <!-- Area Chart -->
-        <div class="col-xl-8 col-lg-7">
-            <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div
-                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-                    <div class="dropdown no-arrow">
-                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                            aria-labelledby="dropdownMenuLink">
-                            <div class="dropdown-header">Dropdown Header:</div>
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                    <div class="chart-area">
-                        <canvas id="myAreaChart"></canvas>
-                    </div>
-                </div>
+        <!-- Page Heading -->
+        <h1 class="h3 mb-4 text-gray-800">Orders</h1>
+
+        @if(session()->has('message')) <p class="alert alert-success">{{session('message')}}</p> @endif
+
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                @unless (count($orders) == 0)        
+                @php
+                    $total = 0;
+                    $status = "";
+                    foreach($orders as $order) {
+                        $total += $order['total_payment'];
+                        $status = $order['status'];
+                    }
+                @endphp
+                @endunless
+                <h6 class="m-0 font-weight-bold text-primary">{{$status}} @if ($status == "delivery")
+                    Grand Total {{$total}}
+                @endif</h6>
             </div>
-        </div>
-
-        <!-- Pie Chart -->
-        <div class="col-xl-4 col-lg-5">
-            <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div
-                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
-                    <div class="dropdown no-arrow">
-                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                            aria-labelledby="dropdownMenuLink">
-                            <div class="dropdown-header">Dropdown Header:</div>
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                    <div class="chart-pie pt-4 pb-2">
-                        <canvas id="myPieChart"></canvas>
-                    </div>
-                    <div class="mt-4 text-center small">
-                        <span class="mr-2">
-                            <i class="fas fa-circle text-primary"></i> Direct
-                        </span>
-                        <span class="mr-2">
-                            <i class="fas fa-circle text-success"></i> Social
-                        </span>
-                        <span class="mr-2">
-                            <i class="fas fa-circle text-info"></i> Referral
-                        </span>
-                    </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>OrderId</th>
+                                <th>Name</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th id="sorter">Date</th>
+                                <th>
+                                    <img style="display:none" src="" alt="" onload="sort();">
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>OrderId</th>
+                                <th>Name</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>Action</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @unless (count($orders) == 0)           
+                            @foreach ($orders as $order)
+                            <tr>
+                                <td>{{$order->trans_code}}</td>
+                                <td>{{$order->name}}</td>
+                                <td>{{$order->total_payment}}</td>
+                                <td>{{$order->status}}</td>
+                                <td>{{$order->created_at}}</td>
+                                <td>
+                                    <p hidden >{{$order->id}}</p>
+                                    <div>
+                                        <form method="POST" action="/orderstat/{{$order->id}}">
+                                        @csrf
+                                            <a type="button" class="btn btn-info" href="/orderdetails/{{$order->id}}">Details</a>
+                                            @if($order->status == "cancel"||$order->status == "delivered")
+                                                <select name="orderstat" id="orderstat" class="btn btn-secondary ml-1" disabled onchange="this.form.submit()">
+                                                    <option  class="bg-light text-dark" selected>Select status</option>
+                                                    <option  class="bg-light text-dark" value="preparing for delivery">Approve</option>
+                                                    <option  class="bg-light text-dark" value="delivery">On Delivery</option>
+                                                    <option  class="bg-light text-dark" value="delivered">Delivered</option>
+                                                    <option  class="bg-light text-dark" value="failed">Failed</option>
+                                                    <option  class="bg-light text-dark"  value="cancel">Cancel</option>
+                                                </select>
+                                            @elseif($order->status == "failed")
+                                                <select name="orderstat" id="orderstat" class="btn btn-warning ml-1" onchange="this.form.submit()">
+                                                    <option  class="bg-light text-dark" selected>Select status</option>
+                                                    <option  class="bg-light text-dark" disabled value="preparing for delivery">Approve</option>
+                                                    <option  class="bg-light text-dark" disabled value="delivery">On Delivery</option>
+                                                    <option  class="bg-light text-dark" value="delivered">Delivered</option>
+                                                    <option  class="bg-light text-dark" disabled value="failed">Failed</option>
+                                                    <option  class="bg-light text-dark"  value="cancel">Cancel</option>
+                                                </select>
+                                            @elseif($order->status == "for approval")
+                                            <select name="orderstat" id="orderstat" class="btn btn-danger ml-1" onchange="this.form.submit()">
+                                                <option  class="bg-light text-dark" selected>Select status</option>
+                                                <option  class="bg-light text-dark" value="preparing for delivery">Approve</option>
+                                                <option  class="bg-light text-dark" disabled value="delivery">On Delivery</option>
+                                                <option  class="bg-light text-dark" disabled value="delivered">Delivered</option>
+                                                <option  class="bg-light text-dark" disabled value="failed">Failed</option>
+                                                <option  class="bg-light text-dark" value="cancel">Cancel</option>
+                                            </select>
+                                            @elseif($order->status == "preparing for delivery")
+                                            <select name="orderstat" id="orderstat" class="btn btn-danger ml-1" onchange="this.form.submit()">
+                                                <option  class="bg-light text-dark" selected>Select status</option>
+                                                <option  class="bg-light text-dark" disabled value="preparing for delivery">Approve</option>
+                                                <option  class="bg-light text-dark" value="delivery">On Delivery</option>
+                                                <option  class="bg-light text-dark" disabled value="delivered">Delivered</option>
+                                                <option  class="bg-light text-dark" disabled value="failed">Failed</option>
+                                                <option  class="bg-light text-dark" value="cancel">Cancel</option>
+                                            </select>
+                                            @else
+                                            <select name="orderstat" id="orderstat" class="btn btn-danger ml-1" onchange="this.form.submit()">
+                                                <option  class="bg-light text-dark" selected>Select status</option>
+                                                <option  class="bg-light text-dark" disabled value="preparing for delivery">Approve</option>
+                                                <option  class="bg-light text-dark" disabled value="delivery">On Delivery</option>
+                                                <option  class="bg-light text-dark" value="delivered">Delivered</option>
+                                                <option  class="bg-light text-dark" value="failed">Failed</option>
+                                                <option  class="bg-light text-dark" value="cancel">Cancel</option>
+                                            </select>
+                                            @endif
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                            @endunless
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
+    
     <script>
         let p1 = document.getElementById('dash-admin').innerHTML;
         let p2 = document.getElementById('admin-title');
