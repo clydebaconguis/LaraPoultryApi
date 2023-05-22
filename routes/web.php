@@ -291,5 +291,9 @@ Route::post('/addaccount', function (Request $request) {
 })->middleware('auth');
 
 Route::get('/ondelivery', function () {
-    return view('content.ondelivery', ['orders' => Transaction::where('status', 'delivery')->get()]);
+    return view('content.ondelivery', 
+    [
+        'orders' => Transaction::where('status', 'delivery')->get(), 
+        'done' => Transaction::where('status', 'delivered')->get()
+    ]);
 })->middleware('auth');

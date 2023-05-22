@@ -118,6 +118,105 @@
                 </div>
             </div>
         </div>
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>OrderId</th>
+                                <th>Name</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th id="sorter">Date</th>
+                                <th>
+                                    <img style="display:none" src="" alt="" onload="sort();">
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>OrderId</th>
+                                <th>Name</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>Action</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @unless (count($done) == 0)           
+                            @foreach ($done as $item)
+                            <tr>
+                                <td>{{$item->trans_code}}</td>
+                                <td>{{$item->name}}</td>
+                                <td>{{$item->total_payment}}</td>
+                                <td>{{$item->status}}</td>
+                                <td>{{$item->created_at}}</td>
+                                <td>
+                                    <p hidden >{{$item->id}}</p>
+                                    <div>
+                                        <form method="POST" action="/orderstat/{{$item->id}}">
+                                        @csrf
+                                            <a type="button" class="btn btn-info" href="/orderdetails/{{$item->id}}">Details</a>
+                                            @if($item->status == "cancel"||$item->status == "delivered")
+                                                <select name="orderstat" id="orderstat" class="btn btn-secondary ml-1" disabled onchange="this.form.submit()">
+                                                    <option  class="bg-light text-dark" selected>Select status</option>
+                                                    <option  class="bg-light text-dark" value="preparing for delivery">Approve</option>
+                                                    <option  class="bg-light text-dark" value="delivery">On Delivery</option>
+                                                    <option  class="bg-light text-dark" value="delivered">Delivered</option>
+                                                    <option  class="bg-light text-dark" value="failed">Failed</option>
+                                                    <option  class="bg-light text-dark"  value="cancel">Cancel</option>
+                                                </select>
+                                            @elseif($item->status == "failed")
+                                                <select name="orderstat" id="orderstat" class="btn btn-warning ml-1" onchange="this.form.submit()">
+                                                    <option  class="bg-light text-dark" selected>Select status</option>
+                                                    <option  class="bg-light text-dark" disabled value="preparing for delivery">Approve</option>
+                                                    <option  class="bg-light text-dark" disabled value="delivery">On Delivery</option>
+                                                    <option  class="bg-light text-dark" value="delivered">Delivered</option>
+                                                    <option  class="bg-light text-dark" disabled value="failed">Failed</option>
+                                                    <option  class="bg-light text-dark"  value="cancel">Cancel</option>
+                                                </select>
+                                            @elseif($item->status == "for approval")
+                                            <select name="orderstat" id="orderstat" class="btn btn-danger ml-1" onchange="this.form.submit()">
+                                                <option  class="bg-light text-dark" selected>Select status</option>
+                                                <option  class="bg-light text-dark" value="preparing for delivery">Approve</option>
+                                                <option  class="bg-light text-dark" disabled value="delivery">On Delivery</option>
+                                                <option  class="bg-light text-dark" disabled value="delivered">Delivered</option>
+                                                <option  class="bg-light text-dark" disabled value="failed">Failed</option>
+                                                <option  class="bg-light text-dark" value="cancel">Cancel</option>
+                                            </select>
+                                            @elseif($item->status == "preparing for delivery")
+                                            <select name="orderstat" id="orderstat" class="btn btn-danger ml-1" onchange="this.form.submit()">
+                                                <option  class="bg-light text-dark" selected>Select status</option>
+                                                <option  class="bg-light text-dark" disabled value="preparing for delivery">Approve</option>
+                                                <option  class="bg-light text-dark" value="delivery">On Delivery</option>
+                                                <option  class="bg-light text-dark" disabled value="delivered">Delivered</option>
+                                                <option  class="bg-light text-dark" disabled value="failed">Failed</option>
+                                                <option  class="bg-light text-dark" value="cancel">Cancel</option>
+                                            </select>
+                                            @else
+                                            <select name="orderstat" id="orderstat" class="btn btn-danger ml-1" onchange="this.form.submit()">
+                                                <option  class="bg-light text-dark" selected>Select status</option>
+                                                <option  class="bg-light text-dark" disabled value="preparing for delivery">Approve</option>
+                                                <option  class="bg-light text-dark" disabled value="delivery">On Delivery</option>
+                                                <option  class="bg-light text-dark" value="delivered">Delivered</option>
+                                                <option  class="bg-light text-dark" value="failed">Failed</option>
+                                                <option  class="bg-light text-dark" value="cancel">Cancel</option>
+                                            </select>
+                                            @endif
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                            @endunless
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
     <script>
         window.onload = function(){
