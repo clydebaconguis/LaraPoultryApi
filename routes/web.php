@@ -154,6 +154,10 @@ Route::get('/dash', function () {
         ->join('users', 'transactions.user_id', "=", 'users.id')
         ->where('transactions.status', 'delivery')
         ->orderBy('id', 'desc')->get() ,
+        'orders2' => Transaction::select('transactions.*','users.name')
+        ->join('users', 'transactions.user_id', "=", 'users.id')
+        ->where('transactions.status', 'for approval')
+        ->orderBy('id', 'desc')->get() ,
     ]);
 })->middleware('auth');
 
