@@ -289,3 +289,7 @@ Route::post('/addaccount', function (Request $request) {
     
     return back()->with('message', 'Added successfully!');
 })->middleware('auth');
+
+Route::get('/ondelivery', function () {
+    return view('content.ondelivery', ['orders' => Order::where('status', 'delivery')->get()]);
+})->middleware('auth');

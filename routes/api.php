@@ -52,7 +52,7 @@ Route::apiResource('orders', OrderController::class);
 
 Route::post('/orderstat/{id}/cancel', function($id, Request $request){
     $transac = Transaction::find($id);
-    if($request->status == "cancel" && $transac->status =="for approval" || $transac->status =="preparing for delivery" ){
+    if($request->status == "cancel" && $transac->status =="for approval"){
         Transaction::find($id)->update(['status' => $request['status']]);
         $orders = Order::where('transaction_id', $id)->get();
         foreach ($orders as $ord) {
