@@ -112,9 +112,10 @@
                                         </div>
                                     </td>
                                 </tr>
-                                @endforeach
-                                @endunless
+                                
                             @endif
+                            @endforeach
+                            @endunless
                         </tbody>
                     </table>
                 </div>
@@ -214,9 +215,9 @@
                                         </div>
                                     </td>
                                 </tr>
-                                @endforeach
-                                @endunless
                             @endif
+                            @endforeach
+                            @endunless
                         </tbody>
                     </table>
                 </div>
