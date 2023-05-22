@@ -150,6 +150,10 @@ Route::get('/dash', function () {
         'totalOrder' => $totalOrder,
         'totalUser' => $totalUser,
         'user' => auth()->user(),
+        'orders' => Transaction::select('transactions.*','users.name')
+        ->join('users', 'transactions.user_id', "=", 'users.id')
+        ->where('transactions.status', 'delivery')
+        ->orderBy('id', 'desc')->get() ,
     ]);
 })->middleware('auth');
 
