@@ -14,7 +14,7 @@
                 @php
                     $total = 0;
                     foreach($orders as $order) {
-                        $total += $order['total_payment']
+                        $total += $order['total_payment'];
                     }
                 @endphp
                 @endunless
