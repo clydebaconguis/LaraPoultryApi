@@ -90,7 +90,11 @@ class AuthController extends Controller
     }
 
     public function chpass($id, Request $request){
-        User::find($id)->update(['password' => bcrypt($request['password'])]);
-        return response()->json(['message' => "success"]);
+        $user = User::find($id);
+        if(Hash::check($request['old_password'], $user->password)){
+            User::find($id)->update(['password' => bcrypt($request['password'])]);
+            return response()->json(['message' => "success"]);
+        }
+        return response()->json(['message' => "failed"]);
     }
 }
