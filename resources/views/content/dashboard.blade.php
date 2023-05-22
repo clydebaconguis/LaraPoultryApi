@@ -227,7 +227,7 @@
                 @endphp
                 @endunless
                 <h6 class="m-0 font-weight-bold text-primary">{{$status}}
-                    Total Item for Approval{{count($orders2)}}
+                    Total Item {{count($orders2)}}
                 </h6>
             </div>
             <div class="card-body">
