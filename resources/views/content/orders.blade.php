@@ -11,7 +11,10 @@
         <div class="card shadow mb-4">
             <div class="d-flex justify-content-between card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">DataTables Poultry</h6>
-                <a class="btn btn-primary ms-5" href="/ondelivery">Show List of Delivery</a>
+                <a class="btn btn-primary ms-5" href="/forapproval">For Approval</a>
+                <a class="btn btn-primary ms-5" href="/preparing">Preparing for Delivery</a>
+                <a class="btn btn-primary ms-5" href="/ondelivery">On Deliverey</a>
+                <a class="btn btn-primary ms-5" href="/delivered">Delivered</a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">

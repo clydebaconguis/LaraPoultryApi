@@ -290,11 +290,39 @@ Route::post('/addaccount', function (Request $request) {
     return back()->with('message', 'Added successfully!');
 })->middleware('auth');
 
+Route::get('/forapproval', function () {
+    return view('content.ondelivery',
+     [
+        'orders' => Transaction::select('transactions.*','users.name')
+        ->join('users', 'transactions.user_id', "=", 'users.id')
+        ->where('transactions.status', 'for approval')
+        ->orderBy('id', 'desc')->get()
+    ]);
+})->middleware('auth');
+Route::get('/preparing', function () {
+    return view('content.ondelivery',
+     [
+        'orders' => Transaction::select('transactions.*','users.name')
+        ->join('users', 'transactions.user_id', "=", 'users.id')
+        ->where('transactions.status', 'preparing for delivery')
+        ->orderBy('id', 'desc')->get()
+    ]);
+})->middleware('auth');
 Route::get('/ondelivery', function () {
     return view('content.ondelivery',
      [
         'orders' => Transaction::select('transactions.*','users.name')
         ->join('users', 'transactions.user_id', "=", 'users.id')
+        ->where('transactions.status', 'delivery')
+        ->orderBy('id', 'desc')->get()
+    ]);
+})->middleware('auth');
+Route::get('/delivered', function () {
+    return view('content.ondelivery',
+     [
+        'orders' => Transaction::select('transactions.*','users.name')
+        ->join('users', 'transactions.user_id', "=", 'users.id')
+        ->where('transactions.status', 'delivered')
         ->orderBy('id', 'desc')->get()
     ]);
 })->middleware('auth');
