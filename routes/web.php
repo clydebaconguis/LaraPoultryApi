@@ -295,11 +295,11 @@ Route::get('/ondelivery', function () {
      [
         'orders' => Transaction::select('transactions.*','users.name')
         ->join('users', 'transactions.user_id', "=", 'users.id')
-        ->where('status', 'delivery')
+        ->where('transactions.status', 'delivery')
         ->orderBy('id', 'desc')->get(),
         'done' => Transaction::select('transactions.*','users.name')
         ->join('users', 'transactions.user_id', "=", 'users.id')
-        ->where('status', 'delivered')
+        ->where('transactions.status', 'delivered')
         ->orderBy('id', 'desc')->get()
     ]);
 })->middleware('auth');
