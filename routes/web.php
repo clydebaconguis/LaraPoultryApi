@@ -291,7 +291,7 @@ Route::post('/addaccount', function (Request $request) {
 })->middleware('auth');
 
 Route::get('/ondelivery', function () {
-    return view('content.orders',
+    return view('content.ondelivery',
      [
         'orders' => Transaction::select('transactions.*','users.name')
         ->join('users', 'transactions.user_id', "=", 'users.id')
