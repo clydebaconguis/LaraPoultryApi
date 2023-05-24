@@ -44,8 +44,8 @@
                 
                 <div class="form-group">
                     <label for="type">Categories</label>
-                    <form method="GET" action="/dropdown">
-                        <select class="form-control" aria-label="Default select example" onchange="this.form.submit()" id="type" name="type" class="p-2">
+                    <form method="GET" action="/dropdown" id="myform">
+                        <select class="form-control" aria-label="Default select example" onchange="document.getElementById('myform').submit()" id="type" name="type" class="p-2">
                             <option selected>Select Types</option>
                             @unless (count($types) == 0)  
                                 @foreach ($types as $type)
