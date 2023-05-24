@@ -40,7 +40,18 @@ Route::get('/addprod', function () {
         'content.addprod',
         [
             'types' => Type::all(),
-            'units' => Unit::all()
+            'units'=> Unit::all(),
+        ]
+    );
+})->middleware('auth');
+Route::get('/dropdown', function (Request $request) {
+    return view(
+        'content.addprod',
+        [
+            'units' => Unit::select('units.*','types.name')
+            ->join('types', 'units.type_id', "=", 'types.id')
+            ->where('units.type_id', $request['id'])
+            ->get(),
         ]
     );
 })->middleware('auth');
