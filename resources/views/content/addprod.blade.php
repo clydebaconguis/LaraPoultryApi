@@ -59,12 +59,11 @@
 
                 <div class="form-group">
                     <label for="unit">Unit</label>
-                    <p>{{$units}}</p>
                     <select class="form-control" aria-label="Default select example" id="unit" name="unit" class="p-2">
                         <option selected>Select Unit</option>
                         @unless (count($units) == 0)           
                             @foreach ($units as $unit)
-                                <option value={{$unit->unit}}>{{$unit->unit}} - {{$unit['type.name']}}</option>
+                                <option value={{$unit->unit}}>{{$unit->unit}} - {{$unit['name']}}</option>
                             @endforeach
                         @endunless
                     </select>
