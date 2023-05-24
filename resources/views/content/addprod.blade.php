@@ -43,21 +43,20 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="type">Categories</label>
                     <form method="GET" action="/dropdown" id="myform">
+                    <label for="type">Categories</label>
                         <select class="form-control" aria-label="Default select example" onchange="document.getElementById('myform').submit()" id="type" name="type" class="p-2">
                             <option selected>Select Types</option>
                             @unless (count($types) == 0)  
                                 @foreach ($types as $type)
-                                    <option value={{$type->name}}>{{$type->name}} </option>
-                                    <input type="hidden" value={{$type->id}} name="id">
+                                    <option value={{$type->name}}>{{$type->name}} <input type="hidden" value={{$type->id}} name="id"> </option>
                                 @endforeach
                             @endunless
                         </select>
-                    </form>
-                    @error('type')
+                        @error('type')
                         <p class="alert alert-danger">{{$message}}</p>
-                    @enderror
+                        @enderror
+                    </form>
                 </div>
 
                 <div class="form-group">
