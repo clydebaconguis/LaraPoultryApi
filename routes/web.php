@@ -105,6 +105,21 @@ Route::post('/addproduct', function (Request $request) {
         return back()->with('message', 'Added successfully!');
     }
 })->middleware('auth');
+Route::get('/chprodstat/{id}/enabled', function($id){
+    
+    ProductCategory::find($id)->update(['status' => 1]);
+
+    return back()->with('message', 'Changed Status Success');
+
+});
+Route::get('/chprodstat/{id}/disable', function($id){
+    
+    ProductCategory::find($id)->update(['status' => 0]);
+
+    return back()->with('message', 'Changed Status Success');
+
+});
+
 Route::post('/updateprod/{id}', function ($id, Request $request) {
 
     $products = $request->validate([

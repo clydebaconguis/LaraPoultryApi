@@ -21,6 +21,13 @@
                     <label for="prodname">Product Name</label>
                     <input class="form-control" value="{{$products->name}}" id="prodname" name="name" type="text" placeholder="Product Name">
                 </div>
+
+                @if ($products->status == 1)
+                    <a type="button" class="btn btn-success" href="/chprodstat/{{$products->id}}/disable" >Disable</a>
+                @else
+                    <a type="button" class="btn btn-success"  href="/chprodstat/{{$products->id}}/enable">Enable</a>
+                @endif
+
                 <div class="form-group">
                         <label for="stock">Stocks</label>
                         <input type="number" value="{{$products->stock}}" class="form-control" name="stock" id="stock" placeholder="Stock">
