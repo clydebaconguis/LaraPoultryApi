@@ -334,3 +334,36 @@ Route::get('/delivered', function () {
         ->orderBy('id', 'desc')->get()
     ]);
 })->middleware('auth');
+
+Route::post('/showtype', function(){
+    return view('content.addtype');
+});
+
+Route::post('/addtype', function(Request $request){
+    $isTaken = Type::where('name', $request['name'])->first();
+    if ($isTaken) {
+        return response(['message' => 'Redundant Category!'], 200);
+    }
+
+    $formfields = $request->validate([
+        'name' => 'required|string',
+    ]);
+    $id = Type::create($formfields)->id;
+
+    $params = $request['units'];
+    $tags = explode(',', $params);
+    $units = array();
+    foreach ($tags as $item) {
+        if ($item != "" || $item != null) {
+            $units = array();
+            $units = [
+                'type_id' => $id,
+                'unit' => trim($item),
+            ];
+            Unit::create($units);
+        }
+    }
+    if ($units) {
+        return response(['message' => 'Success!'], 201);
+    }
+} );
