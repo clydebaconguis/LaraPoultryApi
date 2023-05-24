@@ -86,12 +86,18 @@ Route::post('/addproduct', function (Request $request) {
             $units = Unit::select('units.*','types.name')
             ->join('types', 'units.type_id', "=", 'types.id')
             ->where('units.id', $request['unit'])
-            ->get();
+            ->first();
+            $unit_type = ""; 
+            $unit_unit = ""; 
+            foreach($units as $item){
+                $unit_type = $item['name'];
+                $unit_unit = $item['unit'];
+            }
 
             $price = [
                 'product_category_id' => $id,
-                'type' => $units['name'],
-                'unit' => $units['unit'],
+                'type' => $unit_type,
+                'unit' => $unit_unit,
                 'value' => $request['price'],
             ];
             Pricing::create($price);
