@@ -103,7 +103,7 @@
                     }
                 @endphp
                 @endunless
-                <h6 class="m-0 font-weight-bold text-primary">{{$status}}
+                <h6 class="m-0 font-weight-bold text-primary">Orders
                     Grand Total {{$total}}
                 </h6>
             </div>
@@ -215,7 +215,7 @@
                     }
                 @endphp
                 @endunless
-                <h6 class="m-0 font-weight-bold text-primary">{{$status}}
+                <h6 class="m-0 font-weight-bold text-primary">
                     Total Item {{count($orders2)}}
                 </h6>
             </div>
