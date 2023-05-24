@@ -86,7 +86,7 @@ Route::post('/addproduct', function (Request $request) {
             $units = Unit::select('units.*','types.name')
             ->join('types', 'units.type_id', "=", 'types.id')
             ->where('units.id', $request['unit'])
-            ->first();
+            ->get();
             $unit_type = ""; 
             $unit_unit = ""; 
             foreach($units as $item){
