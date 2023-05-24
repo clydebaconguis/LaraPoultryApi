@@ -335,7 +335,7 @@ Route::get('/delivered', function () {
     ]);
 })->middleware('auth');
 
-Route::post('/showtype', function(){
+Route::get('/showtype', function(){
     return view('content.addtype');
 });
 
