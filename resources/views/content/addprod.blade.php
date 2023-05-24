@@ -49,9 +49,8 @@
                             <option selected>Select Types</option>
                             @unless (count($types) == 0)  
                                 @foreach ($types as $type)
-                                    <option value={{$type->name}}>{{$type->name}} 
-                                        <input type="hidden" value={{$type->id}} name="id">
-                                    </option>
+                                    <option value={{$type->name}}>{{$type->name}} </option>
+                                    <input type="hidden" value={{$type->id}} name="id">
                                 @endforeach
                             @endunless
                         </select>
