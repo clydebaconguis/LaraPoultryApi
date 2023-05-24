@@ -24,17 +24,15 @@ class AuthController extends Controller
         $taken = User::where('email', $request['email'])->first();
         if ($taken) {
             return response(['message' => "Email is already taken!"], 201);
-        } else {
-            $fields = $request->validate([
-                'name' => 'required|string',
-                'role' => 'required|string',
-                'email' => 'required|string',
-                'phone' => 'required|string',
-                'password' => 'required|string',
-                'address' => 'required|string',
-            ]);
-        }
-
+        } 
+        $fields = $request->validate([
+            'name' => 'required|string',
+            'role' => 'required|string',
+            'email' => 'required|string',
+            'phone' => 'required|string',
+            'password' => 'required|string',
+            'address' => 'required|string',
+        ]);
         $user = User::create([
             'name' => $fields['name'],
             'role' => $fields['role'],
@@ -45,15 +43,10 @@ class AuthController extends Controller
             'status' => 0
         ]);
 
-        // $token = $user->createToken('myapptoken')->plainTextToken;
-
-        $response = [
+        return response()->json([
             'message' => 'success',
-            'user' => $user,
-            // 'token' => $token
-        ];
-
-        return response($response, 201);
+            'user' => $user->email 
+        ]);
     }
 
     public function login(Request $request)
