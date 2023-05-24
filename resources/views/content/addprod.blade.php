@@ -67,9 +67,6 @@
                         <option selected>Select Unit</option>
                         @unless (count($units) == 0)           
                             @foreach ($units as $unit)
-                                @if ($unit->type_id ==  )
-                                    
-                                @endif
                                 <option value={{$unit->unit}}>{{$unit->unit}}</option>
                             @endforeach
                         @endunless
