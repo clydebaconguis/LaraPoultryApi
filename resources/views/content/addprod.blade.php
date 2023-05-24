@@ -42,8 +42,7 @@
                     @enderror
                 </div>
                 
-                <div class="form-group">
-                    <label for="type">Categories</label>
+                {{-- <div class="form-group">
                     <select class="form-control" aria-label="Default select example" id="type" name="type" class="p-2">
                         <option selected>Select Types</option>
                         @unless (count($types) == 0)  
@@ -55,15 +54,15 @@
                     @error('type')
                     <p class="alert alert-danger">{{$message}}</p>
                     @enderror
-                </div>
+                </div> --}}
 
                 <div class="form-group">
-                    <label for="unit">Unit</label>
+                    <label for="type">Categories</label>
                     <select class="form-control" aria-label="Default select example" id="unit" name="unit" class="p-2">
                         <option selected>Select Unit</option>
                         @unless (count($units) == 0)           
                             @foreach ($units as $unit)
-                                <option value={{$unit->unit}}>{{$unit->unit}} - {{$unit['name']}}</option>
+                                <option value={{$unit->id}}>{{$unit->unit}} - {{$unit['name']}}</option>
                             @endforeach
                         @endunless
                     </select>

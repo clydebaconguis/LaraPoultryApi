@@ -39,7 +39,6 @@ Route::get('/addprod', function () {
     return view(
         'content.addprod',
         [
-            'types' => Type::all(),
             'units' => Unit::select('units.*','types.name')
             ->join('types', 'units.type_id', "=", 'types.id')
             ->get(),
@@ -74,7 +73,6 @@ Route::post('/addproduct', function (Request $request) {
             'stock' => 'required',
             'price' => 'required',
             'unit' => 'required',
-            'type' => 'required',
 
         ]);
         if ($request->hasFile('image')) {
@@ -85,10 +83,15 @@ Route::post('/addproduct', function (Request $request) {
             $products['image'] = $path['path'];
             $id = ProductCategory::create($products)->id;
 
+            $units = Unit::select('units.*','types.name')
+            ->join('types', 'units.type_id', "=", 'types.id')
+            ->where('units.id', $request['unit'])
+            ->get();
+
             $price = [
                 'product_category_id' => $id,
-                'type' => $request['type'],
-                'unit' => $request['unit'],
+                'type' => $units['name'],
+                'unit' => $units['unit'],
                 'value' => $request['price'],
             ];
             Pricing::create($price);
