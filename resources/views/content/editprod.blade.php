@@ -13,6 +13,11 @@
         <div class="card col-sm-10 p-4">
             <div class="text-center">
                 <img src="https://drive.google.com/uc?export=view&id={{$products->image}}" style="width: 80px; height: 80px" class="rounded img-thumbnail" alt="image">
+                @if ($products->status == 1)
+                    <a type="button" class="btn btn-success" href="/chprodstat/{{$products->id}}/disable" >Disable</a>
+                @else
+                    <a type="button" class="btn btn-success"  href="/chprodstat/{{$products->id}}/enable">Enable</a>
+                @endif
             </div>
 
             <form method="POST" name="myform" id="myform" action="/updateprod/{{$products->id}}" enctype="multipart/form-data">
@@ -21,12 +26,6 @@
                     <label for="prodname">Product Name</label>
                     <input class="form-control" value="{{$products->name}}" id="prodname" name="name" type="text" placeholder="Product Name">
                 </div>
-
-                @if ($products->status == 1)
-                    <a type="button" class="btn btn-success" href="/chprodstat/{{$products->id}}/disable" >Disable</a>
-                @else
-                    <a type="button" class="btn btn-success"  href="/chprodstat/{{$products->id}}/enable">Enable</a>
-                @endif
 
                 <div class="form-group">
                         <label for="stock">Stocks</label>

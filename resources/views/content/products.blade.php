@@ -44,9 +44,11 @@
                                 @foreach ($products as $product)
                                     <tr>
                                         <td> <image class="rounded-circle justify-content-center" style="width: 50px; height: 50px" src="https://drive.google.com/uc?export=view&id={{$product->image}}" /></td>
-                                        <td>{{$product->name}}</td>
+                                        <td class="text-danger">{{$product->name}}</td>
                                         @if ($product->status == 1)
-                                            <td>Active</td>
+                                            <td class="text-success">Active</td>
+                                        @else
+                                            <td class="text-danger">Disable</td>
                                         @endif
                                         <td>{{$product->stock}}</td>
                                         <td>{{$product->created_at}}</td>
