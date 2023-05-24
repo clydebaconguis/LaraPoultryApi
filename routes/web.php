@@ -364,6 +364,6 @@ Route::post('/addtype', function(Request $request){
         }
     }
     if ($units) {
-        return response(['message' => 'Success!'], 201);
+        return back()->with('message', 'Added successfully!');
     }
 } );

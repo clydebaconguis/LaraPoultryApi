@@ -29,7 +29,7 @@
                 </div>
                 <div class="form-group">
                     <label for="price">Price</label>
-                    <input type="number" class="form-control" name="price" id="price" placeholder="price">
+                    <input type="number" step="0.01" class="form-control" name="price" id="price" placeholder="price">
                     @error('price')
                         <p class="alert alert-danger">{{$message}}</p>
                     @enderror
