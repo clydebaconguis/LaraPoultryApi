@@ -63,7 +63,7 @@
                         <option selected>Select Unit</option>
                         @unless (count($units) == 0)           
                             @foreach ($units as $unit)
-                                <option value={{$unit->unit}}>{{$unit->unit}} - {{$units['type.name']}}</option>
+                                <option value={{$unit->unit}}>{{$unit->unit}} - {{$unit['type.name']}}</option>
                             @endforeach
                         @endunless
                     </select>
