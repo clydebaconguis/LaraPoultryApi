@@ -30,7 +30,7 @@
                 @foreach ($prices as $key => $price)
                     <div class="form-group">
                         <label for="price">Price</label>
-                        <input type="number" class="form-control" value="{{$price->value}}" name="price[]" id="price" placeholder="price">
+                        <input type="number" step="0.01" class="form-control" value="{{$price->value}}" name="price[]" id="price" placeholder="price">
                         <input type="hidden" class="form-control" value="{{$price->id}}" name="priceid[]" id="priceid">
                     </div>
                  @endforeach
