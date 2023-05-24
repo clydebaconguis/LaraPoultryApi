@@ -31,6 +31,9 @@ class DatabaseSeeder extends Seeder
         $manureid = Type::factory()->create([
             'name' => 'Manure',
         ]);
+        $wholeid = Type::factory()->create([
+            'name' => 'Whole Chicken',
+        ]);
 
         Unit::factory()->create([
             'unit' => 'small',
@@ -59,6 +62,10 @@ class DatabaseSeeder extends Seeder
         Unit::factory()->create([
             'unit' => 'per sack',
             'type_id' => $manureid,
+        ]);
+        Unit::factory()->create([
+            'unit' => 'Whole chicken',
+            'type_id' => $wholeid,
         ]);
         User::factory()->create([
             'name' => 'Admin Admin',
