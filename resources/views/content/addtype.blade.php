@@ -11,7 +11,7 @@
         <div class="content">
         <div class="col-sm-12 justify-content-center flex">
         <div class="card col-sm-10 p-4">
-            <form method="POST" action="/addproduct" enctype="multipart/form-data">
+            <form method="POST" action="/addtype" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="name">Category Name</label>
@@ -22,7 +22,7 @@
                 </div>
                 <div class="form-group">
                     <label for="units">Unit</label>
-                    <input type="number" class="form-control" name="units" id="units">
+                    <input class="form-control" id="units" name="units" type="text">
                     @error('units')
                         <p class="alert alert-danger">{{$message}}</p>
                     @enderror
