@@ -92,10 +92,13 @@
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
+            @php
+                $total = 0;
+            @endphp
             <div class="card-header py-3">
                 @unless (count($orders) == 0)        
                 @php
-                    $total = 0;
+                    
                     $status = "";
                     foreach($orders as $order) {
                         $total += $order['total_payment'];
