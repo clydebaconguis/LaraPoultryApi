@@ -40,7 +40,7 @@ class AuthController extends Controller
             'phone' => $fields['phone'],
             'address' => $fields['address'],
             'password' => bcrypt($fields['password']),
-            'status' => 0
+            'status' => 1
         ]);
 
         return response()->json([
