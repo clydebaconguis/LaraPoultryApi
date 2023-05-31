@@ -19,9 +19,9 @@ class SMSController extends Controller
             $twilioPhoneNumber = getenv('TWILIO_PHONE_NUMBER');
         
             $client = new Client($twilioSid, $twilioToken);
-            $otp = 0;
+            $otp = "";
             for($i = 0; $i < 6; $i++){
-                $otp = random_int(0,9);
+                $otp += random_int(0,9);
             }
             $message = $client->messages->create(
                 $recepient_number, // Replace with the recipient's phone number
