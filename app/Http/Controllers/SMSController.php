@@ -27,7 +27,7 @@ class SMSController extends Controller
                 $recepient_number, // Replace with the recipient's phone number
                 [
                     'from' => $twilioPhoneNumber,
-                    'body' => 'This your OTP number'. $otp,
+                    'body' => 'This your OTP number'.' '. $otp,
                     ]
                 );
 
