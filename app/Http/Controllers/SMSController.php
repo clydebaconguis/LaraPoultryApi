@@ -9,9 +9,9 @@ class SMSController extends Controller
 {
     public function sendSMS()
     {
-        $twilioSid = config('AC059f3f94f14e644fa5cd620573124bb0');
-        $twilioToken = config('c3414b8b80cfdf81107bcc58d515e6a5');
-        $twilioPhoneNumber = config('09554587790');
+        $twilioSid = 'AC38cfc82cf11ba3870047bd70af58fd6c';
+        $twilioToken = 'c1122f11c22765e25b9fd5a2189ed449';
+        $twilioPhoneNumber = '09554587790';
         
         $client = new Client($twilioSid, $twilioToken);
         
