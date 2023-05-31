@@ -33,7 +33,7 @@ use App\Http\Controllers\ProductCategoryController;
 // Public routes
 
 Route::post('/verify/{id}', [AuthController::class, 'verify']);
-Route::post('/register', [AuthController::class, 'register']);
+Route::post('/register', [AuthController::class, 'register'])->middleware(['verified']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/getUsers', [AuthController::class, 'getUsers']);
 Route::get('/logout/{id}', [AuthController::class, 'logout']);
