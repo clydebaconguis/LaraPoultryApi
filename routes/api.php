@@ -84,7 +84,7 @@ Route::get('/accounts', function () {
 Route::group(['middleware' => ['auth:sanctum']], function () {
 });
 
-Route::get('/send-sms', [SMSController::class, 'sendSMS']);
+Route::get('/send-sms/{id}', [SMSController::class, 'sendSMS']);
 
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
