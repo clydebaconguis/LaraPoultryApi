@@ -9,9 +9,9 @@ use Illuminate\Http\Request;
 
 class SMSController extends Controller
 {
-    public function sendSMS(Request $request)
+    public function sendSMS($id)
     {
-        $recepient_number = preg_replace('~.*(\d{3})[^\d]{0,7}(\d{3})[^\d]{0,7}(\d{4}).*~', '($1) $2-$3', $request->phone);
+        $recepient_number = preg_replace('~.*(\d{3})[^\d]{0,7}(\d{3})[^\d]{0,7}(\d{4}).*~', '($1) $2-$3', $id);
         try{
 
             $twilioSid = getenv('TWILIO_SID');
