@@ -4,25 +4,28 @@ namespace App\Http\Controllers;
 
 use Exception;
 use Twilio\Rest\Client;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class SMSController extends Controller
 {
-    public function sendSMS()
+    public function sendSMS(Request $request)
     {
+        $recepient_number = preg_replace('~.*(\d{3})[^\d]{0,7}(\d{3})[^\d]{0,7}(\d{4}).*~', '($1) $2-$3', $request->phone);
         try{
 
             $twilioSid = getenv('TWILIO_SID');
             $twilioToken = getenv('TWILIO_AUTH_TOKEN');
             $twilioPhoneNumber = getenv('TWILIO_PHONE_NUMBER');
-            
+        
             $client = new Client($twilioSid, $twilioToken);
             
+            $otp = Str::random_int(6,6);
             $message = $client->messages->create(
-                '+63 (955) 458‑7790', // Replace with the recipient's phone number
+                $recepient_number, // Replace with the recipient's phone number
                 [
                     'from' => $twilioPhoneNumber,
-                    'body' => 'This is a test message from Laravel using Twilio!',
+                    'body' => 'This your OTP number'. $otp,
                     ]
                 );
 
