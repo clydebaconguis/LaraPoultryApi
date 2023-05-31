@@ -9,6 +9,7 @@ use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Models\ProductCategory;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SMSController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\TypeController;
@@ -82,6 +83,8 @@ Route::get('/accounts', function () {
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 });
+
+Route::get('/send-sms', [SMSController::class, 'sendSMS']);
 
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
