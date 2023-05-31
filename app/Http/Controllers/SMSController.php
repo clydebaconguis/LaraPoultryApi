@@ -11,7 +11,7 @@ class SMSController extends Controller
 {
     public function sendSMS($id)
     {
-        $recepient_number = preg_replace('~.*(\d{3})[^\d]{0,7}(\d{3})[^\d]{0,7}(\d{4}).*~', '($1) $2-$3', $id);
+        $recepient_number = '+63'. ' '. preg_replace('~.*(\d{3})[^\d]{0,7}(\d{3})[^\d]{0,7}(\d{4}).*~', '($1) $2-$3', $id);
         try{
 
             $twilioSid = getenv('TWILIO_SID');
