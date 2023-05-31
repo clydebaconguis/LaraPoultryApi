@@ -20,7 +20,7 @@ class SMSController extends Controller
         
             $client = new Client($twilioSid, $twilioToken);
             
-            $otp = Str::random_int(6,6);
+            $otp = random_int(6,6);
             $message = $client->messages->create(
                 $recepient_number, // Replace with the recipient's phone number
                 [
@@ -29,7 +29,7 @@ class SMSController extends Controller
                     ]
                 );
 
-                dd("success");
+                return response()->json(['message' => 'success', 'otp' => $otp]);
                 
         }catch(Exception $e){
 
