@@ -32,7 +32,18 @@ class CartController extends Controller
             'user_id' => 'required',
             'product_category_id' => 'required',
         ]);
-
+        $isExist = Cart::where('user_id', $request['user_id'])->where('product_category_id', $request['product_category_id'])->first();
+        $newTray = $isExist['tray'] += $request['tray'];
+        $newTotal = $isExist['total'] += $request['total'];
+        if($isExist){
+            Cart::where('user_id', $request['user_id'])->where('product_category_id', $request['product_category_id'])
+            ->update(
+                [
+                'tray' => $newTray,
+                'total'=> $newTotal,
+            ]);
+            return response()->json(['message' => 'success']);
+        }
         return Cart::create($request->all());
     }
 
@@ -57,9 +68,13 @@ class CartController extends Controller
      * @param  \App\Models\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cart $cart)
+    public function update(Request $request, $id)
     {
-        $cart->update(['tray' => $request['tray'], 'total' => $request['total']]);
+        $rowCart = Cart::where('user_id', $id)->where('product_category_id', $request['product_id'])->first();
+        if($rowCart->tray > 1){
+            Cart::where('user_id', $id)->where('product_category_id', $request['product_id'])
+            ->update(['tray' => $request['tray'], 'total' => $request['total']]);
+        }
     }
 
     /**
@@ -68,8 +83,8 @@ class CartController extends Controller
      * @param  \App\Models\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cart $cart)
+    public function destroy($id, Request $request)
     {
-        $cart->delete();
+        Cart::where('user_id', $id)->where('product_category_id', $request['product_id'])->delete();
     }
 }
