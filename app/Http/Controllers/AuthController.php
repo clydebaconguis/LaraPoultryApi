@@ -48,7 +48,7 @@ class AuthController extends Controller
             'password' => bcrypt($fields['password']),
             'status' => 1
         ]);
-
+        $validOtp->delete();
         return response()->json([
             'message' => 'success',
             'user' => $user->email 
