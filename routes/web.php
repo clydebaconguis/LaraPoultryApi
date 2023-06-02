@@ -227,14 +227,17 @@ Route::post('/orderstat/{orderid}', function ($orderid, Request $request) {
     $today = Carbon::now();
     $tomorrow = $today->addDay();
     if($request['orderstat'] == "preparing for delivery"){
-        Transaction::find($orderid)->update([
-            'status' => $request['orderstat']]);
         $orders = Order::where('transaction_id', $orderid)->get();
         foreach ($orders as $ord) {
             $stock = "";
             $stock = ProductCategory::find($ord['product_category_id']);
             $diff = $stock->stock - $ord->qty;
+            if($diff < 0){
+                return back()->with('message', 'Negative stock'. $tomorrow);
+            }
             $stock->update(['stock' => $diff]);
+            Transaction::find($orderid)->update([
+                'status' => $request['orderstat']]);
         }
     }
     if($request['orderstat'] == "delivery"){
@@ -243,19 +246,7 @@ Route::post('/orderstat/{orderid}', function ($orderid, Request $request) {
             'date_to_deliver' => $tomorrow ]);
         $orders = Order::where('transaction_id', $orderid)->get();
         
-        // $forApproval = Transaction::find($orderid)->where('status','for approval')->first();
-        // if($forApproval){
-        //     Transaction::find($orderid)->update([
-        //         'status' => $request['orderstat'],
-        //         'date_to_deliver' => $tomorrow ]);
-        //     $orders = Order::where('transaction_id', $orderid)->get();
-        //     foreach ($orders as $ord) {
-        //         $stock = "";
-        //         $stock = ProductCategory::find($ord['product_category_id']);
-        //         $diff = $stock->stock - $ord->qty;
-        //         $stock->update(['stock' => $diff]);
-        //     }
-        // }
+       
     }else if($request['orderstat'] == "cancel"){
         Transaction::find($orderid)->update(['status' => $request['orderstat']]);
         $orders = Order::where('transaction_id', $orderid)->get();
