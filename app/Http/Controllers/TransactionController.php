@@ -88,8 +88,10 @@ class TransactionController extends Controller
                 ];
                 Order::create($prod);
                 $prod = array();
+                Cart::where('user_id', $formfields['user_id'])
+                ->where('product_category_id', $item['product_category_id'])
+                ->delete();
             }
-            Cart::where('user_id', $formfields['user_id'])->delete();
             $transaction['message'] = 'Success';
             return response($transaction, 201);
         }
