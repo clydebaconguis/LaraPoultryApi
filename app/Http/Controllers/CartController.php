@@ -71,11 +71,11 @@ class CartController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $rowCart = Cart::where('user_id', $id)->where('product_category_id', $request['product_id'])->first();
-        if($rowCart->tray > 1){
-            Cart::where('user_id', $id)->where('product_category_id', $request['product_id'])
-            ->update(['tray' => $request['tray'], 'total' => $request['total']]);
-        }
+        Cart::where('user_id', $id)->where('product_category_id', $request['product_id'])
+            ->update([
+                'tray' => $request['tray'], 
+                'total' => $request['total'],
+            ]);
     }
 
     /**
