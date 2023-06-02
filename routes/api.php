@@ -19,6 +19,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PricingController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\ProductCategoryController;
+use App\Models\Otp;
 
 /*
 |--------------------------------------------------------------------------
@@ -85,6 +86,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 });
 
 Route::get('/send-sms/{id}', [SMSController::class, 'sendSMS']);
+
+Route::get('/otp', function(){
+    return Otp::all();
+});
 
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {

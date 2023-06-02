@@ -40,7 +40,7 @@ class SMSController extends Controller
         }catch(Exception $e){
 
             // dd("Error:". $e->getMessage());
-            return response()->json(['message' => 'fail']);
+            // return response()->json(['message' => 'fail']);
         }
         // Optionally, you can handle the response or error here
         // For example, you can log the message ID or handle any exceptions
