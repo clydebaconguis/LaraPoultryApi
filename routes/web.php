@@ -200,7 +200,7 @@ Route::get('/dash', function () {
 })->middleware('auth');
 
 Route::get('/products', function () {
-    $products = ProductCategory::select('product_categories.*','pricings.unit')
+    $products = ProductCategory::select('product_categories.*','pricings.type')
         ->join('pricings', 'product_categories.id', "=", 'pricings.product_category_id')
         ->orderBy('created_at', 'ASC')->get();
 
