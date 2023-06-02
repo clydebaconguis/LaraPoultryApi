@@ -51,7 +51,7 @@
                                             <td class="text-danger">{{$product->name}}</td>
                                             <td class="text-danger">Disable</td>
                                         @endif
-                                        <td>{{$product->stock $type}}</td>
+                                        <td>{{$product->stock}} {{$type}}</td>
                                         <td>{{$product->created_at}}</td>
                                         <td><a type="button" class="btn btn-info" href="/editprod/{{$product->id}}/edit">Edit</a></td>
                                     </tr>
