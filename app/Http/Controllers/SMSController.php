@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Otp;
+use App\Models\User;
 use Exception;
 use Twilio\Rest\Client;
 use Illuminate\Support\Str;
@@ -28,14 +30,17 @@ class SMSController extends Controller
                 [
                     'from' => $twilioPhoneNumber,
                     'body' => 'This your OTP number'.' '. $otp,
-                    ]
-                );
-
+                ]
+            );
+            if($message->sid){
+                Otp::create(['otp' => $otp, 'sid' => $message->sid]);
                 return response()->json(['message' => 'success', 'otp' => $otp]);
+            }
                 
         }catch(Exception $e){
 
-            dd("Error:". $e->getMessage());
+            // dd("Error:". $e->getMessage());
+            return response()->json(['message' => 'fail']);
         }
         // Optionally, you can handle the response or error here
         // For example, you can log the message ID or handle any exceptions

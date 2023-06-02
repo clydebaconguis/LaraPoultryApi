@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Otp;
 use App\Models\User;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\Request;
@@ -22,10 +23,14 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
+        $validOtp = Otp::where('otp', $request['otp'])->first();
         $taken = User::where('email', $request['email'])->first();
         if ($taken) {
             return response(['message' => "Email is already taken!"], 201);
         } 
+        if(!$validOtp){
+            return response()->json(['message' => "Invalid otp!"], 201);
+        }
         $fields = $request->validate([
             'name' => 'required|string',
             'role' => 'required|string',
