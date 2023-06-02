@@ -84,8 +84,11 @@ class CartController extends Controller
      * @param  \App\Models\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, Request $request)
+    public function destroy($id)
     {
-        Cart::where('user_id', $id)->where('product_category_id', $request['product_id'])->delete();
+        // Cart::where('user_id', $id)
+        // ->where('product_category_id', $request['product_id'])
+        // ->delete;
+        // return response()->json(['message' => 'Deleted']);
     }
 }

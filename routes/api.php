@@ -49,6 +49,12 @@ Route::apiResource('pricings', PricingController::class);
 
 // Carts
 Route::apiResource('carts', CartController::class);
+Route::post('/remove-cart', function($id){
+    Cart::where('user_id', $id)
+        ->where('product_category_id', $request['product_id'])
+        ->delete;
+        return response()->json(['message' => 'Deleted']);
+});
 
 // Orders routes
 Route::apiResource('orders', OrderController::class);
