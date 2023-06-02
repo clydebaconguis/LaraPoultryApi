@@ -202,7 +202,7 @@ Route::get('/dash', function () {
 Route::get('/products', function () {
     $products = ProductCategory::orderBy('created_at', 'ASC')->get();
     $index = $products[0]['id'];
-    $type = Pricing::where('product_category_id', $index)->get();
+    $type = Pricing::where('product_category_id', $index)->first();
     return view('content.products', ['products' => $products, 'type' => $type['unit'] ]);
 })->middleware('auth');
 
