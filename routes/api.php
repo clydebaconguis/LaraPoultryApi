@@ -52,7 +52,7 @@ Route::apiResource('carts', CartController::class);
 Route::post('/remove-cart/{id}', function($id, Request $request){
     Cart::where('user_id', $id)
         ->where('product_category_id', $request['product_id'])
-        ->delete;
+        ->delete();
         return response()->json(['message' => 'Deleted']);
 });
 
