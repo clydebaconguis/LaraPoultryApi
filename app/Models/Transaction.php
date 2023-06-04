@@ -22,6 +22,9 @@ class Transaction extends Model
         'date_to_deliver',
         'proof_of_delivery',
         'proof_of_payment',
+        'amount_paid',
+        'rider_id',
+        
     ];
 
     protected $table = 'transactions';

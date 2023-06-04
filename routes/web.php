@@ -204,7 +204,7 @@ Route::get('/products', function () {
         ->join('pricings', 'product_categories.id', "=", 'pricings.product_category_id')
         ->orderBy('created_at', 'ASC')->get();
 
-    return view('content.products', ['products' => $products]);
+    return view('content.products', ['products' => $products,'user' => auth()->user(),]);
 })->middleware('auth');
 
 Route::get('/editprod/{prod}/edit', function (ProductCategory $prod) {
@@ -220,7 +220,8 @@ Route::get('/editprod/{prod}/edit', function (ProductCategory $prod) {
 Route::get('/orders', function () {
     return view('content.orders', ['orders' => Transaction::select('transactions.*','users.name')
         ->join('users', 'transactions.user_id', "=", 'users.id')
-        ->orderBy('id', 'desc')->get()]);
+        ->orderBy('id', 'desc')->get(), 
+        'user' => auth()->user(),]);
 })->middleware('auth');
 
 Route::post('/orderstat/{orderid}', function ($orderid, Request $request) {
@@ -279,12 +280,14 @@ Route::post('/orderstat/{orderid}', function ($orderid, Request $request) {
 
 Route::get('/users', function () {
     return view('content.users', 
-    ['users' => User::all()]);
+    ['users' => User::all(),
+    'user' => auth()->user(),]);
     
 })->middleware('auth');
 
 Route::get('/types', function () {
-    return view('content.type', ['types' => Type::all()]);
+    return view('content.type', ['types' => Type::all(),
+    'user' => auth()->user(),]);
 })->middleware('auth');
 
 Route::get('/orderdetails/{id}', function ($id) {
@@ -306,7 +309,7 @@ Route::get('/orderdetails/{id}', function ($id) {
 
 
 Route::get('/accounts', function () {
-    return view('content.accounts', ['accounts' => Account::all()]);
+    return view('content.accounts', ['accounts' => Account::all(),'user' => auth()->user(),]);
 })->middleware('auth');
 
 Route::get('/editaccount/{item}/edit', function (Account $item) {

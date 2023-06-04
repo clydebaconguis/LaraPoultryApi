@@ -27,6 +27,8 @@ class User extends Authenticatable
         'email',
         'password',
         'status',
+        'rider_total_collected',
+        'online',
     ];
 
     /**
