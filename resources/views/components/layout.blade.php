@@ -94,8 +94,8 @@
             <hr class="sidebar-divider my-0">
             <li class="nav-item active">
                 <a class="nav-link" href="/accounts">
-                    <i class="fa fa-users" aria-hidden="true"></i>
-                    <span>Accounts</span></a>
+                    <i class="fa fa-cc-mastercard" style="color:white"></i>
+                    <span>E-Pay</span></a>
             </li>
 
            
