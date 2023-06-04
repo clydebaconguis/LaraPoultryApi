@@ -3,17 +3,17 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-4 text-gray-800">Account</h1>
+        <h1 class="h3 mb-4 text-gray-800">E-Pay</h1>
         @if(session()->has('message')) <p class="alert alert-success">{{session('message')}}</p> @endif
 
         <form  method="POST" action="/addaccount" enctype="multipart/form-data">
             @csrf
             <div class="d-flex justify-content-between">
                 <div>
-                    <h4>Add New GCash</h4>
+                    <h4>Add New E-Pay Number</h4>
                     <div class="form-group">
                         <label for="num">Gcash</label>
-                        <input type="text" class="form-control" name="num" id="num" required placeholder="Enter Number">
+                        <input type="text" class="form-control" name="num" id="num" required placeholder="Enter number">
                     </div>
                     <div>
                         <button type="submit" class="mb-4 btn btn-primary">Add</button>
