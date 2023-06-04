@@ -94,7 +94,7 @@
             <hr class="sidebar-divider my-0">
             <li class="nav-item active">
                 <a class="nav-link" href="/accounts">
-                    <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+                    <i class="fa fa-credit-card" aria-hidden="true"></i>
                     <span>E-Pay</span></a>
             </li>
 
