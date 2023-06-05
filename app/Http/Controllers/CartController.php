@@ -34,10 +34,10 @@ class CartController extends Controller
         ]);
         $isExist = Cart::where('user_id', $request['user_id'])->where('product_category_id', $request['product_category_id'])->first();
         if($isExist){
-            $stock = ProductCategory::where('id', $request['product_category_id'])->first();
+            $stock = ProductCategory::where('id', $request['product_category_id'])->get();
             $newTray = $isExist['tray'] += $request['tray'];
             $newTotal = $isExist['total'] += $request['total'];
-            if($newTray <= $stock['stock']){
+            if($newTray <= $stock[0]['stock']){
                 Cart::where('user_id', $request['user_id'])->where('product_category_id', $request['product_category_id'])
                 ->update(
                     [
