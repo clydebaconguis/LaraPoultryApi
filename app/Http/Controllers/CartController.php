@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\Cart;
-use App\Models\ProductCategory;
-use Database\Factories\ProductFactory;
 use Illuminate\Http\Request;
+use App\Models\ProductCategory;
 use Illuminate\Support\Facades\DB;
+use Database\Factories\ProductFactory;
 
 class CartController extends Controller
 {
@@ -28,28 +29,32 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'user_id' => 'required',
-            'product_category_id' => 'required',
-        ]);
-        $isExist = Cart::where('user_id', $request['user_id'])->where('product_category_id', $request['product_category_id'])->first();
-        if($isExist){
-            $stock = ProductCategory::where('id', $request['product_category_id'])->get();
-            $newTray = $isExist['tray'] += $request['tray'];
-            $newTotal = $isExist['total'] += $request['total'];
-            if($newTray <= $stock[0]['stock']){
-                Cart::where('user_id', $request['user_id'])->where('product_category_id', $request['product_category_id'])
-                ->update(
-                    [
-                    'tray' => $newTray,
-                    'total'=> $newTotal,
-                ]);
-                return response()->json(['message' => 'success']);
+        try{
+            $request->validate([
+                'user_id' => 'required',
+                'product_category_id' => 'required',
+            ]);
+            $isExist = Cart::where('user_id', $request['user_id'])->where('product_category_id', $request['product_category_id'])->first();
+            if($isExist){
+                $stock = ProductCategory::where('id', $request['product_category_id'])->get();
+                $newTray = $isExist['tray'] += $request['tray'];
+                $newTotal = $isExist['total'] += $request['total'];
+                if($newTray <= $stock[0]['stock']){
+                    Cart::where('user_id', $request['user_id'])->where('product_category_id', $request['product_category_id'])
+                    ->update(
+                        [
+                        'tray' => $newTray,
+                        'total'=> $newTotal,
+                    ]);
+                    return response()->json(['message' => 'success']);
+                }
+                return response()->json(['message' => 'You have reach stock limit']);
             }
-            return response()->json(['message' => 'You have reach stock limit']);
+            Cart::create($request->all());
+            return response()->json(['message' => 'success']);
+        }catch(Exception $e){
+            return response()->json(['message' => 'fail']);
         }
-        Cart::create($request->all());
-        return response()->json(['message' => 'success']);
     }
 
     /**
