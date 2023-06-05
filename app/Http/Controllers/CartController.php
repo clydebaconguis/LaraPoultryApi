@@ -34,15 +34,21 @@ class CartController extends Controller
         ]);
         $isExist = Cart::where('user_id', $request['user_id'])->where('product_category_id', $request['product_category_id'])->first();
         if($isExist){
+            $stocks = ProductCategory::select('stock')
+            ->where('id', $request['product_category_id'])
+            ->get();
             $newTray = $isExist['tray'] += $request['tray'];
             $newTotal = $isExist['total'] += $request['total'];
-            Cart::where('user_id', $request['user_id'])->where('product_category_id', $request['product_category_id'])
-            ->update(
-                [
-                'tray' => $newTray,
-                'total'=> $newTotal,
-            ]);
-            return response()->json(['message' => 'success']);
+            if($newTray <= $stocks['stock']){
+                Cart::where('user_id', $request['user_id'])->where('product_category_id', $request['product_category_id'])
+                ->update(
+                    [
+                    'tray' => $newTray,
+                    'total'=> $newTotal,
+                ]);
+                return response()->json(['message' => 'success']);
+            }
+            return response()->json(['message' => 'You have reach stock limit']);
         }
         Cart::create($request->all());
         return response()->json(['message' => 'success']);
