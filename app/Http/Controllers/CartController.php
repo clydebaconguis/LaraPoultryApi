@@ -53,7 +53,7 @@ class CartController extends Controller
             Cart::create($request->all());
             return response()->json(['message' => 'success']);
         }catch(Exception $e){
-            return response()->json(['message' => 'fail']);
+            return response()->json(['message' => 'fail'.$e]);
         }
     }
 
