@@ -63,7 +63,7 @@ class AuthController extends Controller
         ]);
 
         // Check email
-        $user = User::where('email', $fields['email'])->where('role', "client")->first();
+        $user = User::where('email', $fields['email'])->where('role', $request['role'])->first();
         // Check password
         if (!$user || !Hash::check($fields['password'], $user->password)) {
             return response(['message' => 'Bad creds'], 201);
