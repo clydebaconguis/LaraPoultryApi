@@ -39,8 +39,8 @@
                     </div>
                     <div class="card-body p-4">
                         @unless (count($riders) == 0)
-                            <select name="orderstat" id="orderstat" class="btn btn-secondary ml-1" disabled onchange="this.form.submit()">
-                                <option  class="bg-light text-dark" selected>Select status</option>
+                            <select name="rider" id="rider" class="btn btn-primary" onchange="">
+                                <option  class="bg-light text-dark" selected>Select Courier</option>
                                 @foreach ($riders as $rider)
                                     <option  class="bg-light text-dark" value="preparing for delivery">{{$rider->id}} {{$rider->name}}</option>
                                 @endforeach
