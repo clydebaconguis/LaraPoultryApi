@@ -40,9 +40,9 @@
                     <div class="card-body p-4">
                         <form method="POST" action="/assign-courier/{{$detail->id}}">
                             @csrf
-                            @if ($detail->status == "for approval")
+                            @if ($detail->status == "for approval" || $detail->status == "preparing for delivery")
                                 @unless (count($riders) == 0)
-                                    <select name="rider" id="rider" class="btn btn-primary" onchange="this.form.submit()">
+                                    <select name="rider" id="rider" class="btn btn-primary mb-1" onchange="this.form.submit()">
                                         <option  class="bg-light text-dark" selected>Select Courier</option>
                                         @foreach ($riders as $rider)
                                             <option  class="bg-light text-dark" value="preparing for delivery">{{$rider->id}} {{$rider->name}}</option>
