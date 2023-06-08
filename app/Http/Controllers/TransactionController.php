@@ -20,14 +20,13 @@ class TransactionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index()
     {
         // return Transaction::all();
 
         return DB::table('transactions')
             ->join('users', 'transactions.user_id', "=", 'users.id')
             ->select('transactions.*', 'users.name')
-            ->where('transactions.rider_id', $id)
             ->orderBy('created_at', 'DESC')->get();
     }
 
@@ -110,6 +109,8 @@ class TransactionController extends Controller
     {
         return Transaction::where('user_id', $user_id)
             ->orderBy('created_at', 'DESC')->get();
+            // ->where('transactions.rider_id', $id)
+
     }
 
     /**
