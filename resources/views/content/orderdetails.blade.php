@@ -48,7 +48,7 @@
                                     <select name="rider" id="rider" class="btn btn-primary mb-1" onchange="this.form.submit()">
                                         <option  class="bg-light text-dark" selected>Select Courier</option>
                                         @foreach ($riders as $rider)
-                                            <option  class="bg-light text-dark" value="preparing for delivery">{{$rider->id}} {{$rider->name}}</option>
+                                            <option  class="bg-light text-dark" value={{$rider->id}}>ID {{$rider->id}} - {{$rider->name}}</option>
                                         @endforeach
                                     </select>
                                 @endunless
