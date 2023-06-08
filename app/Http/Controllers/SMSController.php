@@ -34,7 +34,7 @@ class SMSController extends Controller
             );
             if($message->sid){
                 Otp::create(['otp' => $otp, 'sid' => $message->sid]);
-                return response()->json(['message' => 'success', 'otp' => $otp]);
+                return response()->json(['message' => 'success']);
             }
                 
         }catch(Exception $e){
