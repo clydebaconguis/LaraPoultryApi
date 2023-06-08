@@ -1,6 +1,7 @@
 <x-layout>
     <section class="vh-100">
     <div class="container py-5 h-100">
+        @if(session()->has('message')) <p class="alert alert-success">{{session('message')}}</p> @endif
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-md-10 col-lg-8 col-xl-6">
                 <div class="card card-stepper" style="border-radius: 16px;">
