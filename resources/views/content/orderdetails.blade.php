@@ -38,16 +38,19 @@
                         </div>
                     </div>
                     <div class="card-body p-4">
-                        @if ($detail->status == "for approval")
-                            @unless (count($riders) == 0)
-                                <select name="rider" id="rider" class="btn btn-primary" onchange="">
-                                    <option  class="bg-light text-dark" selected>Select Courier</option>
-                                    @foreach ($riders as $rider)
-                                        <option  class="bg-light text-dark" value="preparing for delivery">{{$rider->id}} {{$rider->name}}</option>
-                                    @endforeach
-                                </select>
-                            @endunless
-                        @endif
+                        <form method="POST" action="/assign-courier/{{$detail->id}}">
+                            @csrf
+                            @if ($detail->status == "for approval")
+                                @unless (count($riders) == 0)
+                                    <select name="rider" id="rider" class="btn btn-primary" onchange="this.form.submit()">
+                                        <option  class="bg-light text-dark" selected>Select Courier</option>
+                                        @foreach ($riders as $rider)
+                                            <option  class="bg-light text-dark" value="preparing for delivery">{{$rider->id}} {{$rider->name}}</option>
+                                        @endforeach
+                                    </select>
+                                @endunless
+                            @endif
+                        </form>
                         @unless (count($items) == 0)
                             @foreach ($items as $item)
                                 <div class="d-flex flex-row mb-4 pb-2">

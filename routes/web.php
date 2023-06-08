@@ -304,9 +304,15 @@ Route::get('/orderdetails/{id}', function ($id) {
                 ->join('product_categories', 'orders.product_category_id', "=", 'product_categories.id')
                 ->select('orders.*', 'product_categories.name', 'product_categories.image')
                 ->where('transaction_id', $id)->get(),
+
             'riders'=> User::where('role', "courier")->get(),
         ]
     );
+})->middleware('auth');
+
+Route::post('/assign-courier/{trans_id}', function($trans_id, Request $request){
+    Transaction::find($trans_id)->update(['rider_id', $request['rider']]);
+    return back()->with('message', 'Rider assigned successfully!');
 })->middleware('auth');
 
 
