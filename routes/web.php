@@ -311,7 +311,7 @@ Route::get('/orderdetails/{id}', function ($id) {
 })->middleware('auth');
 
 Route::post('/assign-courier/{trans_id}', function($trans_id, Request $request){
-    Transaction::find($trans_id)->update(['rider_id', $request['rider']]);
+    Transaction::find($trans_id)->update(['rider_id' => $request['rider']]);
     return back()->with('message', 'Rider assigned successfully!');
 })->middleware('auth');
 

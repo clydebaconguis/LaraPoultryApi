@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Otp;
 use App\Models\Cart;
 use App\Models\Size;
 use App\Models\Order;
@@ -8,6 +9,7 @@ use App\Models\Account;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Models\ProductCategory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SMSController;
 use App\Http\Controllers\AuthController;
@@ -19,7 +21,6 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PricingController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\ProductCategoryController;
-use App\Models\Otp;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,6 +78,13 @@ Route::post('/orderstat/{id}/cancel', function($id, Request $request){
 
 // Transaction routes
 Route::apiResource('transactions', TransactionController::class);
+Route::get('/fetch-rider-orders/{rider_id}', function($rider_id){
+    return DB::table('transactions')
+            ->join('users', 'transactions.user_id', "=", 'users.id')
+            ->select('transactions.*', 'users.name')
+            ->where('transactions.rider_id', $rider_id)
+            ->orderBy('created_at', 'DESC')->get();
+});
 
 // Types
 Route::apiResource('types', TypeController::class);

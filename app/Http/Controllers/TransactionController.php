@@ -109,8 +109,6 @@ class TransactionController extends Controller
     {
         return Transaction::where('user_id', $user_id)
             ->orderBy('created_at', 'DESC')->get();
-            // ->where('transactions.rider_id', $id)
-
     }
 
     /**
