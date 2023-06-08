@@ -243,11 +243,13 @@ Route::post('/orderstat/{orderid}', function ($orderid, Request $request) {
         }
     }
     if($request['orderstat'] == "delivery"){
-        Transaction::find($orderid)->update([
-            'status' => $request['orderstat'],
-            'date_to_deliver' => $tomorrow ]);
-        $orders = Order::where('transaction_id', $orderid)->get();
-        
+        $hasCourier = Transaction::find($orderid)->where('rider_id', '>', 0)->first();
+        if($hasCourier){
+            Transaction::find($orderid)->update([
+                'status' => $request['orderstat'],
+                'date_to_deliver' => $tomorrow ]);
+            $orders = Order::where('transaction_id', $orderid)->get();
+        }
        
     }else if($request['orderstat'] == "cancel"){
         Transaction::find($orderid)->update(['status' => $request['orderstat']]);
