@@ -24,7 +24,8 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $validOtp = Otp::where('otp', $request['otp'])->first();
-        $taken = User::where('email', $request['email'])->first();
+        $taken = User::where('email', $request['email'])
+        ->where('role', $request['role'])->first();
         if ($taken) {
             return response(['message' => "Email is already taken!"], 201);
         } 

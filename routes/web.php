@@ -12,10 +12,11 @@ use App\Models\Transaction;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\ProductCategory;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\ProductCategoryController;
-use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -303,6 +304,7 @@ Route::get('/orderdetails/{id}', function ($id) {
                 ->join('product_categories', 'orders.product_category_id', "=", 'product_categories.id')
                 ->select('orders.*', 'product_categories.name', 'product_categories.image')
                 ->where('transaction_id', $id)->get(),
+            'riders'=> User::where('role', "courier")->get(),
         ]
     );
 })->middleware('auth');

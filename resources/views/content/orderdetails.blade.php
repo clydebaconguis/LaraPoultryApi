@@ -32,15 +32,20 @@
 
                                     @if ($detail->proof_of_payment && $detail->payment_opt == "GCASH")
                                         <p>Reference {{$detail->proof_of_payment}}</p>
-                                    @else
-                                        <img class="align-self-center img-fluid" style="width: 80px; height: 80px"
-                                        src="https://drive.google.com/uc?export=view&id={{$detail->proof_of_payment}}"> 
                                     @endif
                                 @endunless
                             </div>
                         </div>
                     </div>
                     <div class="card-body p-4">
+                        @unless (count($riders) == 0)
+                            <select name="orderstat" id="orderstat" class="btn btn-secondary ml-1" disabled onchange="this.form.submit()">
+                                <option  class="bg-light text-dark" selected>Select status</option>
+                                @foreach ($riders as $rider)
+                                    <option  class="bg-light text-dark" value="preparing for delivery">{{$rider->id}} {{$rider->name}}</option>
+                                @endforeach
+                            </select>
+                        @endunless
                         @unless (count($items) == 0)
                             @foreach ($items as $item)
                                 <div class="d-flex flex-row mb-4 pb-2">

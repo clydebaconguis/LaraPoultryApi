@@ -48,7 +48,7 @@ class TransactionController extends Controller
                     'status' => $request['status'],
                     'date_delivered' => $today,
                     'proof_of_delivery' => $path['path'],
-                    'proof_of_payment' => $path['path'],
+                    'amount_paid' => $request['amount_paid'],
                 ]);
                 return response()->json(['message' => "Successfully delivered"]);
             }else{
@@ -56,6 +56,7 @@ class TransactionController extends Controller
                     'status' => $request['status'],
                     'date_delivered' => $today,
                     'proof_of_delivery' => $path['path'],
+                    'amount_paid' => $request['amount_paid'],
                 ]);
                 return response()->json(['message' => "Successfully delivered"]);
             }
