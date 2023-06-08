@@ -18,6 +18,8 @@
                                     <p class="text-muted mb-0"> Phone <span class="fw-bold text-body">{{$detail->phone}}</span> </p>
                                     <p class="text-muted mb-0"> Address <span class="fw-bold text-body">{{$detail->user_add}}</span> </p> <br>
                                     <p class="text-muted mb-0"> Status changed on <span class="fw-bold text-body">{{$detail->updated_at}}</span> </p> <br>
+                                    <p class="text-muted mb-0"> Rider Assigned ID : <span class="fw-bold text-body">{{$detail->rider_id}}</span> </p> <br>
+
                                     @if ($detail->date_to_deliver)
                                         <p class="text-muted mb-0"> Estimated date of delivery <span class="fw-bold text-body">{{$detail->date_to_deliver}}</span> </p>
                                     @endif
