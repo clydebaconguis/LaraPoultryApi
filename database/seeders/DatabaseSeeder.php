@@ -3,12 +3,13 @@
 namespace Database\Seeders;
 
 use App\Models\Cart;
-use App\Models\Product;
-use App\Models\ProductCategory;
+use App\Models\Sale;
 use App\Models\Size;
 use App\Models\Type;
 use App\Models\Unit;
 use App\Models\User;
+use App\Models\Product;
+use App\Models\ProductCategory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -73,6 +74,19 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@admin.com',
             'phone' => '09554587790',
             'password' => Hash::make('secret'),
+        ]);
+
+        Sale::factory()->create([
+            'rider_id' => 1,
+            'profit' => 100.00,
+        ]);
+        Sale::factory()->create([
+            'rider_id' => 2,
+            'profit' => 200.00,
+        ]);
+        Sale::factory()->create([
+            'rider_id' => 3,
+            'profit' => 300.00,
         ]);
     }
 }
