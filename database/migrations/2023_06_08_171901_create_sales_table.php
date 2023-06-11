@@ -16,7 +16,7 @@ class CreateSalesTable extends Migration
         Schema::create('sales', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('rider_id');
-            $table->decimal('profit', 8, 6);
+            $table->decimal('profit', 5, 2);
             $table->timestamps();
         });
     }

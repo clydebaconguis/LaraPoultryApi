@@ -82,11 +82,11 @@ class DatabaseSeeder extends Seeder
         ]);
         Sale::factory()->create([
             'rider_id' => 2,
-            'profit' => 200.00,
+            'profit' => 200.25,
         ]);
         Sale::factory()->create([
             'rider_id' => 3,
-            'profit' => 300.00,
+            'profit' => 320.75,
         ]);
     }
 }
