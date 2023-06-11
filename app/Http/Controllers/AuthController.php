@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
     public function collection($id){
-        return User::find($id)->select('rider_total_collected')->get();
+        $models = User::select('rider_total_collected')->where('id', $id)->pluck('rider_total_collected');
+        return response()->json($models);
     }
 
     public function getUsers()
