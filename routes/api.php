@@ -2,6 +2,7 @@
 
 use App\Models\Otp;
 use App\Models\Cart;
+use App\Models\Sale;
 use App\Models\Size;
 use App\Models\Order;
 use App\Models\Orders;
@@ -43,6 +44,10 @@ Route::get('/logout/{id}', [AuthController::class, 'logout']);
 Route::post('/chpass/{id}', [AuthController::class, 'chpass']);
 
 Route::get('/collection/{id}', [AuthController::class, 'collection']);
+
+Route::get('/sale', function(){
+    return Sale::all();
+});
 
 // Categories routes
 Route::apiResource('product_categories', ProductCategoryController::class);
