@@ -23,7 +23,7 @@
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">{{$totalProducts}}</div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                <i class='fa-solid fa-peso-sign fa-2x text-gray-300'></i>
                             </div>
                         </div>
                     </a>
@@ -102,7 +102,9 @@
         </div>
     </div>
 
-    <div class="" id="curve_chart"></div>
+    <div class="" id="curve_chart">
+
+    </div>
     
 
     <div class="container-fluid">
