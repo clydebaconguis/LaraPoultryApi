@@ -51,7 +51,8 @@ class TransactionController extends Controller
                 'proof_of_delivery' => $path['path'],
                 'amount_paid' => $request['amount_paid'],
             ]);
-            User::find($request['rider_id'])->update(['rider_total_collected' => $request['amount_paid']]);
+            $user = User::find($request['rider_id']);
+            User::find($request['rider_id'])->update(['rider_total_collected' => $user['rider_total_collected'] + $request['amount_paid']]);
 
             if($request['rider_id'] && $request['amount_paid']){
                 Sale::create([
