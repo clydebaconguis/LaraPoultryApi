@@ -42,6 +42,8 @@ Route::get('/getUsers', [AuthController::class, 'getUsers']);
 Route::get('/logout/{id}', [AuthController::class, 'logout']);
 Route::post('/chpass/{id}', [AuthController::class, 'chpass']);
 
+Route::get('/collection/{id}', [AuthController::class, 'collection']);
+
 // Categories routes
 Route::apiResource('product_categories', ProductCategoryController::class);
 

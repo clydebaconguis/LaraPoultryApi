@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    public function collection($id){
+        return User::find($id)->select('rider_total_collected')->get();
+    }
+
     public function getUsers()
     {
         return User::where('status', 0)->orderBy('created_at', 'ASC')->get();
