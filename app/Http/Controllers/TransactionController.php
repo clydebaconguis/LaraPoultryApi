@@ -10,6 +10,7 @@ use App\Models\Transaction;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\ProductCategory;
+use App\Models\Sale;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -43,23 +44,14 @@ class TransactionController extends Controller
             $filename = Str::random(10);
             $request->file('image')->storeAs('', $filename, 'google');
             $path = Storage::disk('google')->getMetadata($filename);
-            if($request['payment'] == "COD"){
-                Transaction::find($request['id'])->update([   
-                    'status' => $request['status'],
-                    'date_delivered' => $today,
-                    'proof_of_delivery' => $path['path'],
-                    'amount_paid' => $request['amount_paid'],
-                ]);
-                return response()->json(['message' => "Successfully delivered"]);
-            }else{
-                Transaction::find($request['id'])->update([   
-                    'status' => $request['status'],
-                    'date_delivered' => $today,
-                    'proof_of_delivery' => $path['path'],
-                    'amount_paid' => $request['amount_paid'],
-                ]);
-                return response()->json(['message' => "Successfully delivered"]);
-            }
+            Transaction::find($request['id'])->update([   
+                'status' => $request['status'],
+                'date_delivered' => $today,
+                'proof_of_delivery' => $path['path'],
+                'amount_paid' => $request['amount_paid'],
+            ]);
+            Sale::create(['rider_id' => $request['rider_id'], 'profit'=>$request['amount_paid']]);
+            return response()->json(['message' => "Successfully delivered"]);
         }
 
         if($request->has("purpose") && $request->purpose == "store"){
