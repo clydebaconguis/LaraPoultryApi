@@ -80,7 +80,7 @@ class DatabaseSeeder extends Seeder
             'role' => 'courier',
             'email' => 'courier@courier.com',
             'phone' => '09554587790',
-            'password' => Hash::make('courier'),
+            'password' => Hash::make('Courier#123'),
         ]);
 
         Sale::factory()->create([
