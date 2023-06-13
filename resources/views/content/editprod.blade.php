@@ -14,7 +14,7 @@
             <div class="text-center">
                 <img src="https://drive.google.com/uc?export=view&id={{$products->image}}" style="width: 80px; height: 80px" class="rounded img-thumbnail" alt="image">
                 @if ($products->status == 1)
-                    <a type="button" class="btn btn-success" href="/chprodstat/{{$products->id}}/disable" >Disable</a>
+                    <a type="button" class="btn btn-warning" href="/chprodstat/{{$products->id}}/disable" >Disable</a>
                 @else
                     <a type="button" class="btn btn-success"  href="/chprodstat/{{$products->id}}/enable">Enable</a>
                 @endif

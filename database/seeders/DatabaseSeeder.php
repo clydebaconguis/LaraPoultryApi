@@ -75,6 +75,13 @@ class DatabaseSeeder extends Seeder
             'phone' => '09554587790',
             'password' => Hash::make('secret'),
         ]);
+        User::factory()->create([
+            'name' => 'Courier',
+            'role' => 'courier',
+            'email' => 'courier@courier.com',
+            'phone' => '09554587790',
+            'password' => Hash::make('courier'),
+        ]);
 
         Sale::factory()->create([
             'rider_id' => 1,

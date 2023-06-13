@@ -106,7 +106,7 @@ Route::post('/addproduct', function (Request $request) {
         return back()->with('message', 'Added successfully!');
     }
 })->middleware('auth');
-Route::get('/chprodstat/{id}/enabled', function($id){
+Route::get('/chprodstat/{id}/enable', function($id){
     
     ProductCategory::find($id)->update(['status' => 1]);
 

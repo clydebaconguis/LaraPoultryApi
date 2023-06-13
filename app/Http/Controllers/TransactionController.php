@@ -52,14 +52,14 @@ class TransactionController extends Controller
                 'amount_paid' => $request['amount_paid'],
             ]);
             $user = User::find($request['rider_id']);
-            User::find($request['rider_id'])->update(['rider_total_collected' => $user['rider_total_collected'] + $request['amount_paid']]);
+            $result = User::find($request['rider_id'])->update(['rider_total_collected' => $user['rider_total_collected'] + $request['amount_paid']]);
 
-            if($request['rider_id'] && $request['amount_paid']){
-                Sale::create([
-                    'rider_id' => $request['rider_id'],
-                    'profit' => $request['amount_paid'],
-                ]);
-            }
+            // if($result){
+            //     Sale::create([
+            //         'rider_id' => $request['rider_id'],
+            //         'profit' => $request['amount_paid'],
+            //     ]);
+            // }
            
             return response()->json(['message' => "Successfully delivered"]);
         }
