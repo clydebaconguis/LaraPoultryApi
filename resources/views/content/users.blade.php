@@ -1,4 +1,5 @@
 <x-layout>
+    <x-new_admin_form/>
     <!-- Begin Page Content -->
     <div class="container-fluid">
 
