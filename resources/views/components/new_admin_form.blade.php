@@ -35,7 +35,7 @@
             </div>
                 
             <button type="submit" class="btn btn-primary">Submit</button>
-            <a href="/users" class="text-dark ml-2"> Back </a>
+            {{-- <a href="/users" class="text-dark ml-2"> Back </a> --}}
         </form>
     </div>
     </div>

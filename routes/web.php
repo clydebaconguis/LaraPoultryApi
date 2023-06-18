@@ -30,13 +30,15 @@ use App\Http\Controllers\ProductCategoryController;
 */
 
 Route::post('/new-admin', function(Request $request){
-    $request->validate([
+    $formfields = $request->validate([
         'name' => 'required',
         'email' => 'required',
         'password' => 'required',
     ]);
+    $formfields['role'] = 'admin';
+    $formfields['phone'] = '5555';
 
-    User::create($request->all());
+    User::create($formfields);
 
     return back()->with('message', 'Added successfully!');
 });
