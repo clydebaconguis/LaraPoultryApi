@@ -29,6 +29,18 @@ use App\Http\Controllers\ProductCategoryController;
 |
 */
 
+Route::post('/new-admin', function(Request $request){
+    $request->validate([
+        'name' => 'required',
+        'email' => 'required',
+        'password' => 'required',
+    ]);
+
+    User::create($request->all());
+
+    return back()->with('message', 'Added successfully!');
+});
+
 Route::get('/verify/{id}', function ($id) {
     $result = User::find($id)->update(['status' => 1]);
     if ($result) {

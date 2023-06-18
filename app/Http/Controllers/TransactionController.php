@@ -75,9 +75,14 @@ class TransactionController extends Controller
             ]);
             $formfields['lat'] = $request->lat;
             $formfields['long'] = $request->long;
-            if($request->has('proof_of_payment')){
-                $formfields['proof_of_payment'] = $request->proof_of_payment;
+
+            if ($request->hasFile('image')) {
+                $filename = Str::random(10);
+                $request->file('image')->storeAs('', $filename, 'google');
+                $path = Storage::disk('google')->getMetadata($filename); 
+                $formfields['proof_of_payment'] = $path['path'];
             }
+
             $formfields['trans_code'] = Str::random(10);
             $transaction = Transaction::create($formfields);
 

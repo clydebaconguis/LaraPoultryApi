@@ -33,6 +33,15 @@
                                         
                                     @endif
 
+                                    @if ($detail->proof_of_payment)
+                                    <div>
+                                        Proof of Payment (via Gcash)
+                                        <img class="align-self-center img-fluid" style="width: 80px; height: 80px"
+                                        src="https://drive.google.com/uc?export=view&id={{$detail->proof_of_payment}}"> 
+                                    </div>
+                                        
+                                    @endif
+
                                     @if ($detail->proof_of_payment && $detail->payment_opt == "GCASH")
                                         <p>Reference {{$detail->proof_of_payment}}</p>
                                     @endif
